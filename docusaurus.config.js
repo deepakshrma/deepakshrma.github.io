@@ -4,8 +4,8 @@ module.exports = {
   url: 'https://github.com/deepakshrma',
   baseUrl: '/',
   favicon: 'img/icon_light_y.png',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'deepakshrma', // Usually your GitHub org/user name.
+  projectName: 'deepakshrma.github.io', // Usually your repo name.
   themeConfig: {
     disableDarkMode: false,
     navbar: {
@@ -65,7 +65,7 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/deepakshrma/deepakshrma.github.io',
             },
           ],
         },
@@ -91,7 +91,7 @@ module.exports = {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+            'https://github.com/deepakshrma/deepakshrma.github.io/edit/master/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

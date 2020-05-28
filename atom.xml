@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://github.com/deepakshrma/</id>
+    <title>Deepak Vishwakarma Blog</title>
+    <updated>2020-05-22T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://github.com/deepakshrma/"/>
+    <subtitle>Deepak Vishwakarma Blog</subtitle>
+    <icon>https://github.com/deepakshrma/img/icon_light_y.png</icon>
+    <rights>Copyright © 2020 Deepak Vishwakarma, Inc. Built with Docusaurus.</rights>
+    <entry>
+        <title type="html"><![CDATA[Welcome]]></title>
+        <id>welcome</id>
+        <link href="https://github.com/deepakshrma/welcome"/>
+        <updated>2020-05-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Welcome to my blog! This is my first blog in this platform.]]></summary>
+    </entry>
+</feed>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Deepak Vishwakarma Blog</title>
+        <link>https://github.com/deepakshrma/</link>
+        <description>Deepak Vishwakarma Blog</description>
+        <lastBuildDate>Fri, 22 May 2020 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <copyright>Copyright © 2020 Deepak Vishwakarma, Inc. Built with Docusaurus.</copyright>
+        <item>
+            <title><![CDATA[Welcome]]></title>
+            <link>https://github.com/deepakshrma/welcome</link>
+            <guid>welcome</guid>
+            <pubDate>Fri, 22 May 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[Welcome to my blog! This is my first blog in this platform.]]></description>
+        </item>
+    </channel>
+</rss>

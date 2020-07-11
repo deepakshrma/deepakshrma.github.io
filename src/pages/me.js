@@ -33,35 +33,19 @@ const theme = createMuiTheme({
   typography: { useNextVariants: true },
 });
 
-function Home() {
+function AboutMe() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
   return (
     <MuiThemeProvider theme={theme}>
       <Layout
-        title={`Hello from ${siteConfig.title}`}
+        title={`About ${siteConfig.title}`}
         description={`${siteConfig.tagline}`}
       >
         <header className={classnames("hero hero--primary", styles.heroBanner)}>
-          <div className="container">
-            <Typography variant="h4" display="block" gutterBottom>
-              {siteConfig.title}
-            </Typography>
-            <Typography variant="overline" display="block" gutterBottom>
-              {siteConfig.tagline}
-            </Typography>
-            <div style={{display: "flex", justifyContent: 'space-evenly'}}>
-              <Link to={useBaseUrl("/")}>
-                <Button>About Me</Button>
-              </Link>
-              <Link to={useBaseUrl("docs/resume")}>
-                <Button>Resume</Button>
-              </Link>
-              <Link to={useBaseUrl("blog")}>
-                <Button>Blogs</Button>
-              </Link>
-            </div>
-          </div>
+          <Typography variant="overline" display="block" gutterBottom>
+            {siteConfig.tagline}
+          </Typography>
         </header>
         <main></main>
       </Layout>
@@ -69,4 +53,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default AboutMe;

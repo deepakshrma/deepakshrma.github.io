@@ -10,14 +10,14 @@
  * You can override the default Infima variables here.
  * Note: this is not a complete list of --ifm- variables.
  */
- :root {
-  --ifm-color-primary: #009688;
-  --ifm-color-primary-dark: #00877a;
-  --ifm-color-primary-darker: #008074;
-  --ifm-color-primary-darkest: #00695f;
-  --ifm-color-primary-light: #00a596;
-  --ifm-color-primary-lighter: #00ad9c;
-  --ifm-color-primary-lightest: #00c3b1;
+:root {
+  --ifm-color-primary: #e54e79;
+  --ifm-color-primary-dark: #e13365;
+  --ifm-color-primary-darker: #df265b;
+  --ifm-color-primary-darkest: #bb1c49;
+  --ifm-color-primary-light: #e9698d;
+  --ifm-color-primary-lighter: #eb7697;
+  --ifm-color-primary-lightest: #f19eb6;
 }
 
 .docusaurus-highlight-code-line {
@@ -27,8 +27,8 @@
   padding: 0 var(--ifm-pre-padding);
 }
 body {
-  font-family: 'Open Sans', sans-serif !important;
+  font-family: "Open Sans", sans-serif !important;
 }
 .prism-code {
-  font-family: 'Fira Code', monospace !important;
+  font-family: "Fira Code", monospace !important;
 }

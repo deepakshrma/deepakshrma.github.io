@@ -9,9 +9,12 @@
     "deploy": "GIT_USER=deepakshrma CURRENT_BRANCH=docs USE_SSH=true yarn run docusaurus deploy"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.55",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.55",
+    "@docusaurus/core": "^2.0.0-alpha.58",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.58",
     "@docusaurus/theme-live-codeblock": "^2.0.0-alpha.39",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/styles": "^4.10.0",
     "classnames": "^2.2.6",
     "react": "^16.8.4",
     "react-dom": "^16.8.4"

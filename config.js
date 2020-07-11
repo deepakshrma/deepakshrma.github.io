@@ -1,5 +1,5 @@
 module.exports = {
-  plugins: ["@docusaurus/plugin-sitemap"],
+  plugins: [require.resolve("@docusaurus/plugin-sitemap")],
   stylesheets: [
     {
       href:
@@ -9,6 +9,7 @@ module.exports = {
   ],
   themeConfig: {
     sidebarCollapsible: false,
+    disableDarkMode: true,
     prism: {
       defaultLanguage: "ts",
     },
@@ -36,7 +37,7 @@ module.exports = {
           items: [
             {
               label: "GitHub",
-              href: "https://github.com/deepakshrma/deepakshrma.github.io",
+              href: "https://github.com/deepakshrma/",
             },
           ],
         },

@@ -1,4 +1,14 @@
-# How to ditch WebPack, Jest to write TypeScript/NPM library just using Deno
+---
+id: one-for-all
+title: One For All Deno
+author: Deepak Vishwakarma
+author_title: Front End Engineer
+author_url: https://github.com/deepakshrma
+author_image_url: https://avatars2.githubusercontent.com/u/7682731?s=460
+tags: [welcome, hello, blog, thoughts, inner-feeling]
+---
+
+## How to ditch WebPack, Jest to write TypeScript/NPM library just using Deno
 
 Deno is around town for a while. Since the beginning, it getting attention of the developers. It has `runtime` for `JavaScript` and `TypeScript` that uses V8 and is built in `Rust`. `Rust` means, it is fast and secure at the same time.
 
@@ -39,7 +49,7 @@ npm init --y
 
 If all good, You will see structure as below.
 
-![folder_lodash](img/Deno_loadash_1.png)
+![folder_lodash](img/deno_loadash_1.png)
 
 :::note
 If you noticed, I have added lib in `.gitignore`. Since we are building the TypeScript library. We will not need a `compiled` version of it.
@@ -211,7 +221,7 @@ Add bundle command in `package.json`
 
 `npm run bundle`
 
-![folder_lodash](img/Deno_loadash_1.png)
+![folder_lodash](img/deno_loadash_2.png)
 
 :::note
 We have to update, `test/index.js` import/require statement. Since `tsc` using `commonjs` as a module in `tsconfig.json`, All the files will be compiled and converted to the same name ie. `lib/lodash.js`.

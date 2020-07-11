@@ -4,10 +4,17 @@
         <title>Deepak Vishwakarma Blog</title>
         <link>https://github.com/deepakshrma/</link>
         <description>Deepak Vishwakarma Blog</description>
-        <lastBuildDate>Fri, 22 May 2020 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 11 Jul 2020 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <copyright>Copyright © 2020 Deepak Vishwakarma, Inc. Built with Docusaurus.</copyright>
+        <item>
+            <title><![CDATA[one-tool-for-all]]></title>
+            <link>https://github.com/deepakshrma/2020/07/11/one-tool-for-all</link>
+            <guid>one-tool-for-all</guid>
+            <pubDate>Sat, 11 Jul 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[How to ditch WebPack, Jest to write TypeScript/NPM library just using Deno]]></description>
+        </item>
         <item>
             <title><![CDATA[Welcome]]></title>
             <link>https://github.com/deepakshrma/welcome</link>

@@ -13,37 +13,37 @@ module.exports = {
     prism: {
       defaultLanguage: "ts",
     },
-    footer: {
-      links: [
-        {
-          title: "Community",
-          items: [
-            {
-              label: "Medium.com",
-              href: "https://medium.com/@deepak_v",
-            },
-            {
-              label: "Discord",
-              href: "https://discord.com/channels/@deepakv",
-            },
-            {
-              label: "Linkdin",
-              href: "https://www.linkedin.com/in/xdeepakv/",
-            },
-          ],
-        },
-        {
-          title: "More",
-          items: [
-            {
-              label: "GitHub",
-              href: "https://github.com/deepakshrma/",
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} Deepak Vishwakarma, Inc. Built with Docusaurus.`,
-    },
+    // footer: {
+    //   links: [
+    //     {
+    //       title: "Community",
+    //       items: [
+    //         {
+    //           label: "Medium.com",
+    //           href: "https://medium.com/@deepak_v",
+    //         },
+    //         {
+    //           label: "Discord",
+    //           href: "https://discord.com/channels/@deepakv",
+    //         },
+    //         {
+    //           label: "Linkdin",
+    //           href: "https://www.linkedin.com/in/xdeepakv/",
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       title: "More",
+    //       items: [
+    //         {
+    //           label: "GitHub",
+    //           href: "https://github.com/deepakshrma/",
+    //         },
+    //       ],
+    //     },
+    //   ],
+    //   copyright: `Copyright © ${new Date().getFullYear()} Deepak Vishwakarma, Inc. Built with Docusaurus.`,
+    // },
   },
   themes: ["@docusaurus/theme-classic", "@docusaurus/theme-live-codeblock"],
 };

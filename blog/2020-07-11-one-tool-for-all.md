@@ -5,12 +5,12 @@ author: Deepak Vishwakarma
 author_title: Front End Engineer
 author_url: https://github.com/deepakshrma
 author_image_url: https://avatars2.githubusercontent.com/u/7682731?s=460
-tags: [welcome, hello, blog, thoughts, inner-feeling]
+tags: [library, typeScript, bundle, testing, deno, npm]
 ---
 
 ## How to ditch WebPack, Jest to write TypeScript/NPM library just using Deno
 
-Deno is around town for a while. Since the beginning, it getting attention of the developers. It has `runtime` for `JavaScript` and `TypeScript` that uses V8 and is built in `Rust`. `Rust` means, it is fast and secure at the same time.
+Deno is around town for a while. Since the beginning, it getting the attention of the developers. It has `runtime` for `JavaScript` and `TypeScript` that uses V8 and is built-in `Rust`. `Rust` means, it is fast and secure at the same time.
 
 ![Bundle Image](https://miro.medium.com/max/1400/1*7Ws9_cH2N2ZxvheAIn9f6A@2x.png)
 

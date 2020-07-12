@@ -1,7 +1,7 @@
 const configs = require("./config");
 module.exports = {
   title: "Deepak Vishwakarma",
-  tagline: "Programmer and Enthusiastic Tech lover",
+  tagline: "Programmer, Auther, Poet and Enthusiastic Tech lover",
   url: "https://github.com/deepakshrma",
   baseUrl: "/",
   favicon: "img/icon_light_y.png",
@@ -10,7 +10,7 @@ module.exports = {
   ...configs,
   themeConfig: {
     ...configs.themeConfig,
-    disableDarkMode: false,
+    disableDarkMode: true,
     navbar: {
       title: "Deepak Vishwakarma",
       logo: {
@@ -31,7 +31,7 @@ module.exports = {
           position: "left",
         },
         {
-          href: "https://github.com/deepakshrma/deepakshrma.github.io",
+          href: "https://github.com/deepakshrma/",
           label: "GitHub",
           position: "right",
         },

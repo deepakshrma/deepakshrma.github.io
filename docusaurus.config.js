@@ -2,7 +2,7 @@ const configs = require("./config");
 module.exports = {
   title: "Deepak Vishwakarma",
   tagline: "Programmer, Poet and Enthusiastic Tech lover",
-  url: "https://github.com/deepakshrma",
+  url: "https://decipher.dev",
   baseUrl: "/",
   favicon: "img/icon_light_y.png",
   organizationName: "deepakshrma", // Usually your GitHub org/user name.

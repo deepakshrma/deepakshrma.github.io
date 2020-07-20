@@ -1,7 +1,7 @@
 const configs = require("./config");
 module.exports = {
   title: "Deepak Vishwakarma",
-  tagline: "Programmer, Auther, Poet and Enthusiastic Tech lover",
+  tagline: "Programmer, Poet and Enthusiastic Tech lover",
   url: "https://github.com/deepakshrma",
   baseUrl: "/",
   favicon: "img/icon_light_y.png",
@@ -62,7 +62,7 @@ module.exports = {
             "https://github.com/deepakshrma/deepakshrma.github.io/edit/docs",
           feedOptions: {
             type: "all",
-            copyright: `Copyright © ${new Date().getFullYear()} Deepak Vishwakarma, Inc. Built with Docusaurus.`,
+            copyright: `Copyright © ${new Date().getFullYear()} Deepak Vishwakarma`,
           },
         },
         theme: {

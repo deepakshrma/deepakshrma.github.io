@@ -6,17 +6,14 @@
  */
 
 .heroBanner {
-  padding: .75rem 0;
+  padding: 0;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
 
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 1rem;
-  }
-}
+/* @media screen and (max-width: 966px) {
+} */
 
 .buttons {
   display: flex;
@@ -37,4 +34,79 @@
 .featureImage {
   height: 200px;
   width: 200px;
+}
+.container {
+  padding: 10px;
+  background-image: url(https://wallpaperplay.com/walls/full/2/7/8/247010.jpg);
+  background-position: center; 
+  color: #fff;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.footer img {
+  width: 150px;
+}
+.footer div {
+  width: 100%;
+}
+.footer p {
+  margin: 0 20px;
+  padding: 4px 10px;
+  border-bottom: 1px solid #c3c3c3;
+  color: #656565;
+}
+@media only screen and (max-width: 1281px) {
+  .footer a {
+    display: block;
+    text-align: center;
+  }
+  .products a{
+    width: 90% !important;
+  }
+  .container {
+    padding: 1rem;
+  }
+}
+@media only screen and (min-width: 1281px) {
+  .footer a {
+    margin: 0 15px;
+  }
+}
+.poems {
+  display: flex;
+  padding: 10px 20px;
+  flex-direction: column;
+}
+.poemsHeader{
+  color: #656565;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #c3c3c3;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.product {
+  
+}
+.products a{
+  width: 45%;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.productHeader{
+  color: #656565;
+}
+.productBody {
+  font-size: 12px;
+}
+body {
+  font-family: 'Roboto', sans-serif;
 }

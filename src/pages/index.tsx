@@ -1,123 +1,101 @@
-import React, { useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
-
+import React from "react";
+import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
+import styles from "./styles.module.css";
 
-import Button from "../components/Button";
-import { P, SubTitle, Section, UL } from "../components/Typograpgy";
-import { Container, HR, Gutter } from "../components/Layout";
+const features = [
+  {
+    title: <>Deno by Examples</>,
+    imageUrl: "https://decipher.dev/deno-by-example/img/home_page_dino.jpg",
+    description: <>Tutorial: Learn Web Programming in Deno by Examples</>,
+    href: "/deno-by-example/",
+  },
+  {
+    title: <>30 Seconds of Typescript</>,
+    imageUrl:
+      "https://raw.githubusercontent.com/deepakshrma/30-seconds-of-typescript/master/assets/icon_128x128.png",
+    description: (
+      <>
+        Utility library,code snippets like lodash for typescript,
+        typescriptreact(tsx) and deno [inspired by 30-seconds-of-code].
+      </>
+    ),
+    href: "/30-seconds-of-typescript/",
+  },
+  {
+    title: <>Googles Codelabs- Clone</>,
+    imageUrl:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2Fa%2FAATXAJzZEtpMKWPkkfbpfdkBBsKlxsa5KsXr471zBg%3Ds900-c-k-c0xffffffff-no-rj-mo&f=1&nofb=1",
+    description: (
+      <>Go Lang claat tool replica written in node js, using marked parser</>
+    ),
+    href: "/googles-codelabs/",
+  },
+];
 
-import theme, { GlobalStyle, props } from "../components/theme";
-const ThemeController = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-`;
+function Feature({ imageUrl, title, description, href }) {
+  const imgUrl = useBaseUrl(imageUrl);
+  return (
+    <a
+      className={clsx("col col--4", styles.feature)}
+      href={href}
+      target="_blank"
+    >
+      <div>
+        {imgUrl && (
+          <div className="text--center">
+            <img className={styles.featureImage} src={imgUrl} alt={title} />
+          </div>
+        )}
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </div>
+    </a>
+  );
+}
 
-const FooterContainer = styled.div`
-  position: fixed;
-  bottom: 0;
-  height: 60px;
-  border-top: 1px solid ${props("color_primary_darkest")};
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-`;
-const themes = [{ ...theme, bg_color: theme.bg_color_invert }, theme];
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
-  const [tm, setTm] = useState(themes[1]);
   return (
-    <ThemeProvider theme={() => tm}>
-      <GlobalStyle />
-      <Layout
-        title={`Hello from ${siteConfig.title}`}
-        description={`${siteConfig.tagline}`}
-      >
-        <Container>
-          <ThemeController>
-            <Button
-              style={{ marginRight: 12 }}
-              onClick={() => {
-                setTm(themes[0]);
-              }}
+    <Layout
+      title={siteConfig.title}
+      description="Description will go into a meta tag in <head />"
+    >
+      <header className={clsx("hero hero--primary", styles.heroBanner)}>
+        <div className="container">
+          <h1 className="hero__title">{siteConfig.title}</h1>
+          <p className="hero__subtitle">{siteConfig.tagline}</p>
+          <div className={styles.buttons}>
+            <Link
+              className={clsx(
+                "button button--outline button--secondary button--lg",
+                styles.getStarted
+              )}
+              to={useBaseUrl("docs/")}
             >
-              Tech
-            </Button>
-            <Button
-              onClick={() => {
-                setTm(themes[1]);
-              }}
-            >
-              Non-Tech
-            </Button>
-          </ThemeController>
-
-          <SubTitle>About Me</SubTitle>
-          <HR />
-          <Section>{siteConfig.tagline}</Section>
-          <UL>
-            <li>
-              Polyglot Programmer Efficiently can work on UI/UX(Frontend),
-              Backend and Mobile apps
-            </li>
-            <li>Mobile: Android, Flutter, React Native, Swift(Beginner)</li>
-            <li>
-              Frontend: React, Angular, Typescript, Object-Oriented JavaScript,
-              ES2015 and above
-            </li>
-            <li>Backend: NodeJs, Kotlin, Go, SpringBoot, Rust</li>
-            <li>
-              DevOps: Proficient on scripting languages(Groovy, bash, nodejs),
-              Jenkin
-            </li>
-            <li>
-              Test-Driven Development using Jest, Karma-Jasmine, Protractor,
-              Expresso, Mockito
-            </li>
-          </UL>
-          <Link to={useBaseUrl("docs/resume")}>
-            <Button> More{" >>>"} </Button>
-          </Link>
-          <Gutter />
-          <SubTitle>Blogs</SubTitle>
-          <HR />
-          <UL>
-            <Link to={useBaseUrl("/blog/one-for-all")}>
-              <li>
-                How to ditch WebPack, Jest to write TypeScript/NPM library just
-                using Deno
-              </li>
+              Get Started
             </Link>
-            <Link to={useBaseUrl("blog/welcome")}>
-              <li>Welcome</li>
-            </Link>
-          </UL>
-          <Link to={useBaseUrl("blog")}>
-            <Button> More{" >>>"} </Button>
-          </Link>
-          <FooterContainer>
-            <a href="https://www.linkedin.com/in/xdeepakv/" target="_blank">
-              Linkedin
-            </a>
-            <a href="https://medium.com/@deepak_v" target="_blank">
-              Medium
-            </a>
-            <a href="https://discord.com/channels/@deepakv" target="_blank">
-              Discord
-            </a>
-            <a href="https://github.com/deepakshrma/" target="_blank">
-              GitHub
-            </a>
-          </FooterContainer>
-        </Container>
-      </Layout>
-    </ThemeProvider>
+          </div>
+        </div>
+      </header>
+      <main>
+        {features && features.length > 0 && (
+          <section className={styles.features}>
+            <div className="container">
+              <div className="row">
+                {features.map((props, idx) => (
+                  <Feature key={idx} {...props} />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+      </main>
+    </Layout>
   );
 }
 

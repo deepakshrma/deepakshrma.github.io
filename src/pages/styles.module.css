@@ -30,6 +30,9 @@
   padding: 2rem 0;
   width: 100%;
 }
+.features a {
+  text-decoration: none;
+}
 
 .featureImage {
   height: 200px;

@@ -13,6 +13,9 @@ module.exports = {
     prism: {
       defaultLanguage: "ts",
     },
+    gtag: {
+      trackingID: "UA-141789564-1",
+    },
     // footer: {
     //   links: [
     //     {

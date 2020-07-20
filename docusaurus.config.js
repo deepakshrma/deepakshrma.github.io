@@ -10,7 +10,6 @@ module.exports = {
   ...configs,
   themeConfig: {
     ...configs.themeConfig,
-    disableDarkMode: true,
     navbar: {
       title: "Deepak Vishwakarma",
       logo: {

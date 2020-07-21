@@ -37,7 +37,7 @@
 }
 .container {
   padding: 10px;
-  background-image: url(https://wallpaperplay.com/walls/full/2/7/8/247010.jpg);
+  background-image: url(https://source.unsplash.com/1600x1200/?dark,people,innovation);
   background-position: center; 
   color: #fff;
 }
@@ -80,8 +80,12 @@
   display: flex;
   padding: 10px 20px;
   flex-direction: column;
+  background-image: url(https://source.unsplash.com/1600x1200/?bright,colors,love,lust,dark);
 }
 .poemsHeader{
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 4px 8px;
   color: #656565;
   font-size: 1.5rem;
   border-bottom: 1px solid #c3c3c3;
@@ -100,9 +104,18 @@
   text-decoration: none;
   margin-right: 20px;
 }
+.products .pics {
+  width: 30%;
+  text-decoration: none;
+  margin-right: 20px;
+}
 
 .productHeader{
   color: #656565;
+  background-color: #fff;
+  padding: 4px 8px;
+  font-size: 1.25rem;
+  border-radius: 2px;
 }
 .productBody {
   font-size: 12px;

@@ -5,6 +5,22 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
+import styled from "styled-components"
+
+const CardList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`
+const Photos = styled.a`
+  width: 30%;
+  text-decoration: none;
+  margin-right: 20px;
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+`
 
 const features = [
   {
@@ -36,45 +52,6 @@ const features = [
   },
 ];
 
-const links = [
-  { label: "GitHub", href: "https://github.com/deepakshrma" },
-  { label: "Medium", href: "https://medium.com/@deepak_v" },
-  { label: "Twitter", href: "https://twitter.com/nalayakshrma" },
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/nalayaksharma_poetry/",
-  },
-];
-const poems = [
-  {
-    title: "Light",
-    href: "https://www.instagram.com/p/CAk-ycMpF2o/",
-    body: `ɪᴛ ɪꜱ ᴛɪᴍᴇ ᴛᴏ ʟᴇᴀʀɴ ꜰʀᴏᴍ ᴛʜᴇ ᴘᴀꜱᴛ, ɪᴛ ɪꜱ ᴛɪᴍᴇ ᴛᴏ ᴡᴏʀᴋ ʀᴇᴀʟ ʜᴀʀᴅ, ᴛʜᴇ ᴍɪꜱᴛᴀᴋᴇ ɪꜱ ᴡʜᴀᴛ ᴡᴇ ʜᴀᴠᴇ ᴅᴏɴᴇ, ᴛʜᴇ ꜰᴜᴛᴜʀᴇ ɪꜱ ᴡʜᴀᴛ ᴍᴀᴋᴇꜱ ᴜꜱ ꜱᴛᴜɴɴᴇᴅ.
-𝐼𝓉 𝒾𝓈 𝓉𝒾𝓂𝑒 𝓉𝑜 𝑔𝑜 𝓉𝑜 𝒷𝒶𝓈𝒾𝒸𝓈, 𝐼𝓉 𝒾𝓈 𝓉𝒾𝓂𝑒 𝓉𝑜 𝓉𝒽𝒾𝓃𝓀 𝓅𝑜𝓈𝒾𝓉𝒾𝓋𝑒, 𝒯𝒽𝑒 𝒻𝒾𝓇𝑒 𝓌𝑒 𝒽𝒶𝓋𝑒 𝒷𝓊𝓇𝓃𝑒𝒹, 𝒯𝒽𝑒 𝒻𝑒𝓃𝒸𝑒 𝓌𝑒 𝒽𝒶𝓋𝑒 𝒹𝓇𝒶𝓌𝓃.
-ᴡᴇ ᴀʀᴇ ʟɪᴠɪɴɢ ɪɴ ᴛʜᴇ ᴡᴏʀʟᴅ ꜰᴜʟʟ ᴏꜰ ʜᴀᴛᴇꜱ, ᴡᴇ ᴀʀᴇ ʟɪᴠɪɴɢ ɪɴ ꜱᴏᴄɪᴇᴛʏ ᴡᴇᴀʀ ᴍᴀꜱᴋꜱ ᴏꜰ ꜰᴀᴋᴇ, ɪᴛ ɪꜱ ᴛɪᴍᴇ ᴛᴏ ʀɪᴘ ᴛʜᴏꜱᴇ ᴍᴀᴋᴇꜱ ᴏꜰꜰ, ɪᴛ ɪꜱ ᴛɪᴍᴇ ᴛᴏ ᴄʀᴇᴀᴛᴇ ᴀ ꜱᴇʟꜰ ᴡʜɪᴄʜ ᴡᴏʀᴛʜ.`,
-  },
-  {
-    title:"Lady in the dark",
-    href:"https://www.instagram.com/p/B7FHYKaJ6dR/",
-    body: `Yesterday i was laying on body of some unknown,
-Today i'm laying on the body of someone i hardy know.
-Yesterday i had to smile fake on less knowing facts,
-Today i'm smiling to talk i hardly interest at.
-Yesterday i had to answer the questions that i hate,
-Today i had to create questions to avoid debate.
-Yesterday also i was conveniencing myself, May be today is last day of my sadness and pain
-Today also i'm cheating everyone else including myself,
-May be this is the last man on my bed.`
-  },
-  {
-    title: "Waqt Ke Sath Sab Badal Gaya",
-    href: "https://www.instagram.com/p/B6uWm3npR3V/",
-    body:`वो उसे चाहते चाहते,
-वक़्त के साथ अपना सब कुछ बदल दिया |
-उस बदली दौर में उसे पता नहीं चला, कब उसने उसे अपने जान से किसी और में बदल दिया ||`,
-  }
-  
-];
 function Feature({ imageUrl, title, description, href }) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
@@ -99,6 +76,10 @@ function Feature({ imageUrl, title, description, href }) {
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
+  const [poems, setPoems] = React.useState([])
+  React.useEffect(() => {
+    fetch("https://raw.githubusercontent.com/deepakshrma/json_data/master/poems.json").then(x => x.json()).then(setPoems)
+  },[])
   return (
     <Layout title={siteConfig.title} description={siteConfig.tagline}>
       <header className={clsx(styles.heroBanner)}>
@@ -130,8 +111,24 @@ function Home() {
             </div>
           </section>
         )}
+        <section>
+          <p className={styles.poemsHeader}>
+            Random Photos
+          </p>
+          <CardList>
+            <Photos href="https://unsplash.com/@deepak_v" target="_blank">
+              <img src="https://source.unsplash.com/user/deepak_v/600x400"></img>
+            </Photos>
+            <Photos href="https://unsplash.com/@deepak_v" target="_blank">
+              <img src="https://source.unsplash.com/600x400/?light,dark"></img>
+            </Photos>
+            <Photos href="https://unsplash.com/@deepak_v" target="_blank">
+              <img src="https://source.unsplash.com/600x400/?innovation,people"></img>
+            </Photos>
+          </CardList>
+        </section>
+        <p className={styles.poemsHeader}>Poems</p>
         <section className={styles.poems}>
-          <p className={styles.poemsHeader}>Poems</p>
           <div className={styles.products}>
             {poems.map((poem, index) => {
               return (
@@ -146,26 +143,6 @@ function Home() {
           </div>
         </section>
       </main>
-      <footer>
-        <div className={styles.footer}>
-          <div>
-            <p className="link-header">Follow Me</p>
-            {links.map((link: any, index: number) => {
-              return (
-                <a href={link.href} target="_blank" key={index}>
-                  {link.label}
-                </a>
-              );
-            })}
-          </div>
-          <img src="/img/logo_decipher.png" alt="" />
-          <p>
-            <span>
-              <span>©</span>&nbsp;2020&nbsp;DeCipher.dev
-            </span>
-          </p>
-        </div>
-      </footer>
     </Layout>
   );
 }

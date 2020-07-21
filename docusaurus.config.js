@@ -10,6 +10,9 @@ module.exports = {
   ...configs,
   themeConfig: {
     ...configs.themeConfig,
+    googleAnalytics: {
+      trackingID: "UA-69472059-2",
+    },
     navbar: {
       title: "Deepak Vishwakarma",
       logo: {

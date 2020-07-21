@@ -16,37 +16,47 @@ module.exports = {
     gtag: {
       trackingID: "UA-141789564-1",
     },
-    // footer: {
-    //   links: [
-    //     {
-    //       title: "Community",
-    //       items: [
-    //         {
-    //           label: "Medium.com",
-    //           href: "https://medium.com/@deepak_v",
-    //         },
-    //         {
-    //           label: "Discord",
-    //           href: "https://discord.com/channels/@deepakv",
-    //         },
-    //         {
-    //           label: "Linkdin",
-    //           href: "https://www.linkedin.com/in/xdeepakv/",
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       title: "More",
-    //       items: [
-    //         {
-    //           label: "GitHub",
-    //           href: "https://github.com/deepakshrma/",
-    //         },
-    //       ],
-    //     },
-    //   ],
-    //   copyright: `Copyright © ${new Date().getFullYear()} Deepak Vishwakarma, Inc. Built with Docusaurus.`,
-    // },
+    footer: {
+      // style: 'dark',
+      links: [
+        {
+          title: "Profile",
+          items: [
+            {
+              label: "Linkdin",
+              href: "https://www.linkedin.com/in/xdeepakv/",
+            },
+            {
+              label: "Medium.com",
+              href: "https://medium.com/@deepak_v",
+            },
+            {
+              label: "Discord",
+              href: "https://discord.com/channels/@deepakv",
+            },
+          ],
+        },
+        {
+          title: "Community",
+          items: [
+            { label: "Twitter", href: "https://twitter.com/nalayakshrma" },
+            {
+              label: "Instagram",
+              href: "https://www.instagram.com/nalayaksharma_poetry/",
+            },
+            {
+              label: "Unsplash",
+              href: "https://unsplash.com/@deepak_v",
+            },
+          ],
+        },
+      ],
+      logo: {
+        alt: "Decipher.dev",
+        src: "/img/logo_decipher.png",
+      },
+      copyright: `Copyright © ${new Date().getFullYear()} Deepak Vishwakarma`,
+    },
   },
   themes: ["@docusaurus/theme-classic", "@docusaurus/theme-live-codeblock"],
 };

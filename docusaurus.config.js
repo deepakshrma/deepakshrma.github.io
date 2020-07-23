@@ -11,7 +11,7 @@ module.exports = {
   themeConfig: {
     ...configs.themeConfig,
     googleAnalytics: {
-      trackingID: "UA-69472059-2",
+      trackingID: "UA-172955705-1",
     },
     navbar: {
       title: "Deepak Vishwakarma",

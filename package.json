@@ -18,6 +18,7 @@
     "classnames": "^2.2.6",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-image-gallery": "^1.0.8",
     "styled-components": "^5.1.1"
   },
   "browserslist": {

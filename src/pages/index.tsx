@@ -5,13 +5,67 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
-import styled from "styled-components"
-
+import styled from "styled-components";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
+const size = {
+  mobileS: '320px',
+  mobileM: '375px',
+  mobileL: '425px',
+  tablet: '768px',
+  laptop: '1024px',
+  laptopL: '1440px',
+  desktop: '2560px'
+}
+export const device = {
+  mobileS: `(min-width: ${size.mobileS})`,
+  mobileM: `(min-width: ${size.mobileM})`,
+  mobileL: `(min-width: ${size.mobileL})`,
+  tablet: `(min-width: ${size.tablet})`,
+  laptop: `(min-width: ${size.laptop})`,
+  laptopL: `(min-width: ${size.laptopL})`,
+  desktop: `(min-width: ${size.desktop})`,
+  desktopL: `(min-width: ${size.desktop})`
+};
+const images = [
+  {
+    original: "https://source.unsplash.com/1600x1200/?light,imagination",
+    // thumbnail: "https://source.unsplash.com/600x400/?light,dark",
+  },
+  {
+    original: "https://source.unsplash.com/1600x1200/?innovation,fire",
+    // thumbnail: "https://source.unsplash.com/600x400/?innovation,batman",
+  },
+  {
+    original: "https://source.unsplash.com/1600x1200/?colors,nature",
+    // thumbnail: "https://source.unsplash.com/600x400/?colors,nature",
+  },
+  {
+    original: "https://source.unsplash.com/user/deepak_v/1600x1200",
+    // thumbnail: "https://source.unsplash.com/user/deepak_v/600x400",
+  },
+  {
+    original: "https://source.unsplash.com/1600x1200/?water,life.kids",
+    // thumbnail: "https://source.unsplash.com/600x400/?water,life,kids",
+  },
+  {
+    original: "https://source.unsplash.com/1600x1200/?people,portrait,bubble",
+    // thumbnail: "https://source.unsplash.com/600x400/?people,portrait,bubble",
+  },
+];
+const Gallery = styled.div`
+  padding: 20px;
+  @media ${device.laptop} { 
+    width: 60%';
+    margin: 0 auto;
+    max-width: 800px;
+  }
+`
 const CardList = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-`
+`;
 const Photos = styled.a`
   width: 30%;
   text-decoration: none;
@@ -20,7 +74,12 @@ const Photos = styled.a`
     width: 100%;
     object-fit: cover;
   }
-`
+  @media only screen and (max-width: 1281px) {
+    width: 100%;
+    padding: 20px;
+    margin-right: 0px;
+  }
+`;
 
 const features = [
   {
@@ -76,10 +135,14 @@ function Feature({ imageUrl, title, description, href }) {
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
-  const [poems, setPoems] = React.useState([])
+  const [poems, setPoems] = React.useState([]);
   React.useEffect(() => {
-    fetch("https://raw.githubusercontent.com/deepakshrma/json_data/master/poems.json").then(x => x.json()).then(setPoems)
-  },[])
+    fetch(
+      "https://raw.githubusercontent.com/deepakshrma/json_data/master/poems.json"
+    )
+      .then((x) => x.json())
+      .then(setPoems);
+  }, []);
   return (
     <Layout title={siteConfig.title} description={siteConfig.tagline}>
       <header className={clsx(styles.heroBanner)}>
@@ -112,20 +175,10 @@ function Home() {
           </section>
         )}
         <section>
-          <p className={styles.poemsHeader}>
-            Random Photos
-          </p>
-          <CardList>
-            <Photos href="https://unsplash.com/@deepak_v" target="_blank">
-              <img src="https://source.unsplash.com/user/deepak_v/600x400"></img>
-            </Photos>
-            <Photos href="https://unsplash.com/@deepak_v" target="_blank">
-              <img src="https://source.unsplash.com/600x400/?light,dark"></img>
-            </Photos>
-            <Photos href="https://unsplash.com/@deepak_v" target="_blank">
-              <img src="https://source.unsplash.com/600x400/?innovation,people"></img>
-            </Photos>
-          </CardList>
+          <p className={styles.poemsHeader}>Random Photos</p>
+          <Gallery>
+            <ImageGallery items={images}  autoPlay showThumbnails={false} onClick={() => window.open("https://unsplash.com/@deepak_v", '_blank')}/>
+          </Gallery>
         </section>
         <p className={styles.poemsHeader}>Poems</p>
         <section className={styles.poems}>

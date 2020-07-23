@@ -11,13 +11,13 @@
  * Note: this is not a complete list of --ifm- variables.
  */
 :root {
-  --ifm-color-primary: #e54e79;
-  --ifm-color-primary-dark: #e13365;
-  --ifm-color-primary-darker: #df265b;
-  --ifm-color-primary-darkest: #bb1c49;
-  --ifm-color-primary-light: #e9698d;
-  --ifm-color-primary-lighter: #eb7697;
-  --ifm-color-primary-lightest: #f19eb6;
+  --ifm-color-primary: #112266;
+  --ifm-color-primary-dark: #0f1f5c;
+  --ifm-color-primary-darker: #0e1d57;
+  --ifm-color-primary-darkest: #0c1847;
+  --ifm-color-primary-light: #132570;
+  --ifm-color-primary-lighter: #142775;
+  --ifm-color-primary-lightest: #162c85;
 }
 
 .docusaurus-highlight-code-line {

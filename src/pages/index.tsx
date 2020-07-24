@@ -7,6 +7,10 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
 import styled from "styled-components";
 import ImageGallery from "react-image-gallery";
+import Mediumfeeds from "../components/Mediumfeeds";
+
+
+
 import "react-image-gallery/styles/css/image-gallery.css";
 const size = {
   mobileS: '320px',
@@ -174,6 +178,10 @@ function Home() {
             </div>
           </section>
         )}
+        <section>
+          <p className={styles.poemsHeader}>Medium Feeds</p>
+          <Mediumfeeds />
+        </section>
         <section>
           <p className={styles.poemsHeader}>Random Photos</p>
           <Gallery>

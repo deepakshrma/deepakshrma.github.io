@@ -9,6 +9,8 @@
     "deploy": "GIT_USER=deepakshrma CURRENT_BRANCH=docs USE_SSH=true yarn run docusaurus deploy"
   },
   "dependencies": {
+    "@deepakvishwakarma/ts-util": "^1.0.0",
+    "@deepakvishwakarma/util": "^0.0.3",
     "@docusaurus/core": "^2.0.0-alpha.58",
     "@docusaurus/preset-classic": "^2.0.0-alpha.58",
     "@docusaurus/theme-live-codeblock": "^2.0.0-alpha.39",

@@ -992,6 +992,16 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
+"@deepakvishwakarma/ts-util@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@deepakvishwakarma/ts-util/-/ts-util-1.0.0.tgz#3842d0701800003a4d6d724ac4e40fe7c860ddaa"
+  integrity sha512-qRpuPYWt7+FjOV1h8DpyFG8Wu6TCWNPMeiOWNgChOd2N3ktreNx/KPps+UMYKfZpajm8bsv8+wa4hyNoqazMyQ==
+
+"@deepakvishwakarma/util@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@deepakvishwakarma/util/-/util-0.0.3.tgz#b08c4b7f549feb71fbf6c6346fad6810bed906e2"
+  integrity sha512-hWPxXQLbYOKdNgxDZIpS7tX3zt0vBGn7WWjIClxPlOXmdpbkHjMEgq3VC7DDLJTCpzAIx4J5yx8D83zBg4dvLQ==
+
 "@docusaurus/core@^2.0.0-alpha.58":
   version "2.0.0-alpha.58"
   resolved "https://registry.yarnpkg.com/@docusaurus/core/-/core-2.0.0-alpha.58.tgz#3d9c5540c14c31ac55fc8fa4778e4c4e82fbe993"

@@ -17,12 +17,16 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import OpenInNew from "@material-ui/icons/OpenInNew";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
+import { pad } from "@deepakvishwakarma/ts-util";
 
 const useStyles = makeStyles((theme) => ({
   card: {
     maxWidth: 345,
-    minHeight: 285,
+    minHeight: 280,
     marginRight: 10,
+    [theme.breakpoints.up('md')]: {
+      maxWidth: 345,
+    },
   },
   media: {
     height: 0,
@@ -65,8 +69,7 @@ const Mediumfeeds = (props: any) => {
     )
       .then((res) => res.json())
       .then((m: any) => {
-        console.log(m.items);
-        setFeeds(m.items);
+        setFeeds(m.items.filter((i: any) => i.categories.length));
       });
   }, []);
   console.log(feeds);
@@ -93,8 +96,9 @@ const Mediumfeeds = (props: any) => {
                     <OpenInNew />
                   </IconButton>
                 }
-                title={feed.title}
-                subheader={feed.pubDate}
+                className={classes.header}
+                title={pad(String(feed.title), 200, "", " ")}
+                subheader={new Date(...feed.pubDate.split(/[- :]/g).map(Number)).toLocaleString("en-US")}
               />
               <CardMedia
                 className={classes.media}

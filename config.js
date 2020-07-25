@@ -3,7 +3,7 @@ module.exports = {
   stylesheets: [
     {
       href:
-        "https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Open+Sans&display=swap",
+        "https://fonts.googleapis.com/css?family=Roboto",
       type: "text/css",
     },
   ],

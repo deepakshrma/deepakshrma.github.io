@@ -23,9 +23,9 @@
 
 .features {
   display: flex;
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
+  justify-content: space-evenly;
+  padding: 2rem;
+  flex-wrap: wrap;
 }
 .features a {
   text-decoration: none;
@@ -37,8 +37,12 @@
 }
 .container {
   padding: 10px;
-  background-image: url(https://source.unsplash.com/1600x1200/?dark,people,innovation);
-  background-position: center; 
+  background-image: url(
+    https://source.unsplash.com/1600x1200/?dark,
+    people,
+    innovation
+  );
+  background-position: center;
   color: #fff;
 }
 
@@ -64,7 +68,7 @@
     display: block;
     text-align: center;
   }
-  .products a{
+  .products a {
     width: 90% !important;
   }
   .container {
@@ -80,9 +84,15 @@
   display: flex;
   padding: 10px 20px;
   flex-direction: column;
-  background-image: url(https://source.unsplash.com/1600x1200/?bright,colors,love,lust,dark);
+  background-image: url(
+    https://source.unsplash.com/1600x1200/?bright,
+    colors,
+    love,
+    lust,
+    dark
+  );
 }
-.poemsHeader{
+.poemsHeader {
   background-color: #fff;
   border-radius: 4px;
   padding: 4px 8px;
@@ -97,9 +107,8 @@
   justify-content: space-evenly;
 }
 .product {
-  
 }
-.products a{
+.products a {
   width: 45%;
   text-decoration: none;
   margin-right: 20px;
@@ -110,7 +119,7 @@
   margin-right: 20px;
 }
 
-.productHeader{
+.productHeader {
   color: #656565;
   background-color: #fff;
   padding: 4px 8px;
@@ -121,5 +130,6 @@
   font-size: 12px;
 }
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+  background-image: url("http://source.unsplash.com/2400x1800/?dark");
 }

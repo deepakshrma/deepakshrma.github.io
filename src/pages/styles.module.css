@@ -38,9 +38,7 @@
 .container {
   padding: 10px;
   background-image: url(
-    https://source.unsplash.com/1600x1200/?dark,
-    people,
-    innovation
+    https://source.unsplash.com/1600x1200/?dark,people,innovation
   );
   background-position: center;
   color: #fff;
@@ -85,11 +83,7 @@
   padding: 10px 20px;
   flex-direction: column;
   background-image: url(
-    https://source.unsplash.com/1600x1200/?bright,
-    colors,
-    love,
-    lust,
-    dark
+    https://source.unsplash.com/1600x1200/?bright,colors,love,lust,dark
   );
 }
 .poemsHeader {
@@ -131,5 +125,5 @@
 }
 body {
   font-family: "Roboto", sans-serif;
-  background-image: url("http://source.unsplash.com/2400x1800/?dark");
+  background-image: url("https://source.unsplash.com/2400x1800/?dark");
 }

@@ -7,17 +7,18 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
 import styled from "styled-components";
 import ImageGallery from "react-image-gallery";
-import Mediumfeeds from "../components/Mediumfeeds";
 import { makeStyles } from "@material-ui/core/styles";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import "react-image-gallery/styles/css/image-gallery.css";
 import { device } from "../components/device";
-import { Container } from "../components/styled.components";
 import { Typography, Card } from "../components/mstyled.components";
+import { requestJSON } from "../util";
+import { Articles } from "../components/Article";
+
+import "react-image-gallery/styles/css/image-gallery.css";
 
 const images = [
   {
@@ -33,16 +34,16 @@ const images = [
     // thumbnail: "https://source.unsplash.com/600x400/?colors,nature",
   },
   {
-    original: "https://source.unsplash.com/user/deepak_v/1600x1200",
-    // thumbnail: "https://source.unsplash.com/user/deepak_v/600x400",
-  },
-  {
     original: "https://source.unsplash.com/1600x1200/?water,life.kids",
     // thumbnail: "https://source.unsplash.com/600x400/?water,life,kids",
   },
   {
     original: "https://source.unsplash.com/1600x1200/?people,portrait,bubble",
     // thumbnail: "https://source.unsplash.com/600x400/?people,portrait,bubble",
+  },
+  {
+    original: "https://source.unsplash.com/user/deepak_v/1600x1200",
+    // thumbnail: "https://source.unsplash.com/user/deepak_v/600x400",
   },
 ];
 
@@ -54,6 +55,7 @@ const Gallery = styled.div`
     max-width: 800px;
   }
 `;
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -100,18 +102,39 @@ function Home() {
   const { siteConfig = {} } = context;
   const [poems, setPoems] = React.useState([]);
   const [features, setFeatures] = React.useState([]);
+  const [feeds, setFeeds] = React.useState([]);
 
   React.useEffect(() => {
-    fetch(
+    requestJSON(
       "https://raw.githubusercontent.com/deepakshrma/json_data/master/poems.json"
     )
-      .then((x) => x.json())
+      .then((x) => {
+        return x.map((y, i) => {
+          y.imageUrl = (images[i] || images[0]).original;
+          return y;
+        });
+      })
       .then(setPoems);
-    fetch(
+    requestJSON(
       "https://raw.githubusercontent.com/deepakshrma/json_data/master/features.json"
-    )
-      .then((x) => x.json())
-      .then(setFeatures);
+    ).then(setFeatures);
+    requestJSON(
+      "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@deepak_v"
+    ).then((m: any) => {
+      setFeeds(
+        m.items
+          .filter((i: any) => i.categories.length)
+          .map((feed) => {
+            feed.imageUrl = feed.thumbnail;
+            feed.href = feed.guid;
+            feed.imageUrl = feed.thumbnail;
+            feed.updateAt = new Date(
+              ...feed.pubDate.split(/[- :]/g).map(Number)
+            ).toLocaleString("en-US");
+            return feed;
+          })
+      );
+    });
   }, []);
   return (
     <Layout title={siteConfig.title} description={siteConfig.tagline}>
@@ -127,7 +150,7 @@ function Home() {
               )}
               to={useBaseUrl("blog/")}
             >
-              Get Started
+              Learn More
             </Link>
           </div>
         </div>
@@ -142,7 +165,7 @@ function Home() {
         )}
         <section>
           <p className={styles.poemsHeader}>Medium Feeds</p>
-          <Mediumfeeds />
+          <Articles items={feeds} flowable />
         </section>
         <section>
           <p className={styles.poemsHeader}>Random Photos</p>
@@ -159,18 +182,7 @@ function Home() {
         </section>
         <p className={styles.poemsHeader}>Poems</p>
         <section className={styles.poems}>
-          <div className={styles.products}>
-            {poems.map((poem, index) => {
-              return (
-                <a href={poem.href} target="_blank">
-                  <div className={styles.product} key={`poem_${index}`}>
-                    <h4 className={styles.productHeader}>{poem.title}</h4>
-                    <pre className={styles.productBody}>{poem.body}</pre>
-                  </div>
-                </a>
-              );
-            })}
-          </div>
+          <Articles items={poems} />
         </section>
       </main>
     </Layout>

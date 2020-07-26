@@ -2,8 +2,7 @@ module.exports = {
   plugins: [require.resolve("@docusaurus/plugin-sitemap")],
   stylesheets: [
     {
-      href:
-        "https://fonts.googleapis.com/css?family=Roboto",
+      href: "https://fonts.googleapis.com/css?family=Roboto",
       type: "text/css",
     },
   ],
@@ -17,7 +16,7 @@ module.exports = {
       // style: 'dark',
       links: [
         {
-          title: "Profile",
+          title: "Follow me",
           items: [
             {
               label: "Linkdin",
@@ -34,7 +33,7 @@ module.exports = {
           ],
         },
         {
-          title: "Community",
+          title: "Friend with me",
           items: [
             { label: "Twitter", href: "https://twitter.com/nalayakshrma" },
             {
@@ -44,6 +43,15 @@ module.exports = {
             {
               label: "Unsplash",
               href: "https://unsplash.com/@deepak_v",
+            },
+          ],
+        },
+        {
+          title: "Contact me",
+          items: [
+            {
+              label: "Email me",
+              href: "mailto:contact-me@decipher.dev?subject=Say Hi!&body=Hi,\n",
             },
           ],
         },

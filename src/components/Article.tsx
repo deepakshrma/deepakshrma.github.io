@@ -17,13 +17,24 @@ import OpenInNew from "@material-ui/icons/OpenInNew";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { openUrl } from "../util";
 import styles from "../pages/styles.module.css";
+import { styled } from "@material-ui/styles";
+import { CardActionArea, Button } from "@material-ui/core";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
+const Pre = styled(Typography)({
+  whiteSpace: "pre",
+  overflow: "auto",
+  display: "block",
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
     minWidth: 345,
     marginBottom: 20,
-    marginRight: 10,
+    [theme.breakpoints.up("md")]: {
+      marginRight: 10,
+    },
   },
   media: {
     height: 0,
@@ -55,19 +66,30 @@ export const Articles = ({ items, flowable }: any) => {
   return (
     <div className={styles.features} style={style}>
       {items.map((item, index) => {
-        return <Article {...item} key={index} />;
+        return <Article item={item} key={index} flowable={flowable} />;
       })}
     </div>
   );
 };
-export default function Article(item: any) {
+export default function Article({ item, flowable }: any) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  const tags = item.tags || item.title
+    .split(/\s+/)
+    .filter((x) => x.length > 2)
+    .join(",");
+  const imageUrl = item.imageUrl
+    ? item.imageUrl
+    : `https://source.unsplash.com/1600x1200/?${tags ? tags : "random"}`;
   return (
-    <Card className={classes.root} key={item.key}>
+    <Card
+      className={classes.root}
+      style={flowable ? { marginRight: 20, minWidth: 300 } : {}}
+      key={item.key}
+    >
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -87,7 +109,7 @@ export default function Article(item: any) {
       />
       <CardMedia
         className={classes.media}
-        image={item.imageUrl}
+        image={imageUrl}
         title={item.title}
       />
       {item.body && (
@@ -122,10 +144,49 @@ export default function Article(item: any) {
       {item.body && (
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>{item.body}</Typography>
+            <Pre variant="caption">{item.body}</Pre>
           </CardContent>
         </Collapse>
       )}
     </Card>
+  );
+}
+const useFeatureStyles = makeStyles((theme) => ({
+  root: {
+    maxWidth: 345,
+    marginBottom: 10,
+  },
+  media: {
+    height: 140,
+  },
+}));
+export function Feature({ imageUrl, title, description, href }) {
+  const imgUrl = useBaseUrl(imageUrl);
+  const classes = useFeatureStyles();
+  return (
+    <a
+      className={clsx("col col--4", styles.feature)}
+      href={href}
+      target="_blank"
+    >
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardMedia className={classes.media} image={imgUrl} title={title} />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {title}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary" onClick={() => openUrl(href)}>
+            Learn More
+          </Button>
+        </CardActions>
+      </Card>
+    </a>
   );
 }

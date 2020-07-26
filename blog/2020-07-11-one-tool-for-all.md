@@ -1,6 +1,6 @@
 ---
 id: one-for-all
-title: One For All Deno
+title: Building and Testing A TypeScript library
 author: Deepak Vishwakarma
 author_title: Front End Engineer
 author_url: https://github.com/deepakshrma
@@ -8,22 +8,24 @@ author_image_url: https://avatars2.githubusercontent.com/u/7682731?s=460
 tags: [library, typeScript, bundle, testing, deno, npm]
 ---
 
-## How to ditch WebPack, Jest to write TypeScript/NPM library just using Deno
+## Building and Testing A TypeScript/NodeJS library without WebPack, Jest or Rollup
 
-Deno is around town for a while. Since the beginning, it getting the attention of the developers. It has `runtime` for `JavaScript` and `TypeScript` that uses V8 and is built-in `Rust`. `Rust` means, it is fast and secure at the same time.
+No doubt Typescript is one of the best programming language/frameworks came in recent years. TypeScript helps you with the typings to write clean and modular JavaScript. However, Writing and setting up the library is a very tedious task. You can use TypeScript CLI to build a library, Still testing is a pain. In this tutorial, I will explain how you can ditch WebPack, Jest, or Rollup and write a beautiful library just using tools provided by [Awesome Deno](https://deno.land/).
+
+Deno is around town for a while. Since the beginning, it getting the attention of the developers. It has runtime for JavaScript and TypeScript that uses V8 and is built-in Rust. Rust means, it is fast and secure at the same time.
 
 ![Bundle Image](https://miro.medium.com/max/1400/1*7Ws9_cH2N2ZxvheAIn9f6A@2x.png)
 
-So how Deno will help you to ditch the things mentioned above. Let's understand Deno a little bit. We will build a small nodejs/npm library using Deno just Deno.
+So how Deno will help you to ditch the things mentioned above. Let’s understand Deno a little bit. We will build a small nodejs/npm library using Deno just Deno.
 
 ## Overview of library
 
-The library we are going to build will be lodash, Our own lodash. It will have some util methods like find `unique`, get values by props.
+The library we are going to build will be lodash, Our own lodash. It will have some util methods like find unique, get values by props.
 
 ## Initial setup for library
 
 1. Create folders and Initialize npm and git
-2. Add basic test case and Implement method `unique`
+2. Add basic test case and Implement the method `unique`
 3. Run and test it working
 
 ### 1. Create a folders and Initilize npm and git
@@ -42,14 +44,12 @@ git init
 echo ".vscode\nnode_modules\nlib" > .gitignore
 
 # npm init
-
 npm init --y
-
 ```
 
 If all good, You will see structure as below.
 
-![folder_lodash](img/deno_loadash_1.png)
+![folder_lodash](/img/deno_loadash_1.png)
 
 :::note
 If you noticed, I have added lib in `.gitignore`. Since we are building the TypeScript library. We will not need a `compiled` version of it.
@@ -221,7 +221,7 @@ Add bundle command in `package.json`
 
 `npm run bundle`
 
-![folder_lodash](img/deno_loadash_2.png)
+![folder_lodash](/img/deno_loadash_2.png)
 
 :::note
 We have to update, `test/index.js` import/require statement. Since `tsc` using `commonjs` as a module in `tsconfig.json`, All the files will be compiled and converted to the same name ie. `lib/lodash.js`.

@@ -1,24 +1,17 @@
-import React from "react";
-import clsx from "clsx";
-import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import styles from "./styles.module.css";
-import styled from "styled-components";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import Layout from "@theme/Layout";
+import clsx from "clsx";
+import React from "react";
 import ImageGallery from "react-image-gallery";
-import { makeStyles } from "@material-ui/core/styles";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import { device } from "../components/device";
-import { Typography, Card } from "../components/mstyled.components";
-import { requestJSON } from "../util";
-import { Articles } from "../components/Article";
-
 import "react-image-gallery/styles/css/image-gallery.css";
+import styled from "styled-components";
+import { Articles, Feature } from "../components/Article";
+import { device } from "../components/device";
+import { requestJSON } from "../util";
+import styles from "./styles.module.css";
+
 
 const images = [
   {
@@ -56,47 +49,6 @@ const Gallery = styled.div`
   }
 `;
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },
-});
-
-const openUrl = (href: string) => window.open(href, "_blank");
-function Feature({ imageUrl, title, description, href }) {
-  const imgUrl = useBaseUrl(imageUrl);
-  const classes = useStyles();
-  return (
-    <a
-      className={clsx("col col--4", styles.feature)}
-      href={href}
-      target="_blank"
-    >
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia className={classes.media} image={imgUrl} title={title} />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {title}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {description}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary" onClick={() => openUrl(href)}>
-            Learn More
-          </Button>
-        </CardActions>
-      </Card>
-    </a>
-  );
-}
-
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
@@ -108,12 +60,6 @@ function Home() {
     requestJSON(
       "https://raw.githubusercontent.com/deepakshrma/json_data/master/poems.json"
     )
-      .then((x) => {
-        return x.map((y, i) => {
-          y.imageUrl = (images[i] || images[0]).original;
-          return y;
-        });
-      })
       .then(setPoems);
     requestJSON(
       "https://raw.githubusercontent.com/deepakshrma/json_data/master/features.json"
@@ -155,14 +101,12 @@ function Home() {
           </div>
         </div>
       </header>
-      <main>
-        {features && features.length > 0 && (
-          <section className={styles.features}>
-            {features.map((props, idx) => (
-              <Feature key={idx} {...props} />
-            ))}
-          </section>
-        )}
+      <main className={styles.bgContent}>
+        <section className={styles.features}>
+          {features.map((props, idx) => (
+            <Feature key={idx} {...props} />
+          ))}
+        </section>
         <section>
           <p className={styles.poemsHeader}>Medium Feeds</p>
           <Articles items={feeds} flowable />
@@ -180,9 +124,9 @@ function Home() {
             />
           </Gallery>
         </section>
-        <p className={styles.poemsHeader}>Poems</p>
         <section className={styles.poems}>
-          <Articles items={poems} />
+          <p className={styles.poemsHeader}>Poems</p>
+          <Articles items={poems} flowable />
         </section>
       </main>
     </Layout>

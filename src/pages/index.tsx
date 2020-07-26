@@ -1,4 +1,3 @@
-import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
@@ -9,6 +8,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import styled from "styled-components";
 import { Articles, Feature } from "../components/Article";
 import { device } from "../components/device";
+import { InvertedText, SecondaryBtn } from "../components/mstyled.components";
 import { requestJSON } from "../util";
 import styles from "./styles.module.css";
 
@@ -59,8 +59,7 @@ function Home() {
   React.useEffect(() => {
     requestJSON(
       "https://raw.githubusercontent.com/deepakshrma/json_data/master/poems.json"
-    )
-      .then(setPoems);
+    ).then(setPoems);
     requestJSON(
       "https://raw.githubusercontent.com/deepakshrma/json_data/master/features.json"
     ).then(setFeatures);
@@ -85,20 +84,19 @@ function Home() {
   return (
     <Layout title={siteConfig.title} description={siteConfig.tagline}>
       <header className={clsx(styles.heroBanner)}>
-        <div className={`container ${styles.container}`}>
-          <h1 className="hero__title">{siteConfig.title}</h1>
-          <p className="hero__subtitle">{siteConfig.tagline}</p>
-          <div className={styles.buttons}>
-            <Link
-              className={clsx(
-                "button button--outline button--secondary button--lg",
-                styles.getStarted
-              )}
-              to={useBaseUrl("blog/")}
-            >
-              Learn More
-            </Link>
-          </div>
+        <div className={`${styles.container}`}>
+          <InvertedText variant="h3">{siteConfig.title}</InvertedText>
+          <InvertedText variant="subtitle1" gutterBottom>
+            {siteConfig.tagline}
+          </InvertedText>
+          <SecondaryBtn
+            variant="outlined"
+            rel="noreferrer noopener"
+            color="primary"
+            href={useBaseUrl("blog/")}
+          >
+            Learn More
+          </SecondaryBtn>
         </div>
       </header>
       <main className={styles.bgContent}>

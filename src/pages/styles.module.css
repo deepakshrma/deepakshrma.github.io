@@ -37,11 +37,7 @@
 }
 .container {
   padding: 10px;
-  background-image: url(
-    https://source.unsplash.com/1600x1200/?dark,
-    people,
-    innovation
-  );
+  background-image: url(https://source.unsplash.com/1600x1200/?dark,people,innovation);
   background-position: center;
   color: #fff;
 }
@@ -84,11 +80,7 @@
   display: flex;
   padding: 10px 20px;
   flex-direction: column;
-  background-image: url(
-    https://source.unsplash.com/1600x1200/?colors,
-    dark,
-    abstract
-  );
+  background-image: url(https://source.unsplash.com/1600x1200/?colors,dark,abstract);
 }
 .poemsHeader {
   background-color: #fff;
@@ -129,7 +121,9 @@
 }
 body {
   font-family: "Roboto", sans-serif;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 .bgContent {
-  background-image: url("https://source.unsplash.com/2400x1800/?dark,faded,wood,smoke");
+  
+  /* background-image: url(https://source.unsplash.com/1600x1200/?smoke,dark,faded); */
 }

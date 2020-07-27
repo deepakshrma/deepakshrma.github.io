@@ -121,9 +121,8 @@
 }
 body {
   font-family: "Roboto", sans-serif;
-  background-color: rgba(0, 0, 0, 0.9);
 }
 .bgContent {
-  
+  background-color: rgba(0, 0, 0, 0.9);
   /* background-image: url(https://source.unsplash.com/1600x1200/?smoke,dark,faded); */
 }

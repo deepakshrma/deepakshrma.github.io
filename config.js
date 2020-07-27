@@ -56,10 +56,10 @@ module.exports = {
           ],
         },
       ],
-      logo: {
-        alt: "Decipher.dev",
-        src: "/img/logo_decipher.png",
-      },
+      // logo: {
+      //   alt: "Decipher.dev",
+      //   src: "/img/logo_decipher.png",
+      // },
       copyright: `Copyright © ${new Date().getFullYear()} Deepak Vishwakarma`,
     },
   },

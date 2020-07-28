@@ -12,8 +12,7 @@ export const Card = styled(_Card)({
 });
 
 export const InvertedText = styled(Typography)({
-  backgroundColor: "#fff",
-  color: "var(--ifm-color-primary-lightest)",
+  color: "#fff",
 });
 
 export const SecondaryBtn = styled(Button)({

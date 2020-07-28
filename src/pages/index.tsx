@@ -5,13 +5,13 @@ import clsx from "clsx";
 import React from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { Articles, Feature } from "../components/Article";
 import { device } from "../components/device";
 import { InvertedText, SecondaryBtn } from "../components/mstyled.components";
 import { requestJSON } from "../util";
 import styles from "./styles.module.css";
-
+import theme from "../components/theme";
 
 const images = [
   {
@@ -82,52 +82,54 @@ function Home() {
     });
   }, []);
   return (
-    <Layout title={siteConfig.title} description={siteConfig.tagline}>
-      <header className={clsx(styles.heroBanner)}>
-        <div className={`${styles.container}`}>
-          <InvertedText variant="h3">{siteConfig.title}</InvertedText>
-          <InvertedText variant="subtitle1" gutterBottom>
-            {siteConfig.tagline}
-          </InvertedText>
-          <SecondaryBtn
-            variant="outlined"
-            rel="noreferrer noopener"
-            color="primary"
-            href={useBaseUrl("blog/")}
-          >
-            Learn More
-          </SecondaryBtn>
-        </div>
-      </header>
-      <main className={styles.bgContent}>
-        <section className={styles.features}>
-          {features.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
-        </section>
-        <section>
-          <p className={styles.poemsHeader}>Medium Feeds</p>
-          <Articles items={feeds} flowable />
-        </section>
-        <section>
-          <p className={styles.poemsHeader}>Random Photos</p>
-          <Gallery>
-            <ImageGallery
-              items={images}
-              autoPlay
-              showThumbnails={false}
-              onClick={() =>
-                window.open("https://unsplash.com/@deepak_v", "_blank")
-              }
-            />
-          </Gallery>
-        </section>
-        <section className={styles.poems}>
-          <p className={styles.poemsHeader}>Poems</p>
-          <Articles items={poems} flowable />
-        </section>
-      </main>
-    </Layout>
+    <ThemeProvider theme={theme}>
+      <Layout title={siteConfig.title} description={siteConfig.tagline}>
+        <header className={clsx(styles.heroBanner)}>
+          <div className={`${styles.container}`}>
+            <InvertedText variant="h3">{siteConfig.title}</InvertedText>
+            <InvertedText variant="subtitle1" gutterBottom>
+              {siteConfig.tagline}
+            </InvertedText>
+            <SecondaryBtn
+              variant="outlined"
+              rel="noreferrer noopener"
+              color="primary"
+              href={useBaseUrl("blog/")}
+            >
+              Learn More
+            </SecondaryBtn>
+          </div>
+        </header>
+        <main className={styles.bgContent}>
+          <section className={styles.features}>
+            {features.map((props, idx) => (
+              <Feature key={idx} {...props} />
+            ))}
+          </section>
+          <section>
+            <p className={styles.poemsHeader}>Medium Feeds</p>
+            <Articles items={feeds} flowable />
+          </section>
+          <section>
+            <p className={styles.poemsHeader}>Random Photos</p>
+            <Gallery>
+              <ImageGallery
+                items={images}
+                autoPlay
+                showThumbnails={false}
+                onClick={() =>
+                  window.open("https://unsplash.com/@deepak_v", "_blank")
+                }
+              />
+            </Gallery>
+          </section>
+          <section>
+            <p className={styles.poemsHeader}>Poems</p>
+            <Articles items={poems} flowable />
+          </section>
+        </main>
+      </Layout>
+    </ThemeProvider>
   );
 }
 

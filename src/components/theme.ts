@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-const theme = {
+export const theme = {
   color_primary: "#e54e79",
   color_primary_dark: "#e54e79",
   color_primary_darker: "#df265b",

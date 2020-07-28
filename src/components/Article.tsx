@@ -77,10 +77,12 @@ export default function Article({ item, flowable }: any) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  const tags = item.tags || item.title
-    .split(/\s+/)
-    .filter((x) => x.length > 2)
-    .join(",");
+  const tags =
+    item.tags ||
+    item.title
+      .split(/\s+/)
+      .filter((x: string) => x.length > 2)
+      .join(",");
   const imageUrl = item.imageUrl
     ? item.imageUrl
     : `https://source.unsplash.com/1600x1200/?${tags ? tags : "random"}`;
@@ -154,13 +156,24 @@ export default function Article({ item, flowable }: any) {
 const useFeatureStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    minHeight: 345,
     marginBottom: 10,
   },
   media: {
-    height: 140,
+    height: 180,
   },
 }));
-export function Feature({ imageUrl, title, description, href }) {
+export function Feature({
+  imageUrl,
+  title,
+  description,
+  href,
+}: {
+  imageUrl: string;
+  title: string;
+  description: string;
+  href: string;
+}) {
   const imgUrl = useBaseUrl(imageUrl);
   const classes = useFeatureStyles();
   return (

@@ -37,9 +37,9 @@
 }
 .container {
   padding: 10px;
-  background-image: url(https://source.unsplash.com/1600x1200/?dark,people,innovation);
   background-position: center;
   color: #fff;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .footer {
@@ -80,15 +80,14 @@
   display: flex;
   padding: 10px 20px;
   flex-direction: column;
-  background-image: url(https://source.unsplash.com/1600x1200/?colors,dark,abstract);
+  /* background-image: url(https://source.unsplash.com/1600x1200/?colors,dark,abstract); */
 }
 .poemsHeader {
-  background-color: #fff;
-  border-radius: 4px;
-  padding: 4px 8px;
-  color: #656565;
+  margin-left: 10px;
+  color: #fff;
   font-size: 1.5rem;
-  border-bottom: 1px solid #c3c3c3;
+  display: inline-block;
+  border-bottom: 1px solid #656565;
 }
 
 .products {
@@ -96,8 +95,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-.product {
-}
+
 .products a {
   width: 45%;
   text-decoration: none;

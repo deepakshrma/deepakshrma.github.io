@@ -83,9 +83,11 @@ export default function Article({ item, flowable }: any) {
       .split(/\s+/)
       .filter((x: string) => x.length > 2)
       .join(",");
-  const imageUrl = item.imageUrl
-    ? item.imageUrl
-    : `https://source.unsplash.com/1600x1200/?${tags ? tags : "random"}`;
+  const media =
+    item.imageUrl ||
+    item.media ||
+    `https://source.unsplash.com/1600x1200/?${tags ? tags : "random"}`;
+  const body = item.body || item.description;
   return (
     <Card
       className={classes.root}
@@ -109,19 +111,14 @@ export default function Article({ item, flowable }: any) {
           </IconButton>
         }
       />
-      <CardMedia
-        className={classes.media}
-        image={imageUrl}
-        title={item.title}
-      />
-      {item.body && (
+      <CardMedia className={classes.media} image={media} title={item.title} />
+      {body && (
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
-            {item.body.slice(0, 140)}
+            {body.slice(0, 140)}
           </Typography>
         </CardContent>
       )}
-
       <CardActions disableSpacing>
         <IconButton
           aria-label="add to favorites"
@@ -140,19 +137,20 @@ export default function Article({ item, flowable }: any) {
           aria-expanded={expanded}
           aria-label="show more"
         >
-          {item.body && <ExpandMoreIcon />}
+          {body && <ExpandMoreIcon />}
         </IconButton>
       </CardActions>
-      {item.body && (
+      {body && (
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Pre variant="caption">{item.body}</Pre>
+            <Pre variant="caption">{body}</Pre>
           </CardContent>
         </Collapse>
       )}
     </Card>
   );
 }
+
 const useFeatureStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -167,14 +165,17 @@ export function Feature({
   imageUrl,
   title,
   description,
+  media = imageUrl,
+  body = description,
   href,
 }: {
   imageUrl: string;
   title: string;
   description: string;
   href: string;
+  media: string;
+  body: string;
 }) {
-  const imgUrl = useBaseUrl(imageUrl);
   const classes = useFeatureStyles();
   return (
     <a
@@ -184,13 +185,13 @@ export function Feature({
     >
       <Card className={classes.root}>
         <CardActionArea>
-          <CardMedia className={classes.media} image={imgUrl} title={title} />
+          <CardMedia className={classes.media} image={media} title={title} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {description}
+              {body}
             </Typography>
           </CardContent>
         </CardActionArea>

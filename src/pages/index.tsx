@@ -12,6 +12,7 @@ import { InvertedText, SecondaryBtn } from "../components/mstyled.components";
 import { requestJSON } from "../util";
 import styles from "./styles.module.css";
 import theme from "../components/theme";
+import useInitApp, { useFetchRecords } from "../hooks/useFirebaseDB";
 
 const images = [
   {
@@ -55,14 +56,9 @@ function Home() {
   const [poems, setPoems] = React.useState([]);
   const [features, setFeatures] = React.useState([]);
   const [feeds, setFeeds] = React.useState([]);
-
+  useInitApp();
+  const records = useFetchRecords("notes");
   React.useEffect(() => {
-    requestJSON(
-      "https://raw.githubusercontent.com/deepakshrma/json_data/master/poems.json"
-    ).then(setPoems);
-    requestJSON(
-      "https://raw.githubusercontent.com/deepakshrma/json_data/master/features.json"
-    ).then(setFeatures);
     requestJSON(
       "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@deepak_v"
     ).then((m: any) => {
@@ -72,7 +68,6 @@ function Home() {
           .map((feed) => {
             feed.imageUrl = feed.thumbnail;
             feed.href = feed.guid;
-            feed.imageUrl = feed.thumbnail;
             feed.updateAt = new Date(
               ...feed.pubDate.split(/[- :]/g).map(Number)
             ).toLocaleString("en-US");
@@ -81,6 +76,10 @@ function Home() {
       );
     });
   }, []);
+  React.useEffect(() => {
+    setFeatures(records.filter((x) => x.type === "feature"));
+    setPoems(records.filter((x) => x.type === "poem"));
+  }, [records]);
   return (
     <ThemeProvider theme={theme}>
       <Layout title={siteConfig.title} description={siteConfig.tagline}>

@@ -9,3 +9,10 @@ export const requestJSON = (url: string, options?: any) => {
   }).then((res) => res.json());
 };
 export const openUrl = (href: string) => window.open(href, "_blank");
+export const storage = (key: string, value?: string) => {
+  if (typeof window !== "undefined") {
+    return value
+      ? localStorage.setItem(key, value)
+      : localStorage.getItem(key) || "";
+  }
+};

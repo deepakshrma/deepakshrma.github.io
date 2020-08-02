@@ -2,12 +2,12 @@ import React from "react";
 import { createGlobalStyle } from "styled-components";
 import { indigo } from "@material-ui/core/colors";
 import { colors } from "./ThemeBox";
+import { storage } from "../util";
 
 export const getColors = (theme?: any) => {
   if (!theme) {
-    if (localStorage.getItem("baseTheme")) {
-      const [r, c] = localStorage
-        .getItem("baseTheme")
+    if (storage("baseTheme")) {
+      const [r, c] = storage("baseTheme")
         .split("")
         .map((x) => Number(x));
       theme = { base: colors[r][c] };

@@ -19,6 +19,7 @@ import {
 } from "@material-ui/core/colors";
 import styled from "styled-components";
 import { Tooltip } from "@material-ui/core";
+import { storage } from "../util";
 
 export const colors = [
   [red, pink, purple, deepPurple],
@@ -68,7 +69,7 @@ export const PaletteBox = ({ onThemeToggle }: any) => {
                   <ColorBox
                     onClick={() => {
                       onThemeToggle(c);
-                      localStorage.setItem("baseTheme", `${rowNum}${colNum}`);
+                      storage("baseTheme", `${rowNum}${colNum}`);
                     }}
                     style={{ background: c[500], width: 40, height: 40 }}
                   ></ColorBox>

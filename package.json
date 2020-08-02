@@ -6,7 +6,8 @@
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
-    "deploy": "GIT_USER=deepakshrma CURRENT_BRANCH=docs USE_SSH=true yarn run docusaurus deploy"
+    "deploy": "GIT_USER=deepakshrma CURRENT_BRANCH=docs USE_SSH=true yarn run docusaurus deploy",
+    "prettify": "prettier src/**/*.js --write"
   },
   "dependencies": {
     "@deepakvishwakarma/ts-util": "^1.0.0",
@@ -36,6 +37,19 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.1"
+    "@types/styled-components": "^5.1.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
+    "prettier": "^2.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.(js|html|css|ts|tsx|jsx|md|mdx)": [
+      "prettier --write"
+    ]
   }
 }

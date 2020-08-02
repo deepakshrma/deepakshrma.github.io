@@ -12,6 +12,7 @@ const Button = styled.button`
   border-radius: ${props("margin_sm")};
   outline: none;
   box-shadow: none;
+  font-size: 20px;
 `;
 
 export default Button;

@@ -19,7 +19,7 @@ import { openUrl } from "../util";
 import styles from "../pages/styles.module.css";
 import { styled } from "@material-ui/styles";
 import { CardActionArea, Button } from "@material-ui/core";
-import useBaseUrl from "@docusaurus/useBaseUrl";
+import s from "styled-components";
 
 const Pre = styled(Typography)({
   whiteSpace: "pre",
@@ -204,3 +204,6 @@ export function Feature({
     </a>
   );
 }
+export const ArticlesHeader = s.h3`
+  
+`;

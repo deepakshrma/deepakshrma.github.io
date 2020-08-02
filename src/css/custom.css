@@ -18,9 +18,9 @@
   --ifm-color-primary-light: #132570;
   --ifm-color-primary-lighter: #142775;
   --ifm-color-primary-lightest: #162c85;
-  --ifm-footer-background-color: rgba(0, 0, 0, 0.9);
-  --ifm-footer-color: #fff;
-  --ifm-footer-link-color: #28b5d5;
+  /* --ifm-footer-background-color: rgba(0, 0, 0, 0.9); */
+  /* --ifm-footer-color: #fff; */
+  /* --ifm-footer-link-color: #28b5d5; */
 }
 
 .docusaurus-highlight-code-line {
@@ -34,4 +34,10 @@ body {
 }
 .prism-code {
   font-family: "Fira Code", monospace !important;
+}
+
+@media (max-width: 996px) {
+  .col.footer__col {
+    flex-basis: 50% !important;
+  }
 }

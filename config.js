@@ -2,11 +2,12 @@ module.exports = {
   plugins: [require.resolve("@docusaurus/plugin-sitemap")],
   stylesheets: [
     {
-      href: "https://fonts.googleapis.com/css?family=Roboto",
+      href:
+        "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap",
       type: "text/css",
     },
   ],
-  scripts:[
+  scripts: [
     "https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js",
     // "https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js",
     "https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js",

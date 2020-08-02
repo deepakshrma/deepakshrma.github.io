@@ -1,18 +1,20 @@
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
-import clsx from "clsx";
 import React from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import styled, { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
 import { Articles, Feature } from "../components/Article";
-import { device } from "../components/device";
 import { InvertedText, SecondaryBtn } from "../components/mstyled.components";
+import { Gallery, HeroBanner } from "../components/styled.components";
+import theme, { getColors, updatesColors } from "../components/theme";
+import { SubTitle, SectionTitle } from "../components/Typograpgy";
+import useInitApp, { useFetchRecords } from "../hooks/useFirebaseDB";
 import { requestJSON } from "../util";
 import styles from "./styles.module.css";
-import theme from "../components/theme";
-import useInitApp, { useFetchRecords } from "../hooks/useFirebaseDB";
+import { PaletteBox } from "../components/ThemeBox";
+import Button from "../components/Button";
 
 const images = [
   {
@@ -41,21 +43,13 @@ const images = [
   },
 ];
 
-const Gallery = styled.div`
-  padding: 20px;
-  @media ${device.laptopL} { 
-    width: 60%';
-    margin: 0 auto;
-    max-width: 800px;
-  }
-`;
-
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
   const [poems, setPoems] = React.useState([]);
   const [features, setFeatures] = React.useState([]);
   const [feeds, setFeeds] = React.useState([]);
+  const [theme, setTheme] = React.useState(getColors());
   useInitApp();
   const records = useFetchRecords("notes");
   React.useEffect(() => {
@@ -83,34 +77,41 @@ function Home() {
   return (
     <ThemeProvider theme={theme}>
       <Layout title={siteConfig.title} description={siteConfig.tagline}>
-        <header className={clsx(styles.heroBanner)}>
-          <div className={`${styles.container}`}>
-            <InvertedText variant="h3">{siteConfig.title}</InvertedText>
-            <InvertedText variant="subtitle1" gutterBottom>
-              {siteConfig.tagline}
-            </InvertedText>
-            <SecondaryBtn
-              variant="outlined"
-              rel="noreferrer noopener"
-              color="primary"
-              href={useBaseUrl("blog/")}
-            >
-              Learn More
-            </SecondaryBtn>
-          </div>
-        </header>
+        <HeroBanner>
+          <SubTitle>{siteConfig.title}</SubTitle>
+          <SectionTitle>{siteConfig.tagline}</SectionTitle>
+          <Button
+            variant="outlined"
+            rel="noreferrer noopener"
+            color="primary"
+            href={useBaseUrl("blog/")}
+          >
+            Learn More
+          </Button>
+          <PaletteBox
+            onThemeToggle={(colorPallete: any) => {
+              setTheme(getColors({ base: colorPallete }));
+              updatesColors(getColors({ base: colorPallete }));
+            }}
+          />
+        </HeroBanner>
         <main className={styles.bgContent}>
+          <SubTitle>Showcase</SubTitle>
           <section className={styles.features}>
             {features.map((props, idx) => (
               <Feature key={idx} {...props} />
             ))}
           </section>
           <section>
-            <p className={styles.poemsHeader}>Medium Feeds</p>
+            <SubTitle>Medium Feeds</SubTitle>
             <Articles items={feeds} flowable />
           </section>
           <section>
-            <p className={styles.poemsHeader}>Random Photos</p>
+            <SubTitle>Poems</SubTitle>
+            <Articles items={poems} flowable />
+          </section>
+          <section>
+            <SubTitle>Random Photos</SubTitle>
             <Gallery>
               <ImageGallery
                 items={images}
@@ -121,10 +122,6 @@ function Home() {
                 }
               />
             </Gallery>
-          </section>
-          <section>
-            <p className={styles.poemsHeader}>Poems</p>
-            <Articles items={poems} flowable />
           </section>
         </main>
       </Layout>

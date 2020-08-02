@@ -38,8 +38,8 @@
 .container {
   padding: 10px;
   background-position: center;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.9);
+  /* color: #fff; */
+  /* background-color: rgba(0, 0, 0, 0.9); */
 }
 
 .footer {
@@ -121,6 +121,5 @@ body {
   font-family: "Roboto", sans-serif;
 }
 .bgContent {
-  background-color: rgba(0, 0, 0, 0.9);
-  /* background-image: url(https://source.unsplash.com/1600x1200/?smoke,dark,faded); */
+  padding: 20px;
 }

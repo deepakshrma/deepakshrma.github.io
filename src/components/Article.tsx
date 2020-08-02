@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       marginRight: 10,
     },
+    boxShadow: `0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)`,
   },
   media: {
     height: 0,
@@ -156,6 +157,7 @@ const useFeatureStyles = makeStyles((theme) => ({
     maxWidth: 345,
     minHeight: 345,
     marginBottom: 10,
+    boxShadow: `0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)`,
   },
   media: {
     height: 180,

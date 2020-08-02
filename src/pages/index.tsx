@@ -42,7 +42,11 @@ const images = [
     // thumbnail: "https://source.unsplash.com/user/deepak_v/600x400",
   },
 ];
-
+const getContent = (innerHTML: string) => {
+  const d = document.createElement("div");
+  d.innerHTML = innerHTML;
+  return d.textContent.split("\n").slice(0, 10).join("\n");
+};
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
@@ -62,6 +66,7 @@ function Home() {
           .map((feed) => {
             feed.imageUrl = feed.thumbnail;
             feed.href = feed.guid;
+            feed.description = getContent(feed.description);
             feed.updateAt = new Date(
               ...feed.pubDate.split(/[- :]/g).map(Number)
             ).toLocaleString("en-US");
@@ -89,7 +94,7 @@ function Home() {
             Learn More
           </Button>
           <PaletteBox
-            onThemeToggle={(colorPallete: any) => {
+            onThemeToggle={(colorPallete: any, name: string) => {
               setTheme(getColors({ base: colorPallete }));
               updatesColors(getColors({ base: colorPallete }));
             }}

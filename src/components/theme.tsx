@@ -1,6 +1,21 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-export const getColors = (theme = { base: indigo }) => {
+import { indigo } from "@material-ui/core/colors";
+import { colors } from "./ThemeBox";
+
+export const getColors = (theme?: any) => {
+  if (!theme) {
+    if (localStorage.getItem("baseTheme")) {
+      const [r, c] = localStorage
+        .getItem("baseTheme")
+        .split("")
+        .map((x) => Number(x));
+      theme = { base: colors[r][c] };
+    } else {
+      theme = { base: indigo };
+    }
+  }
+
   return {
     margin_md: "8px",
     margin_sm: "4px",
@@ -58,7 +73,6 @@ export const GlobalStyle = createGlobalStyle`
 `;
 export default theme;
 
-import { indigo } from "@material-ui/core/colors";
 export const baseTheme: any = {
   base: indigo,
 };

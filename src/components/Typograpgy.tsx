@@ -9,6 +9,7 @@ export const SubTitle = styled.h2`
 `;
 export const SectionTitle = styled.h4`
   color: ${(props) => props.theme.color_primary};
+  font-weight: 600;
 `;
 export const UL = styled.ul`
   color: ${(props) => props.theme.color_primary_darker};

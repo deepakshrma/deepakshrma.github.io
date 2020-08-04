@@ -66,9 +66,15 @@ export const Articles = ({ items, flowable }: any) => {
     };
   return (
     <div className={styles.features} style={style}>
-      {items.map((item, index) => {
-        return <Article item={item} key={index} flowable={flowable} />;
-      })}
+      {items
+        .sort((i1: any, i2: any) => {
+          i1.createdAt = i1.createdAt ? new Date(i1.createdAt) : new Date();
+          i2.createdAt = i2.createdAt ? new Date(i2.createdAt) : new Date();
+          return i2.createdAt.getTime() - i1.createdAt.getTime();
+        })
+        .map((item, index) => {
+          return <Article item={item} key={index} flowable={flowable} />;
+        })}
     </div>
   );
 };
@@ -102,7 +108,7 @@ export default function Article({ item, flowable }: any) {
           </Avatar>
         }
         title={item.title}
-        subheader={item.createdAt || new Date().toLocaleString("en-US")}
+        subheader={new Date(item.createdAt).toLocaleString("en-US")}
         action={
           <IconButton
             aria-label="settings"

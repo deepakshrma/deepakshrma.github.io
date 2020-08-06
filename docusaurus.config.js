@@ -26,6 +26,7 @@ module.exports = {
           position: "left",
         },
         { to: "/blog/", label: "Blogs", position: "left" },
+        { to: "/calculators/", label: "Calculators", position: "left" },
         {
           to: "/docs/resume",
           activeBasePath: "docs",

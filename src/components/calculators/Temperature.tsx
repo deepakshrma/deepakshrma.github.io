@@ -1,21 +1,13 @@
-import React from "react";
 import {
-  FormControl,
-  InputLabel,
-  OutlinedInput,
   InputAdornment,
   makeStyles,
-  IconButton,
-  FormHelperText,
   TextField,
-  NativeSelect,
-  Select,
-  MenuItem,
   Typography,
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
-
 import clsx from "clsx";
+import React from "react";
+import theme from "../theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,7 +64,7 @@ export default function Temperature(props: any) {
         Fever Calculator
       </Typography>
       <TextField
-        label="From Temp here"
+        label="Celsius"
         id="outlined-start-adornment"
         value={values.fromTemp}
         className={clsx(classes.margin, classes.textField)}
@@ -85,7 +77,7 @@ export default function Temperature(props: any) {
         variant="outlined"
       />
       <TextField
-        label="To Temp Here"
+        label="Fahrenheit"
         id="outlined-start-adornment"
         value={values.toTemp}
         className={clsx(classes.margin, classes.textField)}

@@ -1,5 +1,4 @@
 module.exports = {
-  plugins: [require.resolve("@docusaurus/plugin-sitemap")],
   stylesheets: [
     {
       href:
@@ -15,7 +14,6 @@ module.exports = {
 
   themeConfig: {
     sidebarCollapsible: false,
-    disableDarkMode: true,
     prism: {
       defaultLanguage: "ts",
     },
@@ -58,7 +56,7 @@ module.exports = {
           items: [
             {
               label: "Email me",
-              href: "mailto:contact-me@decipher.dev?subject=Say Hi!&body=Hi,\n",
+              href: "https://www.linkedin.com/in/xdeepakv/",
             },
           ],
         },
@@ -70,5 +68,4 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Deepak Vishwakarma`,
     },
   },
-  themes: ["@docusaurus/theme-classic", "@docusaurus/theme-live-codeblock"],
 };

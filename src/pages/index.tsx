@@ -4,17 +4,15 @@ import Layout from "@theme/Layout";
 import React from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { ThemeProvider } from "styled-components";
 import { Articles, Feature } from "../components/Article";
-import { InvertedText, SecondaryBtn } from "../components/mstyled.components";
+import Button from "../components/Button";
 import { Gallery, HeroBanner } from "../components/styled.components";
-import theme, { getColors, updatesColors } from "../components/theme";
-import { SubTitle, SectionTitle } from "../components/Typograpgy";
+import { getColors, updatesColors } from "../components/theme";
+import { PaletteBox } from "../components/ThemeBox";
+import { SectionTitle, SubTitle } from "../components/Typograpgy";
 import useInitApp, { useFetchRecords } from "../hooks/useFirebaseDB";
 import { requestJSON } from "../util";
 import styles from "./styles.module.css";
-import { PaletteBox } from "../components/ThemeBox";
-import Button from "../components/Button";
 
 const images = [
   {
@@ -80,57 +78,55 @@ function Home() {
     setPoems(records.filter((x) => x.type === "poem"));
   }, [records]);
   return (
-    <ThemeProvider theme={theme}>
-      <Layout title={siteConfig.title} description={siteConfig.tagline}>
-        <HeroBanner>
-          <SubTitle>{siteConfig.title}</SubTitle>
-          <SectionTitle>{siteConfig.tagline}</SectionTitle>
-          <Button
-            variant="outlined"
-            rel="noreferrer noopener"
-            color="primary"
-            href={useBaseUrl("blog/")}
-          >
-            Learn More
-          </Button>
-          <PaletteBox
-            onThemeToggle={(colorPallete: any, name: string) => {
-              setTheme(getColors({ base: colorPallete }));
-              updatesColors(getColors({ base: colorPallete }));
-            }}
-          />
-        </HeroBanner>
-        <main className={styles.bgContent}>
-          <SubTitle>Showcase</SubTitle>
-          <section className={styles.features}>
-            {features.map((props, idx) => (
-              <Feature key={idx} {...props} />
-            ))}
-          </section>
-          <section>
-            <SubTitle>Medium Feeds</SubTitle>
-            <Articles items={feeds} flowable />
-          </section>
-          <section>
-            <SubTitle>Poems</SubTitle>
-            <Articles items={poems} flowable />
-          </section>
-          <section>
-            <SubTitle>Random Photos</SubTitle>
-            <Gallery>
-              <ImageGallery
-                items={images}
-                autoPlay
-                showThumbnails={false}
-                onClick={() =>
-                  window.open("https://unsplash.com/@deepak_v", "_blank")
-                }
-              />
-            </Gallery>
-          </section>
-        </main>
-      </Layout>
-    </ThemeProvider>
+    <Layout title={siteConfig.title} description={siteConfig.tagline}>
+      <HeroBanner>
+        <SubTitle>{siteConfig.title}</SubTitle>
+        <SectionTitle>{siteConfig.tagline}</SectionTitle>
+        <Button
+          variant="outlined"
+          rel="noreferrer noopener"
+          color="primary"
+          href={useBaseUrl("blog/")}
+        >
+          Learn More
+        </Button>
+        <PaletteBox
+          onThemeToggle={(colorPallete: any, name: string) => {
+            setTheme(getColors({ base: colorPallete }));
+            updatesColors(getColors({ base: colorPallete }));
+          }}
+        />
+      </HeroBanner>
+      <main className={styles.bgContent}>
+        <SubTitle>Showcase</SubTitle>
+        <section className={styles.features}>
+          {features.map((props, idx) => (
+            <Feature key={idx} {...props} />
+          ))}
+        </section>
+        <section>
+          <SubTitle>Medium Feeds</SubTitle>
+          <Articles items={feeds} flowable />
+        </section>
+        <section>
+          <SubTitle>Poems</SubTitle>
+          <Articles items={poems} flowable />
+        </section>
+        <section>
+          <SubTitle>Random Photos</SubTitle>
+          <Gallery>
+            <ImageGallery
+              items={images}
+              autoPlay
+              showThumbnails={false}
+              onClick={() =>
+                window.open("https://unsplash.com/@deepak_v", "_blank")
+              }
+            />
+          </Gallery>
+        </section>
+      </main>
+    </Layout>
   );
 }
 

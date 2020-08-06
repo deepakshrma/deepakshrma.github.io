@@ -1,19 +1,10 @@
-import React from "react";
-
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { FormControl, makeStyles, MenuItem, Select } from "@material-ui/core";
 import Layout from "@theme/Layout";
-
-import styled, { ThemeProvider } from "styled-components";
-import { getColors } from "../components/theme";
-import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  makeStyles,
-} from "@material-ui/core";
+import React from "react";
+import styled from "styled-components";
+import { Price, Temperature } from "../components/calculators";
 import { SubTitle } from "../components/Typograpgy";
-import { Temperature, Price } from "../components/calculators";
+
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -36,33 +27,28 @@ const Container = styled.div`
 `;
 const Calculators = () => {
   const classes = useStyles();
-  const [theme, setTheme] = React.useState(getColors());
-
   const [type, setType] = React.useState("temperature");
-
   const handleChange = (event) => {
     setType(event.target.value);
   };
   return (
-    <ThemeProvider theme={theme}>
-      <Layout title="Calculators" description="Basic useful calculators">
-        <Container>
-          <FormControl className={classes.formControl}>
-            <SubTitle>SELECT YOUR CALCULATOR</SubTitle>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={type}
-              onChange={handleChange}
-            >
-              <MenuItem value={"temperature"}>Temperature</MenuItem>
-              <MenuItem value={"price"}>Price Discount</MenuItem>
-            </Select>
-          </FormControl>
-          {type === "temperature" ? <Temperature /> : <Price />}
-        </Container>
-      </Layout>
-    </ThemeProvider>
+    <Layout title="Calculators" description="Basic useful calculators">
+      <Container>
+        <FormControl className={classes.formControl}>
+          <SubTitle>SELECT YOUR CALCULATOR</SubTitle>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={type}
+            onChange={handleChange}
+          >
+            <MenuItem value={"temperature"}>Temperature</MenuItem>
+            <MenuItem value={"price"}>Price Discount</MenuItem>
+          </Select>
+        </FormControl>
+        {type === "temperature" ? <Temperature /> : <Price />}
+      </Container>
+    </Layout>
   );
 };
 export default Calculators;

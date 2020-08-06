@@ -1,5 +1,5 @@
 import React from "react";
-import classnames from "classnames";
+import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -8,11 +8,7 @@ import styles from "./styles.module.css";
 
 import Button from "@material-ui/core/Button";
 import { Typography } from "@material-ui/core";
-import {
-  ThemeProvider,
-  MuiThemeProvider,
-  createMuiTheme,
-} from "@material-ui/core/styles";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   overrides: {
@@ -42,7 +38,7 @@ function AboutMe() {
         title={`About ${siteConfig.title}`}
         description={`${siteConfig.tagline}`}
       >
-        <header className={classnames("hero hero--primary", styles.heroBanner)}>
+        <header className={clsx("hero hero--primary", styles.heroBanner)}>
           <Typography variant="overline" display="block" gutterBottom>
             {siteConfig.tagline}
           </Typography>

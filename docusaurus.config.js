@@ -18,7 +18,7 @@ module.exports = {
       logo: {
         src: "img/icon_light.png",
       },
-      links: [
+      items: [
         {
           to: "/",
           activeBasePath: "docs",
@@ -49,28 +49,21 @@ module.exports = {
           // It is recommended to set document id as docs home page (`docs/` path).
           homePageId: "introduction",
           sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
-          editUrl:
-            "https://github.com/deepakshrma/deepakshrma.github.io/edit/docs",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-      },
-      {
         blog: {
-          path: "./blog",
-          routeBasePath: "/",
           showReadingTime: true,
-          editUrl:
-            "https://github.com/deepakshrma/deepakshrma.github.io/edit/docs",
           feedOptions: {
             type: "all",
             copyright: `Copyright © ${new Date().getFullYear()} Deepak Vishwakarma`,
           },
         },
-        theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+        sitemap: {
+          cacheTime: 600 * 1000, // 600 sec - cache purge period
+          changefreq: "weekly",
+          priority: 0.5,
         },
       },
     ],

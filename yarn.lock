@@ -1118,11 +1118,6 @@
   resolved "https://registry.yarnpkg.com/@deepakvishwakarma/ts-util/-/ts-util-1.0.1.tgz#53f4467f6384c735ded346c795dca3f97b2b3acc"
   integrity sha512-tN8jb4eqf0GnuJdjjIWvYZgWVPeEVRchXpW8CGWoTuMB7KQkab3WIoTOxqaaDc8uVoJNSHNTQtpKp5L8JywfPQ==
 
-"@deepakvishwakarma/util@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@deepakvishwakarma/util/-/util-0.0.3.tgz#b08c4b7f549feb71fbf6c6346fad6810bed906e2"
-  integrity sha512-hWPxXQLbYOKdNgxDZIpS7tX3zt0vBGn7WWjIClxPlOXmdpbkHjMEgq3VC7DDLJTCpzAIx4J5yx8D83zBg4dvLQ==
-
 "@docsearch/css@^1.0.0-alpha.26":
   version "1.0.0-alpha.26"
   resolved "https://registry.yarnpkg.com/@docsearch/css/-/css-1.0.0-alpha.26.tgz#a2f9b61168d527600b0e3f31c0f04998002f3aa2"
@@ -1138,7 +1133,7 @@
     "@francoischalifour/autocomplete-preset-algolia" "^1.0.0-alpha.26"
     algoliasearch "^4.0.0"
 
-"@docusaurus/core@^2.0.0-alpha.60", "@docusaurus/core@^2.0.0-alpha.61":
+"@docusaurus/core@^2.0.0-alpha.61":
   version "2.0.0-alpha.61"
   resolved "https://registry.yarnpkg.com/@docusaurus/core/-/core-2.0.0-alpha.61.tgz#4b736d36687bd12fb9399f9ce352e87da4bf8fe7"
   integrity sha512-Ev0v5J7L/Pm3VJMdhhyR8I9tUQo8MhVRUUT+Bf0W3TMYG6jp2cIXE88yCfxOsTDducS7EMrdtUXfvePGH9CE/A==
@@ -1321,7 +1316,7 @@
     fs-extra "^8.1.0"
     sitemap "^3.2.2"
 
-"@docusaurus/preset-classic@^2.0.0-alpha.60":
+"@docusaurus/preset-classic@^2.0.0-alpha.61":
   version "2.0.0-alpha.61"
   resolved "https://registry.yarnpkg.com/@docusaurus/preset-classic/-/preset-classic-2.0.0-alpha.61.tgz#38f9a34d3e5092264cfa48d0242ab774d13aa534"
   integrity sha512-/3HL468XiSZ1T4mdvqnfV6O80Qv4BxAseJGnmkBwS0u6+Q1VgkNxRxVk4B45OWPaurK/Dl+sCn4sAAUWUGRsZg==

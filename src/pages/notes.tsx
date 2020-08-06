@@ -1,26 +1,12 @@
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { TextField, Button, MenuItem } from "@material-ui/core";
+import { Button, MenuItem, TextField } from "@material-ui/core";
 import Layout from "@theme/Layout";
 import React, { useState } from "react";
 import "react-image-gallery/styles/css/image-gallery.css";
-import styled from "styled-components";
 import { Articles } from "../components/Article";
-import theme from "../components/theme";
+import { Form, Header, Main, Section } from "../components/Typograpgy";
 import useInitApp, { useFetchRecords } from "../hooks/useFirebaseDB";
 
-const Main = styled.main``;
-const Section = styled.section`
-  padding: 20px 40px;
-`;
-const Header = styled.h2``;
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 800px;
-  * {
-    margin-bottom: 10px;
-  }
-`;
 const types = ["poem", "feature", "blog", "other"];
 function Notes() {
   const context = useDocusaurusContext();

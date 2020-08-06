@@ -1,9 +1,8 @@
 import { FormControl, makeStyles, MenuItem, Select } from "@material-ui/core";
 import Layout from "@theme/Layout";
 import React from "react";
-import styled from "styled-components";
 import { Price, Temperature } from "../components/calculators";
-import { SubTitle } from "../components/Typograpgy";
+import { SubTitle, CalcContainer } from "../components/Typograpgy";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -14,17 +13,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
 }));
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  > div {
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 20px;
-  }
-`;
+
 const Calculators = () => {
   const classes = useStyles();
   const [type, setType] = React.useState("temperature");
@@ -33,7 +22,7 @@ const Calculators = () => {
   };
   return (
     <Layout title="Calculators" description="Basic useful calculators">
-      <Container>
+      <CalcContainer>
         <FormControl className={classes.formControl}>
           <SubTitle>SELECT YOUR CALCULATOR</SubTitle>
           <Select
@@ -47,7 +36,7 @@ const Calculators = () => {
           </Select>
         </FormControl>
         {type === "temperature" ? <Temperature /> : <Price />}
-      </Container>
+      </CalcContainer>
     </Layout>
   );
 };

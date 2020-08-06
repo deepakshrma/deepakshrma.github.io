@@ -5,14 +5,18 @@ import React from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { Articles, Feature } from "../components/Article";
-import Button from "../components/Button";
-import { Gallery, HeroBanner } from "../components/styled.components";
-import { getColors, updatesColors } from "../components/theme";
 import { PaletteBox } from "../components/ThemeBox";
-import { SectionTitle, SubTitle } from "../components/Typograpgy";
+import {
+  Button,
+  Gallery,
+  HeroBanner,
+  SectionTitle,
+  SubTitle,
+} from "../components/Typograpgy";
 import useInitApp, { useFetchRecords } from "../hooks/useFirebaseDB";
-import { requestJSON } from "../util";
+import { requestJSON, storage } from "../util";
 import styles from "./styles.module.css";
+import { getColors, updatesColors } from "../components/theme";
 
 const images = [
   {
@@ -78,7 +82,11 @@ function Home() {
     setPoems(records.filter((x) => x.type === "poem"));
   }, [records]);
   return (
-    <Layout title={siteConfig.title} description={siteConfig.tagline}>
+    <Layout
+      title={siteConfig.title}
+      description={siteConfig.tagline}
+      theme={theme}
+    >
       <HeroBanner>
         <SubTitle>{siteConfig.title}</SubTitle>
         <SectionTitle>{siteConfig.tagline}</SectionTitle>
@@ -92,6 +100,7 @@ function Home() {
         </Button>
         <PaletteBox
           onThemeToggle={(colorPallete: any, name: string) => {
+            storage("theme-name", name);
             setTheme(getColors({ base: colorPallete }));
             updatesColors(getColors({ base: colorPallete }));
           }}

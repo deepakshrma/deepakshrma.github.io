@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Head from "@docusaurus/Head";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
@@ -14,16 +14,14 @@ import AnnouncementBar from "@theme/AnnouncementBar";
 import Navbar from "@theme/Navbar";
 import Footer from "@theme/Footer";
 
-import { ThemeProvider as STP } from "styled-components";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import "./styles.css";
-import { theme } from "../../components/theme";
+import { getColors } from "../../components/theme";
 
 function Providers({ children }) {
   return (
     <ThemeProvider>
-      <STP theme={theme}>
-        <UserPreferencesProvider>{children}</UserPreferencesProvider>
-      </STP>
+      <UserPreferencesProvider>{children}</UserPreferencesProvider>
     </ThemeProvider>
   );
 }
@@ -45,6 +43,7 @@ function Layout(props) {
     keywords,
     permalink,
     version,
+    theme = getColors(),
   } = props;
   const metaTitle = title ? `${title} | ${siteTitle}` : siteTitle;
   const metaImage = image || defaultImage;
@@ -52,6 +51,10 @@ function Layout(props) {
     absolute: true,
   });
   const faviconUrl = useBaseUrl(favicon);
+  const [tm, setTheme] = useState(theme);
+  useEffect(() => {
+    setTimeout(() => setTheme(theme), 100);
+  }, [theme]);
   return (
     <Providers>
       <Head>
@@ -80,7 +83,9 @@ function Layout(props) {
       </Head>
       <AnnouncementBar />
       <Navbar />
-      <div className="main-wrapper">{children}</div>
+      <StyledThemeProvider theme={tm}>
+        <div className="main-wrapper">{children}</div>
+      </StyledThemeProvider>
       {!noFooter && <Footer />}
     </Providers>
   );

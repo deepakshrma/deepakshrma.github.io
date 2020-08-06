@@ -1,8 +1,13 @@
 import { indigo } from "@material-ui/core/colors";
-import React from "react";
-import { createGlobalStyle } from "styled-components";
+import { storage } from "../util";
+import { colors } from "./ThemeBox";
 
-export const getColors = (theme: any = { base: indigo }) => {
+export const getColors = (theme?: any) => {
+  // const [r, c] = (storage("theme-name") || "10").split("");
+  const [r, c] = [1, 0];
+  if (!theme) {
+    theme = { base: colors[Number(r)][Number(c)] };
+  }
   return {
     margin_md: "8px",
     margin_sm: "4px",
@@ -50,18 +55,17 @@ export const updatesColors = (colors: any) => {
   );
 };
 
-export const theme = getColors();
-export const props = (prop: string) => (props: any) => props.theme[prop];
-export const GlobalStyle = createGlobalStyle`
-  p, h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    padding: 0;
-  }
-`;
-export default theme;
-
-export const baseTheme: any = {
-  base: indigo,
+export default {
+  margin_md: "8px",
+  margin_sm: "4px",
+  margin_lg: "12px",
+  bg_color: "#fff",
+  bg_color_invert: "#000",
+  color_primary: indigo[500],
+  color_primary_dark: indigo[600],
+  color_primary_darker: indigo[700],
+  color_primary_darkest: indigo[800],
+  color_primary_light: indigo[400],
+  color_primary_lighter: indigo[300],
+  color_primary_lightest: indigo[200],
 };
-
-export const ThemeContext = React.createContext(baseTheme);

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Deepak Vishwakarma Blog</title>
+        <link>https://decipher.dev/blog</link>
+        <description>Deepak Vishwakarma Blog</description>
+        <lastBuildDate>Sun, 26 Jul 2020 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <copyright>Copyright © 2020 Deepak Vishwakarma</copyright>
+        <item>
+            <title><![CDATA[Security Vulnerability Solutions for Non-Tech People | In Simple Language]]></title>
+            <link>https://decipher.dev/blog/security-for-non-tech</link>
+            <guid>security-for-non-tech</guid>
+            <pubDate>Sun, 26 Jul 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[In the world of data, the Security of personal data is the biggest concern of anyone. Knowingly or unknowingly we share a lot of data to the company like Google and Facebook. In the old era, we have made walls/doors to protect our property from external threats. So now how far you will go to protect you and your beloved property.]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Building and Testing A TypeScript library]]></title>
+            <link>https://decipher.dev/blog/one-for-all</link>
+            <guid>one-for-all</guid>
+            <pubDate>Sat, 11 Jul 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[Building and Testing A TypeScript/NodeJS library without WebPack, Jest or Rollup]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Welcome]]></title>
+            <link>https://decipher.dev/blog/welcome</link>
+            <guid>welcome</guid>
+            <pubDate>Fri, 22 May 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[Welcome to my blog! This is my first blog in this platform.]]></description>
+        </item>
+    </channel>
+</rss>

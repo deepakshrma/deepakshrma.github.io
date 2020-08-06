@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://decipher.dev/blog</id>
+    <title>Deepak Vishwakarma Blog</title>
+    <updated>2020-07-26T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://decipher.dev/blog"/>
+    <subtitle>Deepak Vishwakarma Blog</subtitle>
+    <icon>https://decipher.dev/img/icon_light_y.png</icon>
+    <rights>Copyright © 2020 Deepak Vishwakarma</rights>
+    <entry>
+        <title type="html"><![CDATA[Security Vulnerability Solutions for Non-Tech People | In Simple Language]]></title>
+        <id>security-for-non-tech</id>
+        <link href="https://decipher.dev/blog/security-for-non-tech"/>
+        <updated>2020-07-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[In the world of data, the Security of personal data is the biggest concern of anyone. Knowingly or unknowingly we share a lot of data to the company like Google and Facebook. In the old era, we have made walls/doors to protect our property from external threats. So now how far you will go to protect you and your beloved property.]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Building and Testing A TypeScript library]]></title>
+        <id>one-for-all</id>
+        <link href="https://decipher.dev/blog/one-for-all"/>
+        <updated>2020-07-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Building and Testing A TypeScript/NodeJS library without WebPack, Jest or Rollup]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Welcome]]></title>
+        <id>welcome</id>
+        <link href="https://decipher.dev/blog/welcome"/>
+        <updated>2020-05-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Welcome to my blog! This is my first blog in this platform.]]></summary>
+    </entry>
+</feed>

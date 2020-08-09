@@ -21,7 +21,10 @@ const Calculators = () => {
     setType(event.target.value);
   };
   return (
-    <Layout title="Calculators" description="Basic useful calculators">
+    <Layout
+      title="Calculators"
+      description="Basic useful calculators(Fever Calculator, Invoice Genrator)"
+    >
       <CalcContainer>
         <FormControl className={classes.formControl}>
           <SubTitle>SELECT YOUR CALCULATOR</SubTitle>
@@ -32,7 +35,7 @@ const Calculators = () => {
             onChange={handleChange}
           >
             <MenuItem value={"temperature"}>Temperature</MenuItem>
-            <MenuItem value={"price"}>Price Discount</MenuItem>
+            <MenuItem value={"price"}>Invoice Genrator</MenuItem>
           </Select>
         </FormControl>
         {type === "temperature" ? <Temperature /> : <Price />}

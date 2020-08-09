@@ -122,10 +122,15 @@ export const CalcContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   > div {
-    width: 80%;
+    /* width: 80%; */
     margin: 0 auto;
     text-align: center;
     margin-top: 20px;
+    width: 100%;
+    @media ${device.laptopL} {
+      padding: 20px 30px;
+    }
+    padding: 10px;
   }
 `;
 

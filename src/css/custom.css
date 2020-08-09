@@ -21,6 +21,7 @@
   /* --ifm-footer-background-color: rgba(0, 0, 0, 0.9); */
   /* --ifm-footer-color: #fff; */
   /* --ifm-footer-link-color: #28b5d5; */
+  /* --ifm-table-border-width: 0px; */
 }
 
 .docusaurus-highlight-code-line {
@@ -40,4 +41,9 @@ body {
   .col.footer__col {
     flex-basis: 50% !important;
   }
+}
+table table th,
+table table td {
+  background-color: inherit;
+  border: inherit;
 }

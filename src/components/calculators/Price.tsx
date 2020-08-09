@@ -1,17 +1,30 @@
-import React, { useState, ChangeEvent, InputHTMLAttributes } from "react";
 import {
-  ButtonGroup,
   Button,
-  makeStyles,
+  ButtonGroup,
   Input,
-  FormControl,
-  InputLabel,
   InputAdornment,
+  makeStyles,
 } from "@material-ui/core";
+import Paper from "@material-ui/core/Paper";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 import SaveIcon from "@material-ui/icons/Save";
+import React, { ChangeEvent, useState } from "react";
+import { SubTitle } from "../Typograpgy";
 
-import { Typography, SubTitle } from "../Typograpgy";
-
+// const Table = styled.table`
+//   table-layout: fixed;
+//   width: 100%;
+//   overflow-x: scroll;
+//   th,
+//   td {
+//     min-width: 100px;
+//   }
+// `;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -20,6 +33,18 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: theme.spacing(1),
     },
+    "& input[max='9999999']": {
+      minWidth: "150px",
+    },
+    "& input[placeholder]": {
+      minWidth: "80px",
+    },
+  },
+  table: {
+    // tableLayout: "fixed",
+    // width: "auto",
+    minWidth: 1000,
+    marginBottom: 0,
   },
 }));
 
@@ -38,58 +63,75 @@ interface CatItem {
 }
 const renderItem = ({ item, index, handleChange, onRemove }: any) => {
   return (
-    <tr>
-      <td>{index + 1}.</td>
-      <td>
+    <TableRow key={`titem_${index}`}>
+      <TableCell>{index + 1}.</TableCell>
+      <TableCell>
         <Input
           type="number"
-          value={item.qty}
-          inputProps={{ min: 0 }}
+          fullWidth
+          value={item.qty || 1}
+          inputProps={{ min: 1, max: 100, pattern: "[0-9.]" }}
           onChange={handleChange("qty", index)}
           startAdornment={<InputAdornment position="start">Qty</InputAdornment>}
         />
-      </td>
-      <td>
+      </TableCell>
+      <TableCell>
         <Input
-          value={item.name}
+          fullWidth
+          inputProps={{ min: 0, max: 30 }}
+          value={item.name || ""}
           placeholder="Product Name"
           onChange={handleChange("name", index)}
         />
-      </td>
-      <td>
+      </TableCell>
+      <TableCell align="right">
         <Input
+          fullWidth
+          inputProps={{
+            min: 0,
+            max: 9999999,
+            pattern: "[0-9.]",
+            style: { textAlign: "right" },
+          }}
           type="number"
           value={item.price}
-          inputProps={{ min: 0 }}
           placeholder="Price"
           onChange={handleChange("price", index)}
           startAdornment={<InputAdornment position="start">$</InputAdornment>}
         />
-      </td>
-      <td>
+      </TableCell>
+      <TableCell align="right">
         <Input
+          fullWidth
+          inputProps={{
+            min: 0,
+            max: 99,
+            step: 5,
+            pattern: "[0-9.]",
+            style: { textAlign: "right" },
+          }}
           type="number"
           value={item.discount}
-          inputProps={{ min: 0 }}
           placeholder="Discount"
           onChange={handleChange("discount", index)}
           startAdornment={<InputAdornment position="start">%</InputAdornment>}
         />
-      </td>
-      <td>
+      </TableCell>
+      <TableCell align="right">
         <Input
+          fullWidth
           type="number"
           readOnly
           value={afterDiscPrice(item)}
           startAdornment={<InputAdornment position="start">$</InputAdornment>}
         />
-      </td>
-      <td>
+      </TableCell>
+      <TableCell>
         <Button color="secondary" onClick={() => onRemove(index)}>
           Remove
         </Button>
-      </td>
-    </tr>
+      </TableCell>
+    </TableRow>
   );
 };
 const renderTax = ({
@@ -100,42 +142,48 @@ const renderTax = ({
   onRemove,
 }: any) => {
   return (
-    <tr>
-      <td></td>
-      <td></td>
-      <td colSpan={2}>Tax</td>
-      <td>
+    <TableRow key={`ttax_${index}`}>
+      <TableCell></TableCell>
+      <TableCell></TableCell>
+      <TableCell colSpan={2}>Tax</TableCell>
+      <TableCell align="right">
         <Input
           type="number"
           value={item.discount}
-          inputProps={{ min: 0 }}
-          placeholder="Discount"
+          inputProps={{
+            min: 1,
+            max: 99,
+            step: 5,
+            pattern: "[0-9.]",
+            style: { textAlign: "right" },
+          }}
+          placeholder="Tax"
           onChange={handleChange("discount", index)}
           startAdornment={<InputAdornment position="start">%</InputAdornment>}
         />
-      </td>
-      <td>
+      </TableCell>
+      <TableCell align="right">
         <Input
           type="number"
           readOnly
           value={afterTaxPrice}
           startAdornment={<InputAdornment position="start">$</InputAdornment>}
         />
-      </td>
-      <td>
+      </TableCell>
+      <TableCell>
         <Button color="secondary" onClick={() => onRemove(index)}>
           Remove
         </Button>
-      </td>
-    </tr>
+      </TableCell>
+    </TableRow>
   );
 };
 
 function afterDiscPrice(item: CatItem): number {
-  return (item.qty * item.price * (100 - item.discount)) / 100;
+  return (item.qty * item.price * (100 - (item.discount || 0))) / 100;
 }
 function afterTaxPrice(sum: number, discount: number): number {
-  return (sum * (100 + discount)) / 100;
+  return (sum * (100 + (discount || 0))) / 100;
 }
 const toFix = (num: Number): number => (Number(num) || 0).toFixed(2);
 
@@ -167,6 +215,8 @@ export default function Price(props: any) {
     value: string
   ) => {
     if (items[index]) {
+      const isNum = !!Number(value);
+      if (isNum && Number(value) < 0) return items;
       let updatedItem = {
         ...items[index],
         [type]: Number(value) || value,
@@ -205,7 +255,7 @@ export default function Price(props: any) {
       >
         <Button
           onClick={() => {
-            addItem({ type: CatType.PRODUCT, qty: 1, price: 0, discount: 0 });
+            addItem({ type: CatType.PRODUCT, qty: 1 });
           }}
         >
           + Item
@@ -219,21 +269,21 @@ export default function Price(props: any) {
           + Tax
         </Button>
       </ButtonGroup>
-      <div>
-        {items.length ? (
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Qty.</th>
-                <th>Item</th>
-                <th>Price</th>
-                <th>%</th>
-                <th>Aggr. Price</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
+      {items.length ? (
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label="a dense table">
+            <TableHead>
+              <TableRow>
+                <TableCell>#</TableCell>
+                <TableCell>Qty.</TableCell>
+                <TableCell>Item</TableCell>
+                <TableCell>Price</TableCell>
+                <TableCell>%</TableCell>
+                <TableCell>Aggr. Price</TableCell>
+                <TableCell>Action</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
               {items.map((item: CatItem, index: number) => {
                 return renderItem({
                   item,
@@ -243,13 +293,13 @@ export default function Price(props: any) {
                 });
               })}
               {items.length ? (
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td colSpan={3}>Total</td>
-                  <td>$ {total}</td>
-                  <td></td>
-                </tr>
+                <TableRow>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell colSpan={3}>Total</TableCell>
+                  <TableCell align="right">$ {total}</TableCell>
+                  <TableCell></TableCell>
+                </TableRow>
               ) : null}
               {taxes.length
                 ? taxes.map((item: CatItem, index: number) => {
@@ -269,20 +319,20 @@ export default function Price(props: any) {
                   })
                 : null}
               {hasTax ? (
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td colSpan={3}>Total Aft. Tax.</td>
-                  <td>$ {afterTaxTotalprice}</td>
-                  <td></td>
-                </tr>
+                <TableRow>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell colSpan={3}>Total Aft. Tax.</TableCell>
+                  <TableCell align="right">$ {afterTaxTotalprice}</TableCell>
+                  <TableCell></TableCell>
+                </TableRow>
               ) : null}
-            </tbody>
-          </table>
-        ) : (
-          <SubTitle>No Item to display, Please add Items</SubTitle>
-        )}
-      </div>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      ) : (
+        <SubTitle>No Item to display, Please add Items</SubTitle>
+      )}
       <Button
         disabled={items.length === 0}
         onClick={() => window.print()}

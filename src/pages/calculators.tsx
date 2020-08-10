@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Calculators = () => {
   const classes = useStyles();
-  const [type, setType] = React.useState("price");
+  const [type, setType] = React.useState("temperature");
   const handleChange = (event) => {
     setType(event.target.value);
   };

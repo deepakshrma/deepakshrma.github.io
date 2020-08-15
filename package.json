@@ -7,7 +7,7 @@
     "sitemap": "node scripts/generate-sitemap.js",
     "build": "docusaurus build && node scripts/generate-sitemap.js",
     "swizzle": "docusaurus swizzle",
-    "deploy": "GIT_USER=deepakshrma CURRENT_BRANCH=docs USE_SSH=true yarn run docusaurus deploy",
+    "deploy": "yarn run build && GIT_USER=deepakshrma CURRENT_BRANCH=docs USE_SSH=true yarn run docusaurus deploy --skip-build",
     "prettify": "prettier src/**/*.js --write"
   },
   "dependencies": {

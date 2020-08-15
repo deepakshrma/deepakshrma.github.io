@@ -1,4 +1,3 @@
-const configs = require("./config");
 module.exports = {
   title: "Deepak Vishwakarma",
   tagline: "Programmer, Poet and Enthusiastic Tech lover",
@@ -7,9 +6,77 @@ module.exports = {
   favicon: "img/icon_light_y.png",
   organizationName: "deepakshrma", // Usually your GitHub org/user name.
   projectName: "deepakshrma.github.io", // Usually your repo name.
-  ...configs,
+  stylesheets: [
+    {
+      href:
+        "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap",
+      type: "text/css",
+    },
+  ],
+  scripts: [
+    "https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js",
+    // "https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js",
+    "https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js",
+  ],
   themeConfig: {
-    ...configs.themeConfig,
+    sidebarCollapsible: false,
+    prism: {
+      defaultLanguage: "ts",
+    },
+    algolia: {
+      apiKey: "e71b47af92b1daef0e43bbbfa2b4a70a",
+      indexName: "decipher_dev",
+    },
+    footer: {
+      // style: 'dark',
+      links: [
+        {
+          title: "Follow me",
+          items: [
+            {
+              label: "Linkdin",
+              href: "https://www.linkedin.com/in/xdeepakv/",
+            },
+            {
+              label: "Medium.com",
+              href: "https://medium.com/@deepak_v",
+            },
+            {
+              label: "Discord",
+              href: "https://discord.com/channels/@deepakv",
+            },
+          ],
+        },
+        {
+          title: "Friend with me",
+          items: [
+            { label: "Twitter", href: "https://twitter.com/nalayakshrma" },
+            {
+              label: "Instagram",
+              href: "https://www.instagram.com/nalayaksharma_poetry/",
+            },
+            {
+              label: "Unsplash",
+              href: "https://unsplash.com/@deepak_v",
+            },
+          ],
+        },
+        {
+          title: "Contact me",
+          items: [
+            {
+              label: "Email me",
+              href: "https://www.linkedin.com/in/xdeepakv/",
+            },
+          ],
+        },
+      ],
+      // logo: {
+      //   alt: "Decipher.dev",
+      //   src: "/img/logo_decipher.png",
+      // },
+      copyright: `Copyright © ${new Date().getFullYear()} Deepak Vishwakarma`,
+    },
     googleAnalytics: {
       trackingID: "UA-172955705-1",
     },

@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "sitemap": "node scripts/generate-sitemap.js",
+    "build": "docusaurus build && node scripts/generate-sitemap.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "GIT_USER=deepakshrma CURRENT_BRANCH=docs USE_SSH=true yarn run docusaurus deploy",
     "prettify": "prettier src/**/*.js --write"
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.1",
+    "axios": "^0.19.2",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.2",
     "prettier": "^2.0.5"

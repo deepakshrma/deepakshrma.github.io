@@ -94,6 +94,7 @@ module.exports = {
         },
         { to: "/blog/", label: "Blogs", position: "left" },
         { to: "/calculators/", label: "Calculators", position: "left" },
+        { to: "/code-share/", label: "Code Share", position: "left" },
         {
           to: "/docs/resume",
           activeBasePath: "docs",

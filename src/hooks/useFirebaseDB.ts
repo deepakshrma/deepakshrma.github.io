@@ -42,4 +42,26 @@ export const useFetchRecords = (table: string) => {
   }, []);
   return records;
 };
+export const useFetchRecord = (table: string, id: string = "xxx") => {
+  const [record, setRecord] = useState<any>({});
+  useEffect(() => {
+    if (id) {
+      firebase
+        .database()
+        .ref(`${table}/${id}`)
+        .once(
+          "value",
+          function (snapshot) {
+            console.log(snapshot.val());
+            const data = snapshot.val() || {};
+            setRecord(data);
+          },
+          function (errorObject) {
+            console.log("The read failed: " + errorObject.code);
+          }
+        );
+    }
+  }, [id]);
+  return record;
+};
 export default useInitApp;

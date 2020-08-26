@@ -1,6 +1,7 @@
 const axios = require("axios");
 const fs = require("fs");
 async function main() {
+  console.log("generating sitemap...");
   const urls = [
     "https://decipher.dev/sitemap.xml",
     "https://decipher.dev/30-seconds-of-typescript/sitemap.xml",

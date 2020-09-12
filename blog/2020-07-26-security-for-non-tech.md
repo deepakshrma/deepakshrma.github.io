@@ -115,3 +115,5 @@ In the end, how we can use social sites without the apps. I know it is tough, I 
 ```
 
 ![img 11](https://miro.medium.com/max/1400/0*Pe7-Vi6-ecc86P8U)
+
+<div className="powr-comments" id="93e7bc2a_1599917840" />

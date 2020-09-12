@@ -17,6 +17,7 @@ module.exports = {
     "https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js",
     // "https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js",
     "https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js",
+    "https://www.powr.io/powr.js?platform=html",
   ],
   themeConfig: {
     sidebarCollapsible: false,

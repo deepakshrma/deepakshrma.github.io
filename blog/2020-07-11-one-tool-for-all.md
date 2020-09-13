@@ -6,6 +6,8 @@ author_title: Front End Engineer
 author_url: https://github.com/deepakshrma
 author_image_url: https://avatars2.githubusercontent.com/u/7682731?s=460
 tags: [library, typeScript, bundle, testing, deno, npm]
+image: https://miro.medium.com/max/1400/1*7Ws9_cH2N2ZxvheAIn9f6A@2x.png
+description: Writing and setting up the library is a very tedious task. You can use TypeScript CLI to build a library, Still testing is a pain.
 ---
 
 ## Building and Testing A TypeScript/NodeJS library without WebPack, Jest or Rollup

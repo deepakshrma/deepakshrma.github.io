@@ -6,6 +6,8 @@ author_title: Front End Engineer
 author_url: https://github.com/deepakshrma
 author_image_url: https://avatars2.githubusercontent.com/u/7682731?s=460
 tags: [security, data, privacy, theift, loss, concern, non-tech]
+description: Security of personal data is the biggest concern of anyone. Knowingly or unknowingly we share a lot of data to the company like Google and Facebook.
+image: https://miro.medium.com/max/1400/0*8JJZtx7xkP-NL0ZE
 ---
 
 In the world of data, the Security of personal data is the biggest concern of anyone. Knowingly or unknowingly we share a lot of data to the company like Google and Facebook. In the old era, we have made walls/doors to protect our property from external threats. So now how far you will go to protect you and your beloved property.

@@ -6,6 +6,8 @@ author_title: Front End Engineer
 author_url: https://github.com/deepakshrma
 author_image_url: https://avatars2.githubusercontent.com/u/7682731?s=460
 tags: [js, javascript, programming, error, handling, typescript]
+description: Error handling plays a vital role to reduce the number of bugs. If you handle error elegant way, it will save a lot of time in the future.
+image: https://cdn-images-1.medium.com/max/1440/0*xe7Z_KiUCiwSNKDg
 ---
 
 ![img1](https://cdn-images-1.medium.com/max/1440/0*xe7Z_KiUCiwSNKDg)
@@ -247,27 +249,27 @@ try {
 
 ```js {1,9}
 try {
- const numbers = \[10, 2, 0, 5\];
- numbers.forEach((num) => {
- if (num === 0) {
- throw new ArithmeticRangeError("zero cant be 0");
- }
- console.log(num);
- });
+  const numbers = [10, 2, 0, 5];
+  numbers.forEach((num) => {
+    if (num === 0) {
+      throw new ArithmeticRangeError("zero cant be 0");
+    }
+    console.log(num);
+  });
 } catch (error) {}
 ```
 
 **Continue on error or skip:**
 
 ```js {3,7}
-const numbers = \[10, 2, 0, 5\];
+const numbers = [10, 2, 0, 5];
 numbers.forEach((num) => {
- try {
-  if (num === 0) {
-  throw new ArithmeticRangeError("zero cant be 0");
-  }
- } catch (error) {}
- console.log(num);
+  try {
+    if (num === 0) {
+      throw new ArithmeticRangeError("zero cant be 0");
+    }
+  } catch (error) {}
+  console.log(num);
 });
 ```
 
@@ -276,20 +278,20 @@ numbers.forEach((num) => {
 ```js {1,3,8,14}
 // filter zero, no need handle zero
 
-const numbers = \[10, 2, 0, 5\].filter((num) => num !== 0);
+const numbers = [10, 2, 0, 5].filter((num) => num !== 0);
 numbers.forEach((num) => {
- console.log(num);
+  console.log(num);
 });
 
 // Use some to break loop
 
-const numbers = \[10, 2, 0, 5\];
+const numbers = [10, 2, 0, 5];
 
 numbers.some((num) => {
- const isZero = num === 0;
- if (isZero) return true;
- // logic here
- console.log(num);
+  const isZero = num === 0;
+  if (isZero) return true;
+  // logic here
+  console.log(num);
 });
 ```
 
@@ -302,7 +304,7 @@ try {
   let name;
   /// some operation
   if (name === "") throw new RangeError("Cant be blank");
-  if (name.match(/\\W/)) throw new TypeError("name cant be non alph-numric");
+  if (name.match(/\W/)) throw new TypeError("name cant be non alph-numric");
   throw new Error("Some other error");
 } catch (error) {
   if (error instanceof RangeError) console.log("RangeError");
@@ -324,7 +326,7 @@ new Promise((resolve) => {
     else return name;
   })
   .then((name) => {
-    if (name.match(/\\W/)) throw new TypeError("name cant be non alph-numric");
+    if (name.match(/\W/)) throw new TypeError("name cant be non alph-numric");
     else return name;
   })
   .catch((error) => {

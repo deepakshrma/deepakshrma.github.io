@@ -13,21 +13,21 @@
         <id>error-handling-simplified</id>
         <link href="https://decipher.dev/blog/error-handling-simplified"/>
         <updated>2020-09-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[img1]]></summary>
+        <summary type="html"><![CDATA[Error handling plays a vital role to reduce the number of bugs. If you handle error elegant way, it will save a lot of time in the future.]]></summary>
     </entry>
     <entry>
         <title type="html"><![CDATA[Security Vulnerability Solutions for Non-Tech People | In Simple Language]]></title>
         <id>security-for-non-tech</id>
         <link href="https://decipher.dev/blog/security-for-non-tech"/>
         <updated>2020-07-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[In the world of data, the Security of personal data is the biggest concern of anyone. Knowingly or unknowingly we share a lot of data to the company like Google and Facebook. In the old era, we have made walls/doors to protect our property from external threats. So now how far you will go to protect you and your beloved property.]]></summary>
+        <summary type="html"><![CDATA[Security of personal data is the biggest concern of anyone. Knowingly or unknowingly we share a lot of data to the company like Google and Facebook.]]></summary>
     </entry>
     <entry>
         <title type="html"><![CDATA[Building and Testing A TypeScript library]]></title>
         <id>one-for-all</id>
         <link href="https://decipher.dev/blog/one-for-all"/>
         <updated>2020-07-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Building and Testing A TypeScript/NodeJS library without WebPack, Jest or Rollup]]></summary>
+        <summary type="html"><![CDATA[Writing and setting up the library is a very tedious task. You can use TypeScript CLI to build a library, Still testing is a pain.]]></summary>
     </entry>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>

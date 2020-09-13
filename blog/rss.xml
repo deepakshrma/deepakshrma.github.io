@@ -13,21 +13,21 @@
             <link>https://decipher.dev/blog/error-handling-simplified</link>
             <guid>error-handling-simplified</guid>
             <pubDate>Sat, 12 Sep 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[img1]]></description>
+            <description><![CDATA[Error handling plays a vital role to reduce the number of bugs. If you handle error elegant way, it will save a lot of time in the future.]]></description>
         </item>
         <item>
             <title><![CDATA[Security Vulnerability Solutions for Non-Tech People | In Simple Language]]></title>
             <link>https://decipher.dev/blog/security-for-non-tech</link>
             <guid>security-for-non-tech</guid>
             <pubDate>Sun, 26 Jul 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[In the world of data, the Security of personal data is the biggest concern of anyone. Knowingly or unknowingly we share a lot of data to the company like Google and Facebook. In the old era, we have made walls/doors to protect our property from external threats. So now how far you will go to protect you and your beloved property.]]></description>
+            <description><![CDATA[Security of personal data is the biggest concern of anyone. Knowingly or unknowingly we share a lot of data to the company like Google and Facebook.]]></description>
         </item>
         <item>
             <title><![CDATA[Building and Testing A TypeScript library]]></title>
             <link>https://decipher.dev/blog/one-for-all</link>
             <guid>one-for-all</guid>
             <pubDate>Sat, 11 Jul 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[Building and Testing A TypeScript/NodeJS library without WebPack, Jest or Rollup]]></description>
+            <description><![CDATA[Writing and setting up the library is a very tedious task. You can use TypeScript CLI to build a library, Still testing is a pain.]]></description>
         </item>
         <item>
             <title><![CDATA[Welcome]]></title>

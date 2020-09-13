@@ -4,10 +4,17 @@
         <title>Deepak Vishwakarma Blog</title>
         <link>https://decipher.dev/blog</link>
         <description>Deepak Vishwakarma Blog</description>
-        <lastBuildDate>Sun, 26 Jul 2020 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 12 Sep 2020 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <copyright>Copyright © 2020 Deepak Vishwakarma</copyright>
+        <item>
+            <title><![CDATA[Error Handling | Simplified | Javascript]]></title>
+            <link>https://decipher.dev/blog/error-handling-simplified</link>
+            <guid>error-handling-simplified</guid>
+            <pubDate>Sat, 12 Sep 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[img1]]></description>
+        </item>
         <item>
             <title><![CDATA[Security Vulnerability Solutions for Non-Tech People | In Simple Language]]></title>
             <link>https://decipher.dev/blog/security-for-non-tech</link>

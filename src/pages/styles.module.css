@@ -1,0 +1,125 @@
+/* stylelint-disable docusaurus/copyright-header */
+
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* @media screen and (max-width: 966px) {
+} */
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.features {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+.features a {
+  text-decoration: none;
+}
+
+.featureImage {
+  height: 200px;
+  width: 200px;
+}
+.container {
+  padding: 10px;
+  background-position: center;
+  /* color: #fff; */
+  /* background-color: rgba(0, 0, 0, 0.9); */
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.footer img {
+  width: 150px;
+}
+.footer div {
+  width: 100%;
+}
+.footer p {
+  margin: 0 20px;
+  padding: 4px 10px;
+  border-bottom: 1px solid #c3c3c3;
+  color: #656565;
+}
+@media only screen and (max-width: 1281px) {
+  .footer a {
+    display: block;
+    text-align: center;
+  }
+  .products a {
+    width: 90% !important;
+  }
+  .container {
+    padding: 1rem;
+  }
+}
+@media only screen and (min-width: 1281px) {
+  .footer a {
+    margin: 0 15px;
+  }
+}
+.poems {
+  display: flex;
+  padding: 10px 20px;
+  flex-direction: column;
+  /* background-image: url(https://source.unsplash.com/1600x1200/?colors,dark,abstract); */
+}
+.poemsHeader {
+  margin-left: 10px;
+  color: #fff;
+  font-size: 1.5rem;
+  display: inline-block;
+  border-bottom: 1px solid #656565;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.products a {
+  width: 45%;
+  text-decoration: none;
+  margin-right: 20px;
+}
+.products .pics {
+  width: 30%;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.productHeader {
+  color: #656565;
+  background-color: #fff;
+  padding: 4px 8px;
+  font-size: 1.25rem;
+  border-radius: 2px;
+}
+.productBody {
+  font-size: 12px;
+}
+body {
+  font-family: "Roboto", sans-serif;
+}
+.bgContent {
+  padding: 20px;
+}

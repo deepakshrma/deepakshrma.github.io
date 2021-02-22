@@ -1,3 +1,5 @@
 module.exports = {
-  someSidebar: {},
+  someSidebar: {
+    Resume: ["resume"],
+  },
 };

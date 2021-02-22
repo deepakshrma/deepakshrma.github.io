@@ -98,13 +98,6 @@ function Home() {
         >
           Learn More
         </Button>
-        <PaletteBox
-          onThemeToggle={(colorPallete: any, name: string) => {
-            storage("theme-name", name);
-            setTheme(getColors({ base: colorPallete }));
-            updatesColors(getColors({ base: colorPallete }));
-          }}
-        />
       </HeroBanner>
       <main className={styles.bgContent}>
         <SubTitle>Showcase</SubTitle>

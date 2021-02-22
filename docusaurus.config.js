@@ -97,6 +97,7 @@ module.exports = {
         },
         { href: "http://blog.decipher.dev/", label: "Blogs", position: "left" },
         { to: "/calculators/", label: "Calculators", position: "left" },
+        { to: "/docs/resume/", label: "Resume", position: "left" },
         {
           href: "https://github.com/deepakshrma/",
           label: "GitHub",

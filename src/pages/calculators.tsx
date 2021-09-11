@@ -23,7 +23,7 @@ const Calculators = () => {
   return (
     <Layout
       title="Calculators"
-      description="Basic useful calculators(Fever Calculator, Invoice Genrator)"
+      description="Basic useful calculators(Fever Calculator, Invoice Generator)"
     >
       <CalcContainer>
         <FormControl className={classes.formControl}>

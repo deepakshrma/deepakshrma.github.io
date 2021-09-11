@@ -4,8 +4,8 @@ module.exports = {
   url: "https://decipher.dev",
   baseUrl: "/",
   favicon: "img/icon_light_y.png",
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
   organizationName: "deepakshrma", // Usually your GitHub org/user name.
   projectName: "deepakshrma.github.io", // Usually your repo name.
   stylesheets: [
@@ -37,7 +37,7 @@ module.exports = {
           title: "Follow me",
           items: [
             {
-              label: "Linkdin",
+              label: "Linkedin",
               href: "https://www.linkedin.com/in/xdeepakv/",
             },
             {
@@ -96,7 +96,6 @@ module.exports = {
           position: "left",
         },
         { href: "http://blog.decipher.dev/", label: "Blogs", position: "left" },
-        { to: "/calculators/", label: "Calculators", position: "left" },
         { to: "/docs/resume/", label: "Resume", position: "left" },
         {
           href: "https://github.com/deepakshrma/",
@@ -108,10 +107,10 @@ module.exports = {
   },
   presets: [
     [
-      '@docusaurus/preset-classic',
+      "@docusaurus/preset-classic",
       {
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: require.resolve("./sidebars.js"),
         },
         blog: {
           showReadingTime: true,
@@ -126,10 +125,10 @@ module.exports = {
           priority: 0.5,
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       },
     ],
   ],
-  themes: ['@docusaurus/theme-live-codeblock'],
+  themes: ["@docusaurus/theme-live-codeblock"],
 };

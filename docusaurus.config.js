@@ -20,6 +20,12 @@ module.exports = {
     // "https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js",
     "https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js",
     "https://www.powr.io/powr.js?platform=html",
+    {
+      src:
+        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7756182462259588",
+      async: true,
+      crossorigin: "anonymous",
+    },
   ],
   themeConfig: {
     sidebarCollapsible: false,

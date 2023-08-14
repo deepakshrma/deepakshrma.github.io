@@ -22,7 +22,7 @@ module.exports = {
     "https://www.powr.io/powr.js?platform=html",
     {
       src:
-        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7756182462259588",
+        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9978931678539032",
       async: true,
       crossorigin: "anonymous",
     },

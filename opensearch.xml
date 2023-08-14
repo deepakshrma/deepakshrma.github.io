@@ -7,5 +7,5 @@
   <Image width="16" height="16" type="image/x-icon">https://decipher.dev/img/icon_light_y.png</Image>
   <Url type="text/html" method="get" template="https://decipher.dev/search?q={searchTerms}"/>
   <Url type="application/opensearchdescription+xml" rel="self" template="https://decipher.dev/opensearch.xml" />
-  <moz:SearchForm>https://decipher.dev</moz:SearchForm>
+  <moz:SearchForm>https://decipher.dev/</moz:SearchForm>
 </OpenSearchDescription>

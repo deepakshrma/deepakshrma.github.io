@@ -10,8 +10,7 @@ module.exports = {
   projectName: "deepakshrma.github.io", // Usually your repo name.
   stylesheets: [
     {
-      href:
-        "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap",
+      href: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap",
       type: "text/css",
     },
   ],
@@ -21,19 +20,18 @@ module.exports = {
     "https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js",
     "https://www.powr.io/powr.js?platform=html",
     {
-      src:
-        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9978931678539032",
+      src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9978931678539032",
       async: true,
       crossorigin: "anonymous",
     },
   ],
   themeConfig: {
-    sidebarCollapsible: false,
     prism: {
       defaultLanguage: "ts",
     },
     algolia: {
-      apiKey: "e71b47af92b1daef0e43bbbfa2b4a70a",
+      appId: "49E9U3AA0D",
+      apiKey: "e33286ae82164453ba57b6fd969472c8",
       indexName: "decipher_dev",
     },
     footer: {
@@ -86,9 +84,7 @@ module.exports = {
       // },
       copyright: `Copyright © ${new Date().getFullYear()} Deepak Vishwakarma`,
     },
-    googleAnalytics: {
-      trackingID: "UA-172955705-1",
-    },
+
     navbar: {
       title: "Deepak Vishwakarma",
       logo: {
@@ -126,12 +122,14 @@ module.exports = {
           },
         },
         sitemap: {
-          cacheTime: 600 * 1000, // 600 sec - cache purge period
           changefreq: "weekly",
           priority: 0.5,
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
+        },
+        googleAnalytics: {
+          trackingID: "UA-172955705-1",
         },
       },
     ],

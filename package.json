@@ -1,61 +1,21 @@
 {
-  "name": "deepakshrma-github-io",
-  "version": "0.0.0",
+  "name": "deepakshrma.github.io",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "serve": "docusaurus serve",
-    "clear": "docusaurus clear",
-    "sitemap": "node scripts/generate-sitemap.js",
-    "build": "docusaurus build && node scripts/generate-sitemap.js",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "yarn run build && cp ads.txt ./build/ && GIT_USER=deepakshrma CURRENT_BRANCH=docs USE_SSH=true yarn run docusaurus deploy --skip-build",
-    "prettify": "prettier src/**/*.js --write"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@deepakvishwakarma/ts-util": "^1.0.0",
-    "@docusaurus/core": "~2.4.1",
-    "@docusaurus/preset-classic": "~2.4.1",
-    "@docusaurus/theme-live-codeblock": "~2.4.1",
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.56",
-    "@material-ui/styles": "^4.10.0",
-    "@mdx-js/react": "^1.6.21",
-    "clsx": "^1.1.1",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-image-gallery": "^1.0.8",
-    "styled-components": "^5.1.1"
-  },
-  "browserslist": {
-    "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "14.1.0"
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.1",
-    "axios": "^0.19.2",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.2",
-    "prettier": "^2.0.5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.(js|html|css|ts|tsx|jsx|md|mdx)": [
-      "prettier --write"
-    ]
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0"
   }
 }

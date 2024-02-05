@@ -49,7 +49,6 @@ export default function Home() {
     fetch("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@deepak-v")
       .then((x) => x.json())
       .then((m) => {
-        console.log(m);
         setFeeds(
           m.items
             .filter((i) => i.categories.length)
@@ -65,9 +64,9 @@ export default function Home() {
   }, []);
   console.log();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-12">
+    <div className="bg-white flex min-h-screen flex-col items-center justify-between p-12">
       <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-        Deepak Vishwakarma, Singapore
+        Deepak Vishwakarma
       </h1>
       <h2 className="mb-4 text-2xl text-gray-900 md:text-3xl lg:text-4xl dark:text-white my-20">Showcase</h2>
       <div className="page-cards">
@@ -81,7 +80,7 @@ export default function Home() {
           <FeedCard key={`page_${feed.title}`} {...feed} />
         ))}
       </div>
-    </main>
+    </div>
   );
 }
 function FeedCard({ title, href, tags, imageUrl, body, description, link, media }) {

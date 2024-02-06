@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import "./../app.css";
+// import "./../app.css";
 
 export default function Home() {
   return (
-    <div className="bg-white flex min-h-screen flex-col items-center  p-12">
-      <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+    <div className="container">
+      <h2 >
         Deepak Vishwakarma, Singapore
-      </h1>
+      </h2>
       <p>
         With over 12 years of software development experience and a passion for blockchain technology, I am a Lead Software Engineer at
         JPMorgan Chase, where I create innovative and secure solutions for enterprise applications. I have a strong background in developing

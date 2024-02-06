@@ -1,11 +1,79 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+  5. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/*
+  6. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/*
+  7. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/*
+  8. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,16 +86,133 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  min-height: 60px;
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+}
+
+nav img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+nav h2 {
+  margin-right: auto;
+}
+
+nav > a {
+  margin-left: 10px;
+  text-decoration: none;
+  user-select: none;
+}
+
+nav > a:visited {
+  color: rgb(var(--foreground-rgb));
+}
+
+.container {
+  padding: 10px 30px;
+}
+
+.container .sub {
+  margin-bottom: 20px;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  max-width: 24rem;
+  min-width: 300px;
+  min-height: 400px;
+  /* border: 1px solid rgb(var(--foreground-rgb)); */
+  border-radius: 4px;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  background-color: rgb(31 41 55);
+}
+
+.card img {
+  max-width: 100%;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.card .content {
+  padding: 30px 20px;
+}
+
+.card .content p {
+  margin-bottom: 20px;
+}
+
+.button {
+  background-color: rgb(37 99 235);
+  border: none;
+  user-select: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-align: center;
+  padding: 0.5rem;
+  color: rgb(var(--foreground-rgb));
+  text-decoration: none;
+}
+
+.button:hover {
+  filter: brightness(90%);
+}
+
+.cards.articles {
+  width: 105%;
+}
+
+.cards.articles .card {
+  flex-basis: 30%;
+}
+
+@media only screen and (max-width: 600px) {
+  nav img {
+    display: none;
+  }
+
+  nav {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  nav h2 {
+    margin: 0;
+  }
+
+  .container .sub h3 {
+    text-align: center;
+  }
+  .cards.articles {
+    width: 100%;
+  }
+  .cards.articles .card {
+    flex-basis: 100%;
   }
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import "./app.css";
 
 const pages = [
   {
@@ -13,7 +12,7 @@ const pages = [
   },
   {
     title: "Deno By Example",
-    img: "https://decipher.dev/deno-by-example/img/home_page_dino.jpg",
+    img: "https://cdn.deno.land/autopilot/versions/0.4.0/raw/docs/logo.png",
     description: "Tutorial: Learn Web Programming in Deno by Examples",
     link: "https://decipher.dev/deno-by-example/",
   },
@@ -62,9 +61,67 @@ export default function Home() {
         );
       });
   }, []);
-  console.log();
+  console.log(feeds)
   return (
-    <div className="bg-white flex min-h-screen flex-col items-center justify-between p-12">
+    <div className="container">
+      <div className="sub">
+        <h2>Showcase</h2>
+        <div className="cards">
+          {pages.map((page) => (
+            <PageCard key={`page_${page.title}`} {...page} />
+          ))}
+        </div>
+      </div>
+      <div className="sub">
+        <h2>Articles</h2>
+        <div className="cards articles">
+          {feeds.map((page) => (
+            <Article key={`page_${page.title}`} {...page} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+function PageCard({ title, img, description, link }) {
+  return (
+    <div className="card">
+      <a href={link} target="_blank"><img src={img} /></a>
+      <div className="content">
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <a href={link} target="_blank" className="button">
+          Read more
+        </a>
+      </div>
+    </div>
+  );
+}
+function Article({ title, href, tags, imageUrl, body, description,  media }) {
+  tags =
+    tags ||
+    title
+      .split(/\s+/)
+      .filter((x) => x.length > 2)
+      .join(",");
+  media = imageUrl || media || `https://source.unsplash.com/1600x1200/?${tags ? tags : "random"}`;
+  body = body || description;
+
+  return (
+    <div className="card">
+      <a href={href} target="_blank"><img src={media} /></a>
+      <div className="content">
+        <h3>{title}</h3>
+        <p>{body}</p>
+        <a href={href} target="_blank" className="button">
+          Learn more
+        </a>
+      </div>
+    </div>
+  );
+}
+{
+  /* <div className="bg-white flex min-h-screen flex-col items-center justify-between p-12">
       <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
         Deepak Vishwakarma
       </h1>
@@ -80,9 +137,9 @@ export default function Home() {
           <FeedCard key={`page_${feed.title}`} {...feed} />
         ))}
       </div>
-    </div>
-  );
+    </div> */
 }
+/*
 function FeedCard({ title, href, tags, imageUrl, body, description, link, media }) {
   tags =
     tags ||
@@ -136,3 +193,4 @@ function PageCard({ title, img, description, link }) {
     </div>
   );
 }
+*/

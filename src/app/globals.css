@@ -86,7 +86,7 @@ h6 {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  background: rgb(var(--background-end-rgb));
 }
 
 @layer utilities {
@@ -149,7 +149,6 @@ nav > a:visited {
   /* border: 1px solid rgb(var(--foreground-rgb)); */
   border-radius: 4px;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  background-color: rgb(31 41 55);
 }
 
 .card img {
@@ -176,7 +175,7 @@ nav > a:visited {
   line-height: 1.25rem;
   text-align: center;
   padding: 0.5rem;
-  color: rgb(var(--foreground-rgb));
+  color: #fff;
   text-decoration: none;
 }
 
@@ -214,5 +213,10 @@ nav > a:visited {
   }
   .cards.articles .card {
     flex-basis: 100%;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .card {
+    background-color: rgb(31 41 55);
   }
 }

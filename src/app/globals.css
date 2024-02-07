@@ -231,6 +231,14 @@ a {
 .resume pre {
   padding: 10px;
 }
+.container.concise {
+  max-width: 1000px;
+}
+@media only screen and (min-width: 600px) {
+  .container.concise {
+    margin: 0 auto;
+  }
+}
 @media only screen and (max-width: 600px) {
   nav img {
     display: none;

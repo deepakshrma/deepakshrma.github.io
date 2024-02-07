@@ -14,36 +14,36 @@ export default function Home() {
     pri.print();
   };
   return (
-    <div className="container">
+    <div className="container concise">
       <button className="download button icon" onClick={download}>
-        <i class="bi bi-download"></i>Save
+        <i className="bi bi-download"></i>Save
       </button>
       <div className="resume" ref={page}>
         <div className="heading">
           <h1>Deepak Vishwakarma</h1>
           <div className="contacts">
             <p>
-              <i class="bi bi-geo-alt-fill"></i>34 Lorong Mydin, SG 416827
+              <i className="bi bi-geo-alt-fill"></i>34 Lorong Mydin, SG 416827
             </p>
             <p>
-              <i class="bi bi-phone-fill"></i>+65-8124117
+              <i className="bi bi-phone-fill"></i>+65-8124117
             </p>
             <p>
-              <i class="bi bi-globe"></i>
+              <i className="bi bi-globe"></i>
               <a href="https://decipher.dev">
-                decipher.dev<i class="bi bi-box-arrow-up-right"></i>
+                decipher.dev<i className="bi bi-box-arrow-up-right"></i>
               </a>
             </p>
             <p>
-              <i class="bi bi-linkedin"></i>
+              <i className="bi bi-linkedin"></i>
               <a href="https://www.linkedin.com/in/xdeepakv/">
-                xdeepakv<i class="bi bi-box-arrow-up-right"></i>
+                xdeepakv<i className="bi bi-box-arrow-up-right"></i>
               </a>
             </p>
             <p>
-              <i class="bi bi-github"></i>
+              <i className="bi bi-github"></i>
               <a href="https://github.com/deepakshrma/">
-                deepakshrma<i class="bi bi-box-arrow-up-right"></i>
+                deepakshrma<i className="bi bi-box-arrow-up-right"></i>
               </a>
             </p>
           </div>
@@ -166,7 +166,7 @@ Subjects: Physics, Chemistry, Maths with CGPA 88%`}
         <p>Blockchain Basics - University at Buffalo https://coursera.org/share/8859148d04bcbc60140ff33bdb19691c</p>
         <br />
         <button className="download button icon" onClick={download}>
-          <i class="bi bi-download"></i>Save
+          <i className="bi bi-download"></i>Save
         </button>
       </div>
       <iframe ref={iframe} style={{ height: 0, width: 0, position: "absolute", bottom: -1000 }}></iframe>

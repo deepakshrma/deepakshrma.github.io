@@ -25,10 +25,10 @@ export default function RootLayout({ children }) {
           
           <a href="/aboutme">About me</a>
           <a target="_blank" href="https://www.linkedin.com/in/xdeepakv">
-            <i class="bi bi-linkedin"></i>
+            <i className="bi bi-linkedin"></i>
           </a>
           <a target="_blank" href="https://github.com/deepakshrma">
-            <i class="bi bi-github"></i>
+            <i className="bi bi-github"></i>
           </a>
         </nav>
         <main>{children}</main>

@@ -22,7 +22,14 @@ export default function RootLayout({ children }) {
           <img src="logo.svg" />
           <h2>Decipher.dev</h2>
           <a href="/">Home</a>
+          
           <a href="/aboutme">About me</a>
+          <a target="_blank" href="https://www.linkedin.com/in/xdeepakv">
+            <i class="bi bi-linkedin"></i>
+          </a>
+          <a target="_blank" href="https://github.com/deepakshrma">
+            <i class="bi bi-github"></i>
+          </a>
         </nav>
         <main>{children}</main>
       </body>

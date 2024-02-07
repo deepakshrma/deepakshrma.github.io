@@ -10,8 +10,12 @@ async function main() {
   let urlStr = "";
   for (let index = 0; index < urls.length; index++) {
     const url = urls[index];
-    const res = await axios.get(url);
-    urlStr += res.data.match(/\<url\>[\W\w]*\<\/url\>/gi)[0];
+    try {
+      const res = await axios.get(url);
+      urlStr += res.data.match(/\<url\>[\W\w]*\<\/url\>/gi)[0];
+    } catch (e) {
+      console.error({ error: e.message, url });
+    }
   }
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -24,6 +28,7 @@ async function main() {
     </urlset>
     `;
   fs.writeFileSync("build/sitemap.xml", xml);
+  console.log("sitemap generated");
 }
 
 main();

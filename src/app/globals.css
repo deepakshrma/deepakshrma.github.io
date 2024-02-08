@@ -129,8 +129,10 @@ nav img {
   margin-right: 10px;
 }
 
-nav h2 {
+nav .banner {
   margin-right: auto;
+  display: flex;
+  align-items: center;
 }
 
 nav > a {
@@ -142,7 +144,9 @@ nav > a {
 nav > a:visited {
   color: rgb(var(--foreground-rgb));
 }
-
+nav > a > i {
+  font-size: 1.5rem;
+}
 .pointer {
   cursor: pointer;
 }

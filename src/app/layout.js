@@ -1,7 +1,8 @@
-
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
-import Body from "./body";
+import dynamic from "next/dynamic";
+import Body from "../components/body"
+// const Body = dynamic(() => import("../components/body"), { ssr: false });
 
 export const metadata = {
   title: "Deepak Vishwakarma, Lead Software Engineer at JPMorgan Chase & Co. | Blockchain Expert",
@@ -15,7 +16,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="favicon.svg" sizes="any" />
       </head>
-      <Body child={children}/>
+      <Body child={children} />
       <GoogleAnalytics gaId="UA-172955705-1" />
     </html>
   );

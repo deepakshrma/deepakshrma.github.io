@@ -12,17 +12,19 @@ if (typeof window !== "undefined") {
   }
   defaultTheme = window.localStorage["theme"];
 }
-
 function Body({ child }) {
-  const [theme, setTheme] = useState(defaultTheme);
+  const [theme, setTheme] = useState();
   const toggleTheme = (newTheme) => {
     window.localStorage["theme"] = newTheme;
     setTheme(newTheme);
   };
+  useEffect(() => {
+    if (window.localStorage["theme"] !== theme) setTheme(window.localStorage["theme"]);
+  }, []);
   const dark = theme === "dark";
   return (
     <ThemeContext.Provider value={{ theme }}>
-      <body className={inter.className} data-theme={theme} suppressHydrationWarning>
+      <body className={`${inter.className} ${theme}`} data-theme={theme}>
         <nav>
           <a href="/" className="banner">
             <i className="bi bi-code-square"></i>

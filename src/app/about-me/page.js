@@ -1,6 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
-// import { SoftwareDownload } from "css.gg";
+import { useRef } from "react";
 
 export default function Home() {
   const page = useRef(null);

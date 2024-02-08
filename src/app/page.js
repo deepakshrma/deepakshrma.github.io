@@ -5,33 +5,33 @@ import { useEffect, useState } from "react";
 const pages = [
   {
     title: "30 seconds of typescript",
-    img: "https://source.unsplash.com/400x300/?TypeScript",
+    img: "https://source.unsplash.com/400x300/?TypeScript,programming",
     description:
-      "Utility library,code snippets like lodash for typescript, typescriptreact(tsx) and deno [inspired by 30-seconds-of-code].",
+      "Utility library,code snippets like lodash for typescript, typescript react(tsx) and deno [inspired by 30-seconds-of-code].",
     link: "https://decipher.dev/30-seconds-of-typescript/docs/",
   },
   {
     title: "Deno By Example",
-    img: "https://source.unsplash.com/400x300/?dinosaur",
-    description: "Tutorial: Learn Web Programming in Deno by Examples",
+    img: "https://source.unsplash.com/400x300/?dinosaur,javascript,animal",
+    description: "Tutorial: Learn Web Programming in Deno by Examples\nDeno is a simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust.",
     link: "https://decipher.dev/deno-by-example/",
   },
   {
     title: "Blockchain Introduction",
-    img: "https://source.unsplash.com/400x300/?crypto",
+    img: "https://source.unsplash.com/400x300/?crypto,currency,digital",
     description: "Tutorial: Sample code for blockchain and sample app, Solidity Introduction",
     link: "https://decipher.dev/blockchain-introduction/",
   },
   {
     title: "Code Snippets- By Deepak Vishwakarma",
-    img: "https://source.unsplash.com/400x300/?code,programming",
+    img: "https://source.unsplash.com/400x300/?code,programming,coding",
     description: "Code Snippets Game to learn programming languages like Kotlin, Python, JavaScript, Typescript and many more",
     link: "https://decipher.dev/snippets/",
     link: "#",
   },
   {
     title: "Googles Codelabs - Node JS Library",
-    img: "https://source.unsplash.com/400x300/?lab,chemistry",
+    img: "https://source.unsplash.com/400x300/?lab,chemistry,beakers,flasks",
     description: "Go Lang claat tool replica written in node js, using marked parser",
     link: "https://decipher.dev/googles-codelabs/",
   },
@@ -64,7 +64,7 @@ export default function Home() {
   return (
     <div className="container">
       <div className="sub">
-        <h2>Showcase</h2>
+        <h2>Showcases</h2>
         <div className="cards">
           {pages.map((page) => (
             <PageCard key={`page_${page.title}`} {...page} />
@@ -73,7 +73,7 @@ export default function Home() {
       </div>
       <div className="sub">
         <h2>Articles</h2>
-        <div className="cards articles">
+        <div className="cards">
           {feeds.map((page) => (
             <Article key={`page_${page.title}`} {...page} />
           ))}
@@ -91,10 +91,10 @@ function PageCard({ title, img, description, link }) {
       <div className="content">
         <h3>{title}</h3>
         <p>{description}</p>
-        <a href={link} target="_blank" className="button">
-          Read more
-        </a>
       </div>
+      <a href={link} target="_blank" className="button control">
+        Read more
+      </a>
     </div>
   );
 }
@@ -123,10 +123,10 @@ function Article({ title, href, tags, imageUrl, body, description, media, update
         <small className="tags">
           <b>Tags </b> {tags}
         </small>
-        <a href={href} target="_blank" className="button">
-          Learn more
-        </a>
       </div>
+      <a href={href} target="_blank" className="button control">
+        Learn more
+      </a>
     </div>
   );
 }

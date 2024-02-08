@@ -141,8 +141,8 @@ nav h2 {
   user-select: none;
 }
 
-nav > a:visited {
-  color: rgb(var(--foreground-rgb));
+nav *:hover {
+  color: #047dff;
 }
 
 .pointer {
@@ -165,9 +165,10 @@ nav > a:visited {
 }
 
 .card {
+  position: relative;
   max-width: 20rem;
   border: 1px solid #d3d3d3;
-  border-radius: 4px;
+  border-radius: 0.5rem;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -182,6 +183,7 @@ nav > a:visited {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .card .content p {
@@ -190,6 +192,13 @@ nav > a:visited {
 .card .content .time {
   color: #969696;
   align-self: flex-end;
+}
+
+.card .control {
+  position: absolute;
+  bottom: 10px;
+  width: calc(100% - 20px);
+  right: 10px;
 }
 
 .button {

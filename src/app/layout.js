@@ -1,9 +1,7 @@
+
 import { GoogleAnalytics } from "@next/third-parties/google";
-
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import Body from "./body";
 
 export const metadata = {
   title: "Deepak Vishwakarma, Lead Software Engineer at JPMorgan Chase & Co. | Blockchain Expert",
@@ -17,22 +15,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="favicon.svg" sizes="any" />
       </head>
-      <body className={inter.className}>
-        <nav>
-          <img src="logo.svg" />
-          <h2>Decipher.dev</h2>
-          <a href="/">Home</a>
-          
-          <a href="/aboutme">About me</a>
-          <a target="_blank" href="https://www.linkedin.com/in/xdeepakv">
-            <i className="bi bi-linkedin"></i>
-          </a>
-          <a target="_blank" href="https://github.com/deepakshrma">
-            <i className="bi bi-github"></i>
-          </a>
-        </nav>
-        <main>{children}</main>
-      </body>
+      <Body child={children}/>
       <GoogleAnalytics gaId="UA-172955705-1" />
     </html>
   );

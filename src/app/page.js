@@ -61,7 +61,6 @@ export default function Home() {
         );
       });
   }, []);
-  console.log(feeds)
   return (
     <div className="container">
       <div className="sub">

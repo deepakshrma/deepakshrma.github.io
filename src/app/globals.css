@@ -78,12 +78,25 @@ h6 {
   --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
+} */
+/* @media (prefers-color-scheme: dark) {
+  .card {
+    background-color: rgb(31 41 55);
+  }
+} */
+[data-theme="dark"] {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+[data-theme="dark"] .card {
+  background-color: rgb(31 41 55);
 }
 
 body {
@@ -128,6 +141,10 @@ nav > a {
 
 nav > a:visited {
   color: rgb(var(--foreground-rgb));
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .container {
@@ -268,9 +285,17 @@ a {
   .resume .contacts {
     grid-template-columns: 1fr 1fr;
   }
-}
-@media (prefers-color-scheme: dark) {
-  .card {
-    background-color: rgb(31 41 55);
+  .theme-toggle {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+  nav a {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+  nav a:hover {
+    background-color: #eff3f3;
   }
 }

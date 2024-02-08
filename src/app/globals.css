@@ -166,7 +166,7 @@ nav > a > i {
 }
 
 .card {
-  max-width: 24rem;
+  max-width: 20rem;
   min-width: 300px;
   min-height: 400px;
   /* border: 1px solid rgb(var(--foreground-rgb)); */

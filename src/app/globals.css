@@ -124,9 +124,8 @@ nav {
   align-items: center;
 }
 
-nav img {
-  width: 40px;
-  margin-right: 10px;
+nav a i {
+  font-size: 1.5rem;
 }
 
 nav .banner {
@@ -135,7 +134,8 @@ nav .banner {
   align-items: center;
 }
 
-nav > a {
+nav > a,
+nav h2 {
   margin-left: 10px;
   text-decoration: none;
   user-select: none;
@@ -144,9 +144,7 @@ nav > a {
 nav > a:visited {
   color: rgb(var(--foreground-rgb));
 }
-nav > a > i {
-  font-size: 1.5rem;
-}
+
 .pointer {
   cursor: pointer;
 }

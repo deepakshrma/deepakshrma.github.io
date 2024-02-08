@@ -25,7 +25,7 @@ function Body({ child }) {
       <body className={inter.className} data-theme={theme} suppressHydrationWarning>
         <nav>
           <a href="/" className="banner">
-            <img src="logo.svg" />
+            <i className="bi bi-code-square"></i>
             <h2>Decipher.dev</h2>
           </a>
           <div className="theme-toggle">

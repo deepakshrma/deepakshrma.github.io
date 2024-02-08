@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const pages = [
   {
     title: "30 seconds of typescript",
-    img: "typescript.webp",
+    img: "https://source.unsplash.com/400x300/?TypeScript",
     description:
       "Utility library,code snippets like lodash for typescript, typescriptreact(tsx) and deno [inspired by 30-seconds-of-code].",
     link: "https://decipher.dev/30-seconds-of-typescript/docs/",
@@ -55,7 +55,7 @@ export default function Home() {
               feed.imageUrl = feed.thumbnail;
               feed.href = feed.guid;
               feed.description = getContent(feed.description);
-              feed.updateAt = new Date(...feed.pubDate.split(/[- :]/g).map(Number)).toLocaleString("en-US");
+              feed.updateAt = new Date(...feed.pubDate.split(/[- :]/g).map(Number)).toLocaleDateString();
               return feed;
             })
         );
@@ -85,7 +85,9 @@ export default function Home() {
 function PageCard({ title, img, description, link }) {
   return (
     <div className="card">
-      <a href={link} target="_blank"><img src={img} /></a>
+      <a href={link} target="_blank">
+        <img src={img} />
+      </a>
       <div className="content">
         <h3>{title}</h3>
         <p>{description}</p>
@@ -96,22 +98,31 @@ function PageCard({ title, img, description, link }) {
     </div>
   );
 }
-function Article({ title, href, tags, imageUrl, body, description,  media }) {
+function Article({ title, href, tags, imageUrl, body, description, media, updateAt }) {
   tags =
     tags ||
     title
       .split(/\s+/)
-      .filter((x) => x.length > 2)
-      .join(",");
+      .filter((x) => x.length > 2 && !/build|create|using|The|with|working|and|has|Like/i.test(x))
+      .slice(0, 4);
+  tags = [...new Set(tags)].join(",");
   media = imageUrl || media || `https://source.unsplash.com/400x300/?${tags ? tags : "random"}`;
   body = body || description;
 
   return (
     <div className="card">
-      <a href={href} target="_blank"><img src={media} /></a>
+      <a href={href} target="_blank">
+        <img src={media} />
+      </a>
       <div className="content">
         <h3>{title}</h3>
         <p>{body}</p>
+        <small className="time">
+          <b>Last Update: </b> {updateAt}
+        </small>
+        <small className="tags">
+          <b>Tags </b> {tags}
+        </small>
         <a href={href} target="_blank" className="button">
           Learn more
         </a>
@@ -119,77 +130,3 @@ function Article({ title, href, tags, imageUrl, body, description,  media }) {
     </div>
   );
 }
-{
-  /* <div className="bg-white flex min-h-screen flex-col items-center justify-between p-12">
-      <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-        Deepak Vishwakarma
-      </h1>
-      <h2 className="mb-4 text-2xl text-gray-900 md:text-3xl lg:text-4xl dark:text-white my-20">Showcase</h2>
-      <div className="page-cards">
-        {pages.map((page) => (
-          <PageCard key={`page_${page.title}`} {...page} />
-        ))}
-      </div>
-      <h2 className="mb-4 text-2xl text-gray-900 md:text-3xl lg:text-4xl dark:text-white my-20">Blogs/Articles</h2>
-      <div className="page-cards">
-        {feeds.map((feed) => (
-          <FeedCard key={`page_${feed.title}`} {...feed} />
-        ))}
-      </div>
-    </div> */
-}
-/*
-function FeedCard({ title, href, tags, imageUrl, body, description, link, media }) {
-  tags =
-    tags ||
-    title
-      .split(/\s+/)
-      .filter((x) => x.length > 2)
-      .join(",");
-  media = imageUrl || media || `https://source.unsplash.com/1600x1200/?${tags ? tags : "random"}`;
-  body = body || description;
-
-  return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <a href="#">
-        <img className="rounded-t-lg" src={media} alt="" />
-      </a>
-      <div className="p-5">
-        <a href="#">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
-        </a>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{body}</p>
-        <a
-          target="_blank"
-          href={href}
-          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Read more
-        </a>
-      </div>
-    </div>
-  );
-}
-function PageCard({ title, img, description, link }) {
-  return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <a href="#">
-        <img className="rounded-t-lg" src={img} alt="" />
-      </a>
-      <div className="p-5">
-        <a href="#">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
-        </a>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{description}</p>
-        <a
-          target="_blank"
-          href={link}
-          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Read more
-        </a>
-      </div>
-    </div>
-  );
-}
-*/

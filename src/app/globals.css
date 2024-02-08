@@ -163,13 +163,12 @@ nav > a > i {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .card {
   max-width: 20rem;
-  min-width: 300px;
-  min-height: 400px;
-  /* border: 1px solid rgb(var(--foreground-rgb)); */
+  border: 1px solid #d3d3d3;
   border-radius: 4px;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
@@ -182,10 +181,17 @@ nav > a > i {
 
 .card .content {
   padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .card .content p {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+.card .content .time {
+  color: #969696;
+  align-self: flex-end;
 }
 
 .button {

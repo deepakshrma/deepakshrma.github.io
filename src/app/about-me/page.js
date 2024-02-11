@@ -25,7 +25,8 @@ export default function Home() {
               <i className="bi bi-geo-alt-fill"></i>34 Lorong Mydin, SG 416827
             </p>
             <p>
-              <i className="bi bi-phone-fill"></i>+65-8124117
+              <i className="bi bi-phone-fill"></i>
+              <a href="tel:+658124117">+65-8124-117</a>
             </p>
             <p>
               <i className="bi bi-globe"></i>

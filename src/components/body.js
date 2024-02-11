@@ -30,19 +30,23 @@ function Body({ child }) {
             <i className="bi bi-code-square"></i>
             <h2>Decipher.dev</h2>
           </a>
+
+          <a href="/">Home</a>
+          <a href="/about-me">About me</a>
+          <a target="_blank" href="https://medium.com/@deepak-v" title="Medium">
+            <i className="bi bi-medium"></i>
+          </a>
+          <a target="_blank" href="https://www.linkedin.com/in/xdeepakv" title="Linkedin">
+            <i className="bi bi-linkedin"></i>
+          </a>
+          <a target="_blank" href="https://github.com/deepakshrma" title="Github">
+            <i className="bi bi-github"></i>
+          </a>
           <div className="theme-toggle">
             <span suppressHydrationWarning className="pointer" onClick={() => toggleTheme(dark ? "light" : "dark")}>
               <i suppressHydrationWarning className={`"bi bi-${dark ? "sun" : "moon"}`}></i> {dark ? "Light" : "Dark"}
             </span>
           </div>
-          <a href="/">Home</a>
-          <a href="/about-me">About me</a>
-          <a target="_blank" href="https://www.linkedin.com/in/xdeepakv">
-            <i className="bi bi-linkedin"></i>
-          </a>
-          <a target="_blank" href="https://github.com/deepakshrma">
-            <i className="bi bi-github"></i>
-          </a>
         </nav>
         <main>{child}</main>
       </body>

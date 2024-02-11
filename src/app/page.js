@@ -1,6 +1,8 @@
 "use client";
 
+import { getFeeds } from "@/services/feeds";
 import { useEffect, useState } from "react";
+import { shuffle } from "@deepakvishwakarma/ts-util";
 
 const pages = [
   {
@@ -13,7 +15,8 @@ const pages = [
   {
     title: "Deno By Example",
     img: "https://source.unsplash.com/400x300/?dinosaur,javascript,animal",
-    description: "Tutorial: Learn Web Programming in Deno by Examples\nDeno is a simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust.",
+    description:
+      "Tutorial: Learn Web Programming in Deno by Examples\nDeno is a simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust.",
     link: "https://decipher.dev/deno-by-example/",
   },
   {
@@ -22,13 +25,13 @@ const pages = [
     description: "Tutorial: Sample code for blockchain and sample app, Solidity Introduction",
     link: "https://decipher.dev/blockchain-introduction/",
   },
-  {
-    title: "Code Snippets- By Deepak Vishwakarma",
-    img: "https://source.unsplash.com/400x300/?code,programming,coding",
-    description: "Code Snippets Game to learn programming languages like Kotlin, Python, JavaScript, Typescript and many more",
-    link: "https://decipher.dev/snippets/",
-    link: "#",
-  },
+  // {
+  //   title: "Code Snippets- By Deepak Vishwakarma",
+  //   img: "https://source.unsplash.com/400x300/?code,programming,coding",
+  //   description: "Code Snippets Game to learn programming languages like Kotlin, Python, JavaScript, Typescript and many more",
+  //   link: "https://decipher.dev/snippets/",
+  //   link: "#",
+  // },
   {
     title: "Googles Codelabs - Node JS Library",
     img: "https://source.unsplash.com/400x300/?lab,chemistry,beakers,flasks",
@@ -36,31 +39,17 @@ const pages = [
     link: "https://decipher.dev/googles-codelabs/",
   },
 ];
-const getContent = (innerHTML) => {
-  const d = document.createElement("div");
-  d.innerHTML = innerHTML;
-  return d.textContent.split("\n").slice(0, 10).join("\n");
-};
 
 export default function Home() {
-  const [feeds, setFeeds] = useState([]);
+  const [allFeeds, setAllFeeds] = useState([]);
+  // const [maxItems, setMaxItems] = useState(10);
   useEffect(() => {
-    fetch("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@deepak-v")
-      .then((x) => x.json())
-      .then((m) => {
-        setFeeds(
-          m.items
-            .filter((i) => i.categories.length)
-            .map((feed) => {
-              feed.imageUrl = feed.thumbnail;
-              feed.href = feed.guid;
-              feed.description = getContent(feed.description);
-              feed.updateAt = new Date(...feed.pubDate.split(/[- :]/g).map(Number)).toLocaleDateString();
-              return feed;
-            })
-        );
-      });
+    getFeeds().then((items) => {
+      setAllFeeds(items);
+      // setMaxItems(Math.min(items.length, maxItems));
+    });
   }, []);
+  const feeds = shuffle(allFeeds).slice(0, 5);
   return (
     <div className="container">
       <div className="sub">
@@ -72,7 +61,7 @@ export default function Home() {
         </div>
       </div>
       <div className="sub">
-        <h2>Articles</h2>
+        <h2>Recent Articles</h2>
         <div className="cards">
           {feeds.map((page) => (
             <Article key={`page_${page.title}`} {...page} />
@@ -106,7 +95,7 @@ function Article({ title, href, tags, imageUrl, body, description, media, update
       .filter((x) => x.length > 2 && !/build|create|using|The|with|working|and|has|Like/i.test(x))
       .slice(0, 4);
   tags = [...new Set(tags)].join(",");
-  media = imageUrl || media || `https://source.unsplash.com/400x300/?${tags ? tags : "random"}`;
+  media = imageUrl || `https://source.unsplash.com/400x300/?${tags ? tags : "random"}`;
   body = body || description;
 
   return (

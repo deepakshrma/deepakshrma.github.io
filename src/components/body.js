@@ -32,10 +32,11 @@ function Body({ child }) {
           </a>
 
           <a href="/">Home</a>
-          <a href="/about-me">About me</a>
           <a target="_blank" href="https://blog.decipher.dev/">
             Blogs
           </a>
+          <a href="/about-me">About me</a>
+          <span className="fit"></span>
           <a target="_blank" href="https://medium.com/@deepak-v" title="Medium">
             <i className="bi bi-medium"></i>
           </a>

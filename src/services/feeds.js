@@ -35,3 +35,11 @@ export const getFeeds = async () => {
     return blogFeeds.items;
   }
 };
+
+export const getPoems = async (tag) => {
+  const poems = await fetch(`https://poetrydb.org/title,random/${tag};5`).then((x) => x.json());
+//   poems.forEach((p) => {
+//     p.lines = p.lines.join("\n");
+//   });
+  return poems;
+};

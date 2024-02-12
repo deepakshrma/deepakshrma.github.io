@@ -307,9 +307,6 @@ a:hover {
   float: right;
 }
 
-.resume {
-}
-
 .resume .contacts {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

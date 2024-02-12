@@ -2,6 +2,7 @@
 import { MAX_POEM_LINES } from "@/services/feeds";
 import { filterTags, cls, trimText } from "@/services/util";
 import ShareControl from "./ShareControl";
+import Image from "./Image";
 
 export default function Poem({ title, lines, author, full, onPoemOpen, onTagChange }) {
   const filteredTags = filterTags(title, null, 3);
@@ -11,7 +12,7 @@ export default function Poem({ title, lines, author, full, onPoemOpen, onTagChan
   return (
     <div className={cls({ card: true, poem: true, full })}>
       <ShareControl enableCopy title={title} text={`### ${title} ###\n\n${body}\n\n\n\t\tAuthor: ${author}\n\n`} tag="Poem" />
-      <div className="cover" style={{ backgroundImage: `url(${media})` }} />
+      <Image src={media} />
       <div className="content">
         <h3 title={title}>{trimText(title)}</h3>
         <pre>{body}</pre>

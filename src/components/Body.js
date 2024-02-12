@@ -1,18 +1,15 @@
 "use client";
-import { Inter } from "next/font/google";
+import { Lato } from "next/font/google";
 import { createContext, useEffect, useState } from "react";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Lato({ weight: ["400", "700"], style: ["normal", "italic"], subsets: ["latin"] });
 const ThemeContext = createContext();
 
-let defaultTheme = "light";
 if (typeof window !== "undefined") {
   if (!window.localStorage["theme"]) {
     window.localStorage["theme"] = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
-  defaultTheme = window.localStorage["theme"];
 }
-
 
 function Body({ child }) {
   const [theme, setTheme] = useState();

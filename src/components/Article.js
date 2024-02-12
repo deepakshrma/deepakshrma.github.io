@@ -1,6 +1,7 @@
 "use client";
 import { filterTags, trimText } from "@/services/util";
 import ShareControl from "./ShareControl";
+import Image from "./Image";
 
 export default function Article({ title, href, tags, imageUrl, description, body = description, media, updateAt }) {
   const filteredTags = filterTags(title, tags).join(",");
@@ -9,7 +10,7 @@ export default function Article({ title, href, tags, imageUrl, description, body
     <div className="card">
       <ShareControl title={title} text={`${title}\n\n${body.slice(0, 120)}\n\n`} tag="Article" url={href} />
       <a href={href} target="_blank">
-        <img src={media} />
+        <Image src={media} />
       </a>
       <div className="content">
         <h3 title={title}>{trimText(title)}</h3>

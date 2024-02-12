@@ -2,8 +2,10 @@
 
 import { MAX_POEM_LINES, getFeeds, getPoems } from "@/services/feeds";
 import { useEffect, useState, useDeferredValue, Suspense } from "react";
-import { shuffle } from "@deepakvishwakarma/ts-util";
+import { isEmpty, shuffle } from "@deepakvishwakarma/ts-util";
 import Modal from "../components/Modal";
+import useWindowProps from "./hooks/useWindowProps";
+import next from "next";
 
 const pages = [
   {
@@ -77,8 +79,6 @@ const cls = (props = {}) => {
     .join(" ");
 };
 
-const shareEnabled = () => location.host.includes("localhost") || typeof navigator.share === "function";
-
 const filterTags = (title, tags, maxTags = 3) => {
   tags =
     tags ||
@@ -91,12 +91,18 @@ const filterTags = (title, tags, maxTags = 3) => {
   return tags;
 };
 
-const share = async ({ title, text, tag = "", url = location.href }) => {
+const copyToClipboard = async (text) => {
+  await navigator.clipboard.writeText(`${text}site: ${location.href}`);
+  console.log("copied: ", text);
+};
+
+const share = async ({ title, text, tag = "", url }) => {
   const shareData = {
     title: `${tag}: ${title}`,
     text,
     url,
   };
+  console.info(shareData);
   try {
     await navigator.share(shareData);
     console.log(`${tag}: ${title} shared successfully`);
@@ -207,19 +213,16 @@ function Article({ title, href, tags, imageUrl, description, body = description,
   );
 }
 
-const copyToClipboard = async (text) => {
-  await navigator.clipboard.writeText(`${text}site: ${location.href}`);
-  console.log("copied: ", text);
-};
-
-function ShareControl({ title, text, tag, enableCopy = false, url = location.href }) {
+function ShareControl({ title, text, tag, enableCopy = false, url }) {
+  const { isShareEnable, href } = useWindowProps();
   return (
     <div className="share-control">
       {enableCopy && <i className="copy bi bi-clipboard-check-fill" onClick={() => copyToClipboard(text)}></i>}
-      {shareEnabled() && <i className="share bi bi-share-fill" onClick={() => share({ title, text, tag, url })}></i>}
+      {isShareEnable && <i className="share bi bi-share-fill" onClick={() => share({ title, text, tag, url: url || href })}></i>}
     </div>
   );
 }
+
 function Poem({ title, lines, author, full, onPoemOpen, onTagChange }) {
   const filteredTags = filterTags(title, null, 3);
   const media = `https://source.unsplash.com/600x400/?${filteredTags}`;

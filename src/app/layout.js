@@ -4,6 +4,7 @@ import Body from "../components/B";
 // const Body = dynamic(() => import("../components/body"), { ssr: false });
 
 export const metadata = {
+  // metadataBase: new URL('https://decipher.dev'),
   title: "Deepak Vishwakarma, Lead Software Engineer at JPMorgan Chase & Co. | Blockchain Expert",
   openGraph: {
     title: "Decipher.dev",

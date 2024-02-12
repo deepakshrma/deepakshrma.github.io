@@ -1,3 +1,5 @@
+import { uniqueBy } from "@deepakvishwakarma/ts-util";
+
 const getContent = (innerHTML) => {
   const d = document.createElement("div");
   d.innerHTML = innerHTML;
@@ -35,11 +37,9 @@ export const getFeeds = async () => {
     return blogFeeds.items;
   }
 };
+export const MAX_POEM_LINES = 8;
 
 export const getPoems = async (tag) => {
-  const poems = await fetch(`https://poetrydb.org/title,random/${tag};5`).then((x) => x.json());
-//   poems.forEach((p) => {
-//     p.lines = p.lines.join("\n");
-//   });
-  return poems;
+  const poems = await fetch(`https://poetrydb.org/title,random/${tag};7`).then((x) => x.json());
+  return uniqueBy(poems, (a, b) => a.title === b.title).slice(0, 5);
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { getFeeds, getPoems } from "@/services/feeds";
+import { MAX_POEM_LINES, getFeeds, getPoems } from "@/services/feeds";
 import { useEffect, useState, useDeferredValue, Suspense } from "react";
 import { shuffle } from "@deepakvishwakarma/ts-util";
 import Modal from "../components/Modal";
@@ -41,7 +41,7 @@ const pages = [
   },
 ];
 
-const poemTags = [
+const POEM_TAGS = [
   "time",
   "love",
   "day",
@@ -49,6 +49,7 @@ const poemTags = [
   "night",
   "man",
   "world",
+  "sex",
   "long",
   "eyes",
   "life",
@@ -78,7 +79,7 @@ const cls = (props = {}) => {
 
 export default function Home() {
   const [allFeeds, setAllFeeds] = useState([]);
-  const [poemTag, setPoemTag] = useState(shuffle(poemTags).pop());
+  const [poemTag, setPoemTag] = useState(shuffle(POEM_TAGS).pop());
   const [selectedPoem, setSelectedPoem] = useState(null);
   const deferredPoemTag = useDeferredValue(poemTag);
 
@@ -157,9 +158,9 @@ const filterTags = (title, tags, maxTags = 3) => {
   tags =
     tags ||
     title
-      .split(/\s+/)
+      .split(/\W+/)
       .map((x) => x.match(/\w+/)?.[0].replace(/\W/, "") ?? "")
-      .filter((x) => x.length > 2 && !/build|create|using|The|For|with|working|and|has|have|Like|Let|\d|\s+/i.test(x))
+      .filter((x) => x.length > 2 && !/build|Sonnet|create|using|The|For|with|working|and|has|have|Like|Let|\d|\s+/i.test(x))
       .slice(0, maxTags);
   tags = [...new Set(tags)];
   return tags;
@@ -191,18 +192,41 @@ function Article({ title, href, tags, imageUrl, description, body = description,
   );
 }
 
-const MAX_POEM_LINES = 10;
-
-function Poem({ title, lines, index, full, onPoemOpen, onTagChange }) {
+function Poem({ title, lines, author, full, onPoemOpen, onTagChange }) {
   const filteredTags = filterTags(title, null, 3);
   const media = `https://source.unsplash.com/600x400/?${filteredTags}`;
-  const body = lines.slice(0, MAX_POEM_LINES).join("\n");
+  const isBig = lines.length > MAX_POEM_LINES;
+  const body = full ? lines.join("\n") : lines.slice(0, MAX_POEM_LINES).join("\n");
+  const copyToClipboard = async () => {
+    var text = `### ${title} ###\n\n${body}\n\n\n\t\tAuthor: ${author}`;
+    await navigator.clipboard.writeText(text);
+    alert(`Copied to clipboard: ${title}`);
+    console.log("copied: ", text);
+  };
+  const share = async () => {
+    const shareData = {
+      title: `Poem: ${title} By: ${author}`,
+      text: `### ${title} ###\n\n${body}\n\n\n\t\tAuthor: ${author}`,
+      url: location.href,
+    };
+    try {
+      await navigator.share(shareData);
+      console.log(`Poem: ${title} shared successfully`);
+    } catch (err) {
+      console.error(`Error: ${err}`);
+    }
+  };
   return (
     <div className={cls({ card: true, poem: true, full })}>
+      <i class="share bi bi-share-fill" onClick={share}></i>
+      <i class="copy bi bi-clipboard-check-fill" onClick={copyToClipboard}></i>
       <div className="cover" style={{ backgroundImage: `url(${media})` }} />
       <div className="content">
         <h3>{title}</h3>
         <pre>{body}</pre>
+        <small className="time">
+          <b>Author: </b> {author}
+        </small>
         <div className="tags">
           {filteredTags.map((tag) => (
             <span className="tag" key={`${title}__tag___${tag}__`} onClick={() => !full && onTagChange(tag)}>
@@ -210,9 +234,8 @@ function Poem({ title, lines, index, full, onPoemOpen, onTagChange }) {
             </span>
           ))}
         </div>
-
-        {lines.length > MAX_POEM_LINES && !full && (
-          <button className="button read-more" onClick={onPoemOpen}>
+        {isBig && !full && (
+          <button className="button control read-more" onClick={onPoemOpen}>
             Full Poem
           </button>
         )}
@@ -220,6 +243,7 @@ function Poem({ title, lines, index, full, onPoemOpen, onTagChange }) {
     </div>
   );
 }
+
 function Poems({ tag, onPoemSelect, onSetPoemTag }) {
   const [poems, setPoems] = useState([]);
   useEffect(() => {

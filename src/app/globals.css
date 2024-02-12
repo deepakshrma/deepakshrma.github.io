@@ -256,18 +256,19 @@ a:hover {
   max-width: 800px;
 }
 
-.card i:is(.copy, .share) {
+.card .share-control {
   position: absolute;
-  right: -1px;
-  top: -1px;
-  padding: 4px;
+  right: .25rem;
+  top: .25rem;
+  display: flex;
+  gap: .25rem;
+}
+
+.share-control i {
+  padding: 0.25rem;
   color: #fff;
   cursor: pointer;
   background: #333;
-}
-
-.card i.copy {
-  right: 30px;
 }
 
 .button {
@@ -447,11 +448,8 @@ body:has(.modal) {
   .modal.overlay {
     padding: 0 10px;
   }
-  .card i.share {
+  .share-control {
     right: 0;
-    top: 0;
-  }
-  .card i.copy {
     top: 0;
   }
 }

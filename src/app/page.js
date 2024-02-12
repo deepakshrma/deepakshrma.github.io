@@ -76,7 +76,8 @@ const cls = (props = {}) => {
     .map(([key]) => key)
     .join(" ");
 };
-const shareEnabled = () => typeof navigator.share === "function";
+
+const shareEnabled = () => location.host.includes("localhost") || typeof navigator.share === "function";
 
 const filterTags = (title, tags, maxTags = 3) => {
   tags =
@@ -165,6 +166,7 @@ export default function Home() {
 function PageCard({ title, img, description, link }) {
   return (
     <div className="card">
+      <ShareControl title={title} text={`${title}\n\n${description}`} tag="Link" url={link} />
       <a href={link} target="_blank">
         <img src={img} />
       </a>
@@ -184,12 +186,7 @@ function Article({ title, href, tags, imageUrl, description, body = description,
   media = imageUrl || `https://source.unsplash.com/400x300/?${filteredTags ? filteredTags : "random"}`;
   return (
     <div className="card">
-      {shareEnabled() && (
-        <i
-          className="share bi bi-share-fill"
-          onClick={() => share({ title, tag: "Article", url: href, text: `${title}\n\n${body.slice(0, 120)}\n\n` })}
-        ></i>
-      )}
+      <ShareControl title={title} text={`${title}\n\n${body.slice(0, 120)}\n\n`} tag="Article" url={href} />
       <a href={href} target="_blank">
         <img src={media} />
       </a>
@@ -210,26 +207,28 @@ function Article({ title, href, tags, imageUrl, description, body = description,
   );
 }
 
+const copyToClipboard = async (text) => {
+  await navigator.clipboard.writeText(`${text}site: ${location.href}`);
+  console.log("copied: ", text);
+};
+
+function ShareControl({ title, text, tag, enableCopy = false, url = location.href }) {
+  return (
+    <div className="share-control">
+      {enableCopy && <i className="copy bi bi-clipboard-check-fill" onClick={() => copyToClipboard(text)}></i>}
+      {shareEnabled() && <i className="share bi bi-share-fill" onClick={() => share({ title, text, tag, url })}></i>}
+    </div>
+  );
+}
 function Poem({ title, lines, author, full, onPoemOpen, onTagChange }) {
   const filteredTags = filterTags(title, null, 3);
   const media = `https://source.unsplash.com/600x400/?${filteredTags}`;
   const isBig = lines.length > MAX_POEM_LINES;
   const body = full ? lines.join("\n") : lines.slice(0, MAX_POEM_LINES).join("\n");
-  const copyToClipboard = async () => {
-    var text = `### ${title} ###\n\n${body}\n\n\n\t\tAuthor: ${author}\n\n${location.href}`;
-    await navigator.clipboard.writeText(text);
-    console.log("copied: ", text);
-  };
 
   return (
     <div className={cls({ card: true, poem: true, full })}>
-      {shareEnabled() && (
-        <i
-          className="share bi bi-share-fill"
-          onClick={() => share({ title, text: `### ${title} ###\n\n${body}\n\n\n\t\tAuthor: ${author}\n\n`, tag: "Poem" })}
-        ></i>
-      )}
-      <i className="copy bi bi-clipboard-check-fill" onClick={copyToClipboard}></i>
+      <ShareControl enableCopy title={title} text={`### ${title} ###\n\n${body}\n\n\n\t\tAuthor: ${author}\n\n`} tag="Poem" />
       <div className="cover" style={{ backgroundImage: `url(${media})` }} />
       <div className="content">
         <h3>{title}</h3>

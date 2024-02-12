@@ -12,6 +12,8 @@ if (typeof window !== "undefined") {
   }
   defaultTheme = window.localStorage["theme"];
 }
+
+
 function Body({ child }) {
   const [theme, setTheme] = useState();
   const toggleTheme = (newTheme) => {

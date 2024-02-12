@@ -140,7 +140,7 @@ nav .fit {
   margin: 0 auto;
 }
 
-nav>a,
+nav > a,
 nav h2 {
   text-decoration: none;
   user-select: none;
@@ -233,7 +233,7 @@ a:hover {
   word-wrap: break-word;
   font-size: 0.8rem;
   overflow-x: auto;
-  max-height: calc(100vh - 600px);
+  max-height: 800px;
 }
 
 .card.poem.full pre {
@@ -307,7 +307,8 @@ a:hover {
   float: right;
 }
 
-.resume {}
+.resume {
+}
 
 .resume .contacts {
   display: grid;
@@ -360,6 +361,7 @@ a {
 .modal .container {
   background: #fff;
   padding: 10px;
+  max-height: calc(100vh - 100px);
 }
 
 .modal .container .card {
@@ -452,5 +454,9 @@ body:has(.modal) {
   .share-control {
     right: 0;
     top: 0;
+  }
+
+  .card.poem pre {
+    max-height: 300px;
   }
 }

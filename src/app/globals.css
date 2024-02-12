@@ -256,7 +256,7 @@ a:hover {
   max-width: 800px;
 }
 
-.card.poem i:is(.copy, .share) {
+.card i:is(.copy, .share) {
   position: absolute;
   right: -1px;
   top: -1px;
@@ -266,7 +266,7 @@ a:hover {
   background: #333;
 }
 
-.card.poem i.share {
+.card i.copy {
   right: 30px;
 }
 
@@ -447,11 +447,11 @@ body:has(.modal) {
   .modal.overlay {
     padding: 0 10px;
   }
-  .card.poem i.copy {
+  .card i.share {
     right: 0;
     top: 0;
   }
-  .card.poem i.share {
+  .card i.copy {
     top: 0;
   }
 }

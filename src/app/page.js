@@ -76,7 +76,33 @@ const cls = (props = {}) => {
     .map(([key]) => key)
     .join(" ");
 };
+const shareEnabled = () => typeof navigator.share === "function";
 
+const filterTags = (title, tags, maxTags = 3) => {
+  tags =
+    tags ||
+    title
+      .split(/\W+/)
+      .map((x) => x.match(/\w+/)?.[0].replace(/\W/, "") ?? "")
+      .filter((x) => x.length > 2 && !/build|Sonnet|create|using|The|For|with|working|and|has|have|Like|Let|\d|\s+/i.test(x))
+      .slice(0, maxTags);
+  tags = [...new Set(tags)];
+  return tags;
+};
+
+const share = async ({ title, text, tag = "", url = location.href }) => {
+  const shareData = {
+    title: `${tag}: ${title}`,
+    text,
+    url,
+  };
+  try {
+    await navigator.share(shareData);
+    console.log(`${tag}: ${title} shared successfully`);
+  } catch (err) {
+    console.error(`Error: ${err}`);
+  }
+};
 export default function Home() {
   const [allFeeds, setAllFeeds] = useState([]);
   const [poemTag, setPoemTag] = useState(shuffle(POEM_TAGS).pop());
@@ -99,7 +125,6 @@ export default function Home() {
     });
   }, []);
 
-  const onPoemOpen = (index) => setPoemIndex(index);
   const feeds = shuffle(allFeeds).slice(0, 5);
 
   return (
@@ -154,24 +179,17 @@ function PageCard({ title, img, description, link }) {
   );
 }
 
-const filterTags = (title, tags, maxTags = 3) => {
-  tags =
-    tags ||
-    title
-      .split(/\W+/)
-      .map((x) => x.match(/\w+/)?.[0].replace(/\W/, "") ?? "")
-      .filter((x) => x.length > 2 && !/build|Sonnet|create|using|The|For|with|working|and|has|have|Like|Let|\d|\s+/i.test(x))
-      .slice(0, maxTags);
-  tags = [...new Set(tags)];
-  return tags;
-};
-
 function Article({ title, href, tags, imageUrl, description, body = description, media, updateAt }) {
   const filteredTags = filterTags(title, tags).join(",");
   media = imageUrl || `https://source.unsplash.com/400x300/?${filteredTags ? filteredTags : "random"}`;
-
   return (
     <div className="card">
+      {shareEnabled() && (
+        <i
+          className="share bi bi-share-fill"
+          onClick={() => share({ title, tag: "Article", url: href, text: `${title}\n\n${body.slice(0, 120)}\n\n` })}
+        ></i>
+      )}
       <a href={href} target="_blank">
         <img src={media} />
       </a>
@@ -198,28 +216,20 @@ function Poem({ title, lines, author, full, onPoemOpen, onTagChange }) {
   const isBig = lines.length > MAX_POEM_LINES;
   const body = full ? lines.join("\n") : lines.slice(0, MAX_POEM_LINES).join("\n");
   const copyToClipboard = async () => {
-    var text = `### ${title} ###\n\n${body}\n\n\n\t\tAuthor: ${author}`;
+    var text = `### ${title} ###\n\n${body}\n\n\n\t\tAuthor: ${author}\n\n${location.href}`;
     await navigator.clipboard.writeText(text);
-    alert(`Copied to clipboard: ${title}`);
     console.log("copied: ", text);
   };
-  const share = async () => {
-    const shareData = {
-      title: `Poem: ${title} By: ${author}`,
-      text: `### ${title} ###\n\n${body}\n\n\n\t\tAuthor: ${author}`,
-      url: location.href,
-    };
-    try {
-      await navigator.share(shareData);
-      console.log(`Poem: ${title} shared successfully`);
-    } catch (err) {
-      console.error(`Error: ${err}`);
-    }
-  };
+
   return (
     <div className={cls({ card: true, poem: true, full })}>
-      <i class="share bi bi-share-fill" onClick={share}></i>
-      <i class="copy bi bi-clipboard-check-fill" onClick={copyToClipboard}></i>
+      {shareEnabled() && (
+        <i
+          className="share bi bi-share-fill"
+          onClick={() => share({ title, text: `### ${title} ###\n\n${body}\n\n\n\t\tAuthor: ${author}\n\n`, tag: "Poem" })}
+        ></i>
+      )}
+      <i className="copy bi bi-clipboard-check-fill" onClick={copyToClipboard}></i>
       <div className="cover" style={{ backgroundImage: `url(${media})` }} />
       <div className="content">
         <h3>{title}</h3>

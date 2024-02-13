@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="favicon.svg" sizes="any" />
       </head>
       <Body child={children} />
-      <GoogleAnalytics gaId="UA-172955705-1" />
+      <GoogleAnalytics gaId="G-VX1V9NRMDC" />
     </html>
   );
 }

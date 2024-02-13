@@ -31,6 +31,7 @@ function Body({ child }) {
           </a>
 
           <a href="/">Home</a>
+          <a href="/organizer">Organizer</a>
           <a target="_blank" href="https://blog.decipher.dev/">
             Blogs
           </a>

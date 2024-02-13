@@ -4,19 +4,23 @@ export const copyToClipboard = async (text) => {
   await navigator.clipboard.writeText(`${text}site: ${location.href}`);
   console.log("copied: ", text);
 };
+let isShareOpen = false;
 export const share = async ({ title, text, tag = "", url }) => {
   const shareData = {
     title: `${tag}: ${title}`,
     text,
     url,
   };
-  console.info(shareData);
+  if (isShareOpen) return;
   try {
+    isShareOpen = true;
+    console.info(shareData);
     await navigator.share(shareData);
     console.log(`${tag}: ${title} shared successfully`);
   } catch (err) {
-    console.error(`Error: ${err}`);
+    console.error(err);
   }
+  isShareOpen = false;
 };
 export const PAGES_INFO = [
   {
@@ -87,7 +91,7 @@ export const cls = (props = {}) => {
     .map(([key]) => key)
     .join(" ");
 };
-export const filterTags = (title, tags, maxTags = 3) => {
+export const filterTags = (title, tags, maxTags = 4) => {
   tags =
     tags ||
     title

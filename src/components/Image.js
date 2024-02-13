@@ -3,11 +3,11 @@ import React, { useCallback, useEffect, useState } from "react";
 const ImageComponent = ({
   src,
   placeholderImg = "https://placehold.co/300x200/333/fff?text=...",
+  spinner = false,
   errorImg = placeholderImg,
   ...props
 }) => {
-  const [imgSrc, setSrc] = useState(placeholderImg || src);
-
+  const [imgSrc, setSrc] = useState(spinner ? null : placeholderImg);
   const onLoad = useCallback(() => {
     setSrc(src);
   }, [src]);
@@ -27,6 +27,12 @@ const ImageComponent = ({
     };
   }, [src, onLoad, onError]);
 
-  return <div {...props} className="cover" style={{ backgroundImage: `url(${imgSrc})` }} />;
+  return imgSrc ? (
+    <div className="cover" style={{ backgroundImage: `url(${imgSrc})` }} {...props} />
+  ) : (
+    <div className="cover spinner" {...props}>
+      <i className="bi bi-arrow-repeat rotating"></i>
+    </div>
+  );
 };
 export default ImageComponent;

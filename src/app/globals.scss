@@ -9,7 +9,7 @@ $font-family_2: "Times New Roman", Times, serif;
 $background-color_1: rgb(31 41 55);
 $background-color_2: rgb(37 99 235);
 $background-color_3: rgb(37 99 180);
-$background-color_4: #faf5f5;
+$background-color_4: #89cbf4;
 $background-color_5: #eff3f3;
 
 @import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css";
@@ -425,7 +425,7 @@ a {
   background-image: linear-gradient(#e66465, #9198e5);
   .content {
     margin: 4rem;
-    background: #fff;
+    background: rgb(var(--background-end-rgb));
     height: calc(100% - 8rem);
     padding: 20px;
     box-shadow: 0px 0px 12px 2px #7640a1;
@@ -473,6 +473,7 @@ a {
           display: flex;
           align-items: center;
           cursor: pointer;
+          padding: 2px 4px;
           &:hover {
             background-color: $background-color_4;
           }

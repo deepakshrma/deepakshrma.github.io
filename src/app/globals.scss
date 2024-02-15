@@ -455,11 +455,13 @@ a {
   .notes {
     .note.done {
       color: $color_6;
+      font-style: italic;
     }
   }
   .pane {
     display: flex;
     width: 100%;
+    gap: 8px;
     > * {
       flex-basis: 50%;
       padding: 0 20px;
@@ -487,7 +489,22 @@ a {
     }
   }
 }
-
+.side-links {
+  display: flex;
+  gap: 8px;
+}
+.side-links-mobile {
+  display: none;
+}
+.note-ctr {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  i {
+    color: #07d371;
+    font-size: 1.25rem;
+  }
+}
 @media only screen and (min-width: 600px) {
   .container.concise {
     margin: 0 auto;
@@ -539,8 +556,11 @@ a {
   }
   .theme-toggle {
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 10px;
+    top: 0px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
   }
   .banner {
     justify-content: center;
@@ -556,5 +576,25 @@ a {
     pre {
       max-height: 300px;
     }
+  }
+  .full-cover {
+    .content {
+      margin: 1rem;
+      height: calc(100% - 2rem);
+      blockquote {
+        font-size: 1rem;
+      }
+      .pane {
+        flex-direction: column;
+      }
+    }
+  }
+
+  .side-links-mobile {
+    display: flex;
+    gap: 4px;
+  }
+  .side-links {
+    display: none;
   }
 }

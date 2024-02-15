@@ -109,7 +109,7 @@ export const trimText = (s, maxLen = MAX_CHARS) => `${s.replace(/.+(:|-) /, "").
 export const onDoubleClick = (fn) => {
   const dfn = debounce(fn);
   return (e) => {
-    console.log(e)
+    console.log(e);
     switch (e.detail) {
       case 1:
         dfn(e, false);
@@ -119,4 +119,23 @@ export const onDoubleClick = (fn) => {
         break;
     }
   };
+};
+
+export const onKeyPress = (fn, code = "Enter") => {
+  return (e) => {
+    console.log(e)
+    if (e.code == code) {
+      fn(e);
+    }
+  };
+};
+
+export const swapById = (id1, id2, data) => {
+  const index1 = data.findIndex((x) => String(x.id) === String(id1));
+  const index2 = data.findIndex((x) => String(x.id) === String(id2));
+  let cData = [...data];
+  const tmp = cData[index1];
+  cData[index1] = cData[index2];
+  cData[index2] = tmp;
+  return cData;
 };

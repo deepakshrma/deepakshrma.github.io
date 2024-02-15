@@ -37,16 +37,29 @@ function Body({ child }) {
           </a>
           <a href="/about-me">About me</a>
           <span className="fit"></span>
-          <a target="_blank" href="https://medium.com/@deepak-v" title="Medium">
-            <i className="bi bi-medium"></i>
-          </a>
-          <a target="_blank" href="https://www.linkedin.com/in/xdeepakv" title="Linkedin">
-            <i className="bi bi-linkedin"></i>
-          </a>
-          <a target="_blank" href="https://github.com/deepakshrma" title="Github">
-            <i className="bi bi-github"></i>
-          </a>
+          <div className="side-links">
+            <a target="_blank" href="https://medium.com/@deepak-v" title="Medium">
+              <i className="bi bi-medium"></i>
+            </a>
+            <a target="_blank" href="https://www.linkedin.com/in/xdeepakv" title="Linkedin">
+              <i className="bi bi-linkedin"></i>
+            </a>
+            <a target="_blank" href="https://github.com/deepakshrma" title="Github">
+              <i className="bi bi-github"></i>
+            </a>
+          </div>
           <div className="theme-toggle">
+            <div className="side-links-mobile">
+              <a target="_blank" href="https://medium.com/@deepak-v" title="Medium">
+                <i className="bi bi-medium"></i>
+              </a>
+              <a target="_blank" href="https://www.linkedin.com/in/xdeepakv" title="Linkedin">
+                <i className="bi bi-linkedin"></i>
+              </a>
+              <a target="_blank" href="https://github.com/deepakshrma" title="Github">
+                <i className="bi bi-github"></i>
+              </a>
+            </div>
             <span suppressHydrationWarning className="pointer" onClick={() => toggleTheme(dark ? "light" : "dark")}>
               <i suppressHydrationWarning className={`"bi bi-${dark ? "sun" : "moon"}`}></i> {dark ? "Light" : "Dark"}
             </span>

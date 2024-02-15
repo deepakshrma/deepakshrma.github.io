@@ -1,7 +1,7 @@
 "use client";
 
 import { useKeyPress, useLocalStorage, useRest } from "@/services/hooks";
-import { cls, onDoubleClick } from "@/services/util";
+import { cls, onDoubleClick, onKeyPress, swapById } from "@/services/util";
 import { useCallback, useEffect, useReducer, useRef } from "react";
 
 function organizeReducer(state, action) {
@@ -14,7 +14,11 @@ function organizeReducer(state, action) {
   if (action.type === "update_note") {
     return {
       updatedAt: Date.now(),
-      notes: [action.note, ...state.notes.filter((a) => a.id !== action.note.id)],
+      notes: [
+        ...state.notes.map((a) => {
+          return a.id === action.note.id ? action.note : a;
+        }),
+      ],
     };
   }
   if (action.type === "delete_note") {
@@ -23,7 +27,12 @@ function organizeReducer(state, action) {
       notes: state.notes.filter((a) => a.id !== action.note.id),
     };
   }
-
+  if (action.type === "swap_notes") {
+    return {
+      updatedAt: Date.now(),
+      notes: swapById(action.id1, action.id2, state.notes),
+    };
+  }
   if (action.type === "sync") {
     return {
       updatedAt: Date.now(),
@@ -33,15 +42,19 @@ function organizeReducer(state, action) {
   throw Error("Invalid Action", action);
 }
 
+// const log = (tag) => (e) => console.log(`tag: ${tag}`, e.target?.attributes.datanoteid.value, e);
+
 export default function Home() {
   const {
     data: { isFetching, error, data },
     request,
   } = useRest();
-  
-  const inputNoteRef = useCallback((i) => {
-    i?.focus();
-  }, []);
+
+  // const inputNoteRef = useCallback((i) => {
+  //   i?.focus();
+  // }, []);
+  const inputNoteRef = useRef();
+  const draggedItemRef = useRef();
 
   useEffect(() => {
     request("https://api.quotable.io/quotes/random?tags=love|inspirational|motivational|passion|self-care");
@@ -58,50 +71,55 @@ export default function Home() {
     if (state.updatedAt) setInfo(state);
   }, [state?.updatedAt]);
 
-  useEffect(() => {
-    console.log(1, inputNoteRef);
-  }, []);
-
   useKeyPress(() => alert("control+B"), "KeyB", true);
 
   const handleUpdateNote = (note, isDoubleClick = false) => {
     dispatch({ type: isDoubleClick ? "delete_note" : "update_note", note: { ...note, done: !note.done } });
   };
 
+  const handleSwap = (ev) => {
+    const id1 = draggedItemRef.current;
+    const id2 = ev.target?.attributes.datanoteid.value;
+    dispatch({ type: "swap_notes", id1, id2 });
+  };
+  
+  const createNewNote = () => {
+    const note = { id: Date.now(), note: inputNoteRef.current.value };
+    dispatch({ type: "add_note", note });
+    inputNoteRef.current.value = "";
+  };
+
   const quote = data?.[0];
-  if (isFetching || error || !quote) return null;
 
   return (
     <div className="container organize">
       <div className="full-cover">
         <div className="content">
           <div className="quote header">
-            <blockquote>{quote.content}</blockquote>
-            <i className="author">{`- ${quote.author}`}</i>
+            <blockquote>{quote?.content}</blockquote>
+            <i className="author">{`- ${quote?.author}`}</i>
           </div>
           <div className="pane">
             <div className="notes">
-              <h4>Notes</h4>
-              <input
-                autoFocus
-                ref={inputNoteRef}
-                type="text"
-                onKeyDown={(e) => {
-                  if (e.code == "Enter") {
-                    const note = { id: Date.now(), note: e.target.value };
-                    dispatch({ type: "add_note", note });
-                    e.target.value = "";
-                  }
-                }}
-              />
+              <h3>Notes</h3>
+              <br />
+              <div className="note-ctr">
+                <input autoFocus ref={inputNoteRef} type="text" onKeyDown={onKeyPress(createNewNote)} />
+                <i className="bi bi-send" onClick={createNewNote}></i>
+              </div>
               <ul>
-                {state.notes.map((x) => (
+                {state?.notes.map((x, index) => (
                   <li
                     className={cls({ note: true, done: x.done })}
                     onClick={onDoubleClick((_, d) => handleUpdateNote(x, d))}
                     key={`note__${x.id}`}
+                    datanoteid={x.id}
+                    onDrop={handleSwap}
+                    onDrag={(ev) => (draggedItemRef.current = ev.target.attributes?.datanoteid.value)}
+                    onDragOver={(e) => e.preventDefault()}
+                    draggable
                   >
-                    {x.note}
+                    {`${index + 1}- ${x.note}`}
                   </li>
                 ))}
               </ul>

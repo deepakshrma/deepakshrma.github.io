@@ -1,13 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-const ImageComponent = ({
-  src,
-  placeholderImg = "https://placehold.co/300x200/333/fff?text=...",
-  spinner = false,
-  errorImg = placeholderImg,
-  ...props
-}) => {
-  const [imgSrc, setSrc] = useState(spinner ? null : placeholderImg);
+const ImageComponent = ({ src, placeholderImg = "https://placehold.co/300x200/333/fff?text=...", errorImg = placeholderImg, ...props }) => {
+  const [imgSrc, setSrc] = useState(null);
   const onLoad = useCallback(() => {
     setSrc(src);
   }, [src]);
@@ -27,12 +21,6 @@ const ImageComponent = ({
     };
   }, [src, onLoad, onError]);
 
-  return imgSrc ? (
-    <div className="cover" style={{ backgroundImage: `url(${imgSrc})` }} {...props} />
-  ) : (
-    <div className="cover spinner" {...props}>
-      <i className="bi bi-arrow-repeat rotating"></i>
-    </div>
-  );
+  return <div className="cover" style={imgSrc ? { backgroundImage: `url(${imgSrc})` } : {}} {...props} />;
 };
 export default ImageComponent;

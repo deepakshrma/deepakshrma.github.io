@@ -10,7 +10,7 @@ export default function Article({ title, href, tags, imageUrl, description, body
     <div className="card">
       <ShareControl title={title} text={`${title}\n\n${body.slice(0, 120)}\n\n`} tag="Article" url={href} />
       <a href={href} target="_blank">
-        <Image src={media} spinner/>
+        <Image src={media} />
       </a>
       <div className="content">
         <h3 title={title}>{trimText(title)}</h3>

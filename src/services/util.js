@@ -1,4 +1,4 @@
-import { uniqueBy } from "@deepakvishwakarma/ts-util";
+import { debounce, uniqueBy } from "@deepakvishwakarma/ts-util";
 
 export const copyToClipboard = async (text) => {
   await navigator.clipboard.writeText(`${text}site: ${location.href}`);
@@ -105,3 +105,18 @@ export const filterTags = (title, tags, maxTags = 4) => {
 
 const MAX_CHARS = 50;
 export const trimText = (s, maxLen = MAX_CHARS) => `${s.replace(/.+(:|-) /, "").slice(0, maxLen)}${s.length > maxLen ? "..." : ""}`;
+
+export const onDoubleClick = (fn) => {
+  const dfn = debounce(fn);
+  return (e) => {
+    console.log(e)
+    switch (e.detail) {
+      case 1:
+        dfn(e, false);
+        break;
+      case 2:
+        dfn(e, true);
+        break;
+    }
+  };
+};

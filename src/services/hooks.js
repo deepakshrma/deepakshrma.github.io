@@ -8,8 +8,12 @@ export function useWindowProps() {
   return props;
 }
 
-export function useKeyPress(fn, key = "Escape") {
-  const onKeyDown = (e) => e.key === key && fn(e);
+export function useKeyPress(fn, key = "Escape", ctr = false) {
+  const onKeyDown = (e) => {
+    if (e.code === key && (ctr ? e.ctrlKey === true : true)) {
+      fn(e);
+    }
+  };
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
@@ -32,4 +36,19 @@ export function useRest() {
     }
   };
   return { data, request };
+}
+
+export function useLocalStorage(key, def) {
+  if (typeof localStorage === "undefined") return [];
+  const [data, setData] = useState(def);
+  const setItem = (data) => {
+    localStorage[key] = JSON.stringify(data);
+    setData(data);
+  };
+  useEffect(() => {
+    if (localStorage[key]) {
+      setData(JSON.parse(localStorage[key]));
+    }
+  }, []);
+  return [data, setItem];
 }

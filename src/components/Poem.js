@@ -13,7 +13,7 @@ export default function Poem({ title, lines, author, full, onPoemOpen, onTagChan
   return (
     <div className={cls({ card: true, poem: true, full })}>
       <ShareControl enableCopy title={title} text={`### ${title} ###\n\n${body}\n\n\n\t\tAuthor: ${author}\n\n`} tag="Poem" />
-      <Image src={media} spinner />
+      <Image src={media} />
       <div className="content">
         <h3 title={title}>{trimText(title)}</h3>
         <pre>{body}</pre>

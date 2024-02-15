@@ -8,7 +8,7 @@ export default function PageCard({ title, img, description, link }) {
     <div className="card">
       <ShareControl title={title} text={`${title}\n\n${description}`} tag="Link" url={link} />
       <a href={link} target="_blank">
-        <Image src={img} spinner />
+        <Image src={img} />
       </a>
       <div className="content">
         <h3 title={title}>{trimText(title)}</h3>

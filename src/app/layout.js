@@ -1,5 +1,5 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
-import "./globals.css";
+import "./globals.scss";
 import Body from "../components/Body";
 // const Body = dynamic(() => import("../components/body"), { ssr: false });
 

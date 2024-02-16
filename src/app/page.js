@@ -28,7 +28,7 @@ export default function Home() {
   const feeds = shuffle(allFeeds).slice(0, 5);
 
   return (
-    <div className="container">
+    <div className="container home">
       <div className="sub">
         <h2>Showcases</h2>
         <div className="cards">

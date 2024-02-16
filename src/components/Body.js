@@ -30,12 +30,18 @@ function Body({ child }) {
             <h2>Decipher.dev</h2>
           </a>
 
-          <a href="/">Home</a>
-          <a href="/organize-me">Organize Me</a>
-          <a target="_blank" href="https://blog.decipher.dev/">
+          <a className="link" href="/">
+            Home
+          </a>
+          <a className="link" href="/organize-me">
+            Organize Me
+          </a>
+          <a className="link" target="_blank" href="https://blog.decipher.dev/">
             Blogs
           </a>
-          <a href="/about-me">About me</a>
+          <a className="link" href="/about-me">
+            About me
+          </a>
           <span className="fit"></span>
           <div className="side-links">
             <a target="_blank" href="https://medium.com/@deepak-v" title="Medium">

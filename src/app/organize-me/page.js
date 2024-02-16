@@ -1,8 +1,8 @@
 "use client";
 
 import { useKeyPress, useLocalStorage, useRest } from "@/services/hooks";
-import { cls, onDoubleClick, onKeyPress, swapById } from "@/services/util";
-import { useCallback, useEffect, useReducer, useRef } from "react";
+import { cls, onDoubleClick, onKeyPress, reOrderByIndex } from "@/services/util";
+import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 
 function organizeReducer(state, action) {
   if (action.type === "add_note") {
@@ -30,7 +30,7 @@ function organizeReducer(state, action) {
   if (action.type === "swap_notes") {
     return {
       updatedAt: Date.now(),
-      notes: swapById(action.id1, action.id2, state.notes),
+      notes: reOrderByIndex(action.srcId, action.trgId, state.notes),
     };
   }
   if (action.type === "sync") {
@@ -56,6 +56,8 @@ export default function Home() {
   const inputNoteRef = useRef();
   const draggedItemRef = useRef();
 
+  const [highlightNodeId, setHNoteId] = useState();
+
   useEffect(() => {
     request("https://api.quotable.io/quotes/random?tags=love|inspirational|motivational|passion|self-care");
   }, []);
@@ -78,11 +80,12 @@ export default function Home() {
   };
 
   const handleSwap = (ev) => {
-    const id1 = draggedItemRef.current;
-    const id2 = ev.target?.attributes.datanoteid.value;
-    dispatch({ type: "swap_notes", id1, id2 });
+    const srcId = draggedItemRef.current;
+    const trgId = ev.target?.attributes.datanoteid.value;
+    setHNoteId("");
+    dispatch({ type: "swap_notes", srcId, trgId });
   };
-  
+
   const createNewNote = () => {
     const note = { id: Date.now(), note: inputNoteRef.current.value };
     dispatch({ type: "add_note", note });
@@ -110,11 +113,12 @@ export default function Home() {
               <ul>
                 {state?.notes.map((x, index) => (
                   <li
-                    className={cls({ note: true, done: x.done })}
+                    className={cls({ note: true, done: x.done, highlight: highlightNodeId === x.id })}
                     onClick={onDoubleClick((_, d) => handleUpdateNote(x, d))}
                     key={`note__${x.id}`}
                     datanoteid={x.id}
                     onDrop={handleSwap}
+                    onDragEnter={() => setHNoteId(x.id)}
                     onDrag={(ev) => (draggedItemRef.current = ev.target.attributes?.datanoteid.value)}
                     onDragOver={(e) => e.preventDefault()}
                     draggable

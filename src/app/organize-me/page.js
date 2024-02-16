@@ -1,77 +1,83 @@
 "use client";
 
-import { useKeyPress, useLocalStorage, useRest } from "@/services/hooks";
+import { useKeyPress, useRest } from "@/services/hooks";
+import { getCurrentState, saveCurrentState } from "@/services/organize";
 import { cls, onDoubleClick, onKeyPress, reOrderByIndex } from "@/services/util";
-import { useCallback, useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 
 function organizeReducer(state, action) {
-  if (action.type === "add_note") {
-    return {
-      updatedAt: Date.now(),
-      notes: [action.note, ...state.notes],
-    };
+  const updatedAt = Date.now();
+  switch (action.type) {
+    case "add_note":
+      return {
+        updatedAt,
+        notes: [action.note, ...state.notes],
+      };
+    case "qoth":
+      return {
+        ...state,
+        updatedAt,
+        qoth: action.qoth,
+      };
+    case "update_note":
+      return {
+        ...state,
+        updatedAt,
+        notes: [
+          ...state.notes.map((a) => {
+            return a.id === action.note.id ? action.note : a;
+          }),
+        ],
+      };
+    case "delete_note":
+      return {
+        ...state,
+        updatedAt,
+        notes: state.notes.filter((a) => a.id !== action.note.id),
+      };
+    case "swap_notes":
+      return {
+        ...state,
+        updatedAt,
+        notes: reOrderByIndex(action.srcId, action.trgId, state.notes),
+      };
+    case "sync":
+      return {
+        ...action.state,
+        updatedAt,
+      };
+    default:
+      throw Error("Invalid Action", action);
   }
-  if (action.type === "update_note") {
-    return {
-      updatedAt: Date.now(),
-      notes: [
-        ...state.notes.map((a) => {
-          return a.id === action.note.id ? action.note : a;
-        }),
-      ],
-    };
-  }
-  if (action.type === "delete_note") {
-    return {
-      updatedAt: Date.now(),
-      notes: state.notes.filter((a) => a.id !== action.note.id),
-    };
-  }
-  if (action.type === "swap_notes") {
-    return {
-      updatedAt: Date.now(),
-      notes: reOrderByIndex(action.srcId, action.trgId, state.notes),
-    };
-  }
-  if (action.type === "sync") {
-    return {
-      updatedAt: Date.now(),
-      notes: action.notes,
-    };
-  }
-  throw Error("Invalid Action", action);
 }
 
 // const log = (tag) => (e) => console.log(`tag: ${tag}`, e.target?.attributes.datanoteid.value, e);
 
 export default function Home() {
-  const {
-    data: { isFetching, error, data },
-    request,
-  } = useRest();
-
-  // const inputNoteRef = useCallback((i) => {
-  //   i?.focus();
-  // }, []);
   const inputNoteRef = useRef();
   const draggedItemRef = useRef();
 
   const [highlightNodeId, setHNoteId] = useState();
 
   useEffect(() => {
-    request("https://api.quotable.io/quotes/random?tags=love|inspirational|motivational|passion|self-care");
+    fetch("https://api.quotable.io/quotes/random?tags=love|inspirational|motivational|passion|self-care")
+      .then((x) => x.json())
+      .then((res) => {
+        dispatch({ type: "qoth", qoth: res[0] || {} });
+      });
   }, []);
 
-  const [info, setInfo] = useLocalStorage("tasks", { notes: [] });
-  const [state, dispatch] = useReducer(organizeReducer, info);
+  const [state, dispatch] = useReducer(organizeReducer, { notes: [] });
 
   useEffect(() => {
-    if (info.updatedAt) dispatch({ type: "sync", notes: info.notes });
-  }, [info?.updatedAt]);
+    getCurrentState().then((state) => {
+      if (state.updatedAt) dispatch({ type: "sync", state });
+    });
+  }, []);
 
   useEffect(() => {
-    if (state.updatedAt) setInfo(state);
-  }, [state?.updatedAt]);
+    if (state.updatedAt) saveCurrentState(state);
+  }, [state.updatedAt]);
 
   useKeyPress(() => alert("control+B"), "KeyB", true);
 
@@ -91,16 +97,17 @@ export default function Home() {
     dispatch({ type: "add_note", note });
     inputNoteRef.current.value = "";
   };
-
-  const quote = data?.[0];
-
+  let coverStyles = {};
+  if (state.qoth?.tags?.length) {
+    coverStyles.backgroundImage = `url(https://source.unsplash.com/1200x800/?${state.qoth?.tags},animated)`;
+  }
   return (
     <div className="container organize">
-      <div className="full-cover">
+      <div className="full-cover" style={coverStyles}>
         <div className="content">
           <div className="quote header">
-            <blockquote>{quote?.content}</blockquote>
-            <i className="author">{`- ${quote?.author}`}</i>
+            <blockquote>{state.qoth?.content}</blockquote>
+            <i className="author">{`- ${state.qoth?.author ?? ""}`}</i>
           </div>
           <div className="pane">
             <div className="notes">

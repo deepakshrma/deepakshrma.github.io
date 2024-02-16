@@ -10,6 +10,7 @@ function organizeReducer(state, action) {
   switch (action.type) {
     case "add_note":
       return {
+        ...state,
         updatedAt,
         notes: [action.note, ...state.notes],
       };

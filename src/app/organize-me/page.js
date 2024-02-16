@@ -149,7 +149,6 @@ const Card = ({ todo, onEditChange, delTodo, onDragItem, onSwitch }) => {
   //     setState({ ...state, styles });
   //   }
   // };
-  console.log(isMobile);
   return (
     <div className="card" draggable datatodoid={todo.id} onDrag={onDragItem}>
       <i

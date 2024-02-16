@@ -52,3 +52,11 @@ export function useLocalStorage(key, def) {
   }, []);
   return [data, setItem];
 }
+
+export const useMobile = () => {
+  const [isMobile, setState] = useState();
+  useEffect(() => {
+    setState(/iphone|ipod|android|ie|blackberry|fennec/.test(navigator.userAgent.toLowerCase()));
+  }, []);
+  return isMobile;
+};

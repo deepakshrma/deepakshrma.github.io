@@ -1,6 +1,6 @@
 "use client";
 
-import { useKeyPress, useRest } from "@/services/hooks";
+import { useKeyPress } from "@/services/hooks";
 import { getCurrentState, saveCurrentState } from "@/services/organize";
 import { cls, onDoubleClick, onKeyPress, reOrderByIndex } from "@/services/util";
 import { bifurcateBy, sortByKey } from "@deepakvishwakarma/ts-util";
@@ -65,6 +65,12 @@ function organizeReducer(state, action) {
           }),
         ],
       };
+    case "delete_all_todos":
+      return {
+        ...state,
+        updatedAt,
+        todos: [],
+      };
     case "sync":
       return {
         ...action.state,
@@ -75,7 +81,7 @@ function organizeReducer(state, action) {
   }
 }
 
-// const log = (tag) => (e) => console.log(`tag: ${tag}`, e.target?.attributes.datanoteid.value, e);
+const log = (tag) => (e) => console.log(`tag: ${tag}`, e.target?.attributes.datatodoid.value, e);
 
 export default function Home() {
   useEffect(() => {
@@ -124,8 +130,47 @@ export default function Home() {
     </div>
   );
 }
+const Card = ({ todo, onEditChange, delTodo, onDragItem, onSwitch }) => {
+  // const [state, setState] = useState({ isDown: false, offsetTop: 0, offsetLeft: 0, styles: { position: "absolute", top: 0, left: 0 } });
+  // const onTouchStart = (e) => {
+  //   const ev = e.touches[0] || e.changedTouches[0];
+  //   const offsetTop = e.target.offsetTop;
+  //   const offsetLeft = e.target.offsetLeft;
+  //   const styles = { position: "absolute", top: ev.pageY - offsetTop, left: ev.pageX - offsetLeft };
+  //   setState({ ...state, isDown: true, offsetTop, offsetLeft, styles });
+  // };
+  // const onTouchEnd = (e) => {
+  //   setState({ ...state, isDown: false });
+  // };
+  // const onTouchMove = (e) => {
+  //   if (state.isDown) {
+  //     const ev = e.touches[0] || e.changedTouches[0];
+  //     const styles = { position: "absolute", top: ev.pageY - state.offsetTop, left: ev.pageX - state.offsetLeft };
+  //     setState({ ...state, styles });
+  //   }
+  // };
+  console.log(isMobile);
+  return (
+    <div className="card" draggable datatodoid={todo.id} onDrag={onDragItem}>
+      <i
+        className={`bi bi-${todo.priority == 1 ? "arrow-down" : "arrow-up"} move`}
+        onClick={() => onSwitch(todo, (todo.priority + 1) % 2)}
+      ></i>
+      <i className="bi bi-x-lg delete" onClick={() => delTodo(todo)}></i>
+      <div
+        className="text"
+        suppressContentEditableWarning={true}
+        contentEditable={true}
+        onBlur={(e) => onEditChange({ todo, text: e.target?.innerText ?? "" })}
+      >
+        {todo.text}
+      </div>
+    </div>
+  );
+};
 function Todos({ todos = [], dispatch }) {
   const draggedItemRef = useRef();
+  const [id, setIds] = useState(1);
   const [highs, lows] = bifurcateBy(sortByKey(todos, "id", -1), (todo) => todo.priority === 1);
   const onEditChange = ({ todo, text }) => {
     if (todo.text !== text) {
@@ -133,57 +178,57 @@ function Todos({ todos = [], dispatch }) {
       dispatch({ type: "update_todo", todo });
     }
   };
-  const onSwitch = (priority) => {
-    if (draggedItemRef.current.priority !== priority) dispatch({ type: "update_todo", todo: { ...draggedItemRef.current, priority } });
+  const onSwitch = (todo, priority) => {
+    if (todo && todo.priority !== priority) dispatch({ type: "update_todo", todo: { ...todo, priority } });
   };
   const addNew = () => {
-    dispatch({ type: "add_todo", todo: { id: Date.now(), text: "TODO" } });
+    dispatch({ type: "add_todo", todo: { id: Date.now(), text: `TODO--${id}`, priority: 1 } });
+    setIds(id + 1);
   };
   const delTodo = (todo) => {
     dispatch({ type: "delete_todo", todo });
   };
-  const Card = ({ todo }) => (
-    <div
-      className="card"
-      draggable
-      datatodoid={todo.id}
-      onDrag={() => {
-        draggedItemRef.current = todo;
-      }}
-    >
-      <i className="bi bi-x" onClick={() => delTodo(todo)}></i>
-      <div className="text" contentEditable={true} onBlur={(e) => onEditChange({ todo, text: e.target?.innerText ?? "" })}>
-        {todo.text}
-      </div>
-    </div>
-  );
+  const delAll = () => {
+    dispatch({ type: "delete_all_todos" });
+  };
+
   return (
     <div className="todos">
       <h3>
-        Things to do<i className="bi bi-pencil-square" onClick={addNew}></i>
+        Things to do
+        <i className="bi bi-pencil-square" onClick={addNew}></i>
+        <small onClick={delAll}>Clear all</small>
       </h3>
-
-      <br />
-      <div className="category high" onDrop={() => onSwitch(1)} onDragOver={(e) => e.preventDefault()}>
-        <h4>High</h4>
-        <div className="cards">
-          {!highs.length && <div className="empty-records">No Records</div>}
-          {highs.map((todo) => (
-            <Card todo={todo} />
-          ))}
-        </div>
-      </div>
-      <br />
-      <hr />
-      <div className="category low" onDrop={() => onSwitch(0)} onDragOver={(e) => e.preventDefault()}>
-        <h4>Low</h4>
-        <div className="cards">
-          {!lows.length && <div className="empty-records">No Records</div>}
-          {lows.map((todo) => (
-            <Card todo={todo} />
-          ))}
-        </div>
-      </div>
+      {[
+        { category: "high", todos: highs, priority: 1 },
+        { category: "low", todos: lows, priority: 0 },
+      ].map(({ category, todos, priority }) => {
+        return (
+          <div
+            key={`todos_cards__${category}`}
+            className={`category ${category}`}
+            onDrop={() => onSwitch(draggedItemRef.current, priority)}
+            onDragOver={(e) => e.preventDefault()}
+          >
+            <h4>{category}</h4>
+            <div className="cards">
+              {!todos.length && <div className="empty-records">No Records</div>}
+              {todos.map((todo) => (
+                <Card
+                  key={`todo_${category}_${todo.id}`}
+                  onDragItem={() => {
+                    draggedItemRef.current = todo;
+                  }}
+                  todo={todo}
+                  onEditChange={onEditChange}
+                  delTodo={delTodo}
+                  onSwitch={onSwitch}
+                />
+              ))}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

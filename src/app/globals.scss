@@ -221,7 +221,7 @@ nav {
     margin: 0 auto;
   }
 
-  > a {
+  >a {
     text-decoration: none;
     user-select: none;
   }
@@ -552,7 +552,7 @@ a {
     width: 100%;
     gap: 8px;
 
-    > * {
+    >* {
       flex-basis: 50%;
       padding: 0 20px;
     }
@@ -611,18 +611,25 @@ a {
 }
 
 .todos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
   h4 {
-    margin-bottom: 10px;
+    text-transform: capitalize;
   }
 
-  h3 i {
+  h3 i,
+  h3 small {
     float: right;
     color: $color_2;
     font-size: 1rem;
     cursor: pointer;
+    margin-right: 10px;
   }
 
   .cards {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
@@ -645,12 +652,15 @@ a {
 
       i {
         position: absolute;
-        right: 0px;
+        right: .25rem;
         top: 0px;
         font-size: 1rem;
         cursor: pointer;
-        color: $color_6;
         font-weight: bold;
+
+        &.move {
+          right: 1.5rem;
+        }
       }
     }
   }

@@ -47,7 +47,7 @@ function organizeReducer(state, action) {
       return {
         ...state,
         updatedAt,
-        todos: [action.todo, ...state.todos],
+        todos: [action.todo, ...(state.todos || [])],
       };
     case "delete_todo":
       return {

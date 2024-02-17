@@ -91,14 +91,14 @@ export const cls = (props = {}) => {
     .map(([key]) => key)
     .join(" ");
 };
-export const filterTags = (title, tags, maxTags = 4) => {
-  tags =
+export const filterTags = (title, tags, maxTags = 3) => {
+  tags = (
     tags ||
     title
       .split(/\W+/)
       .map((x) => x.match(/\w+/)?.[0].replace(/\W/, "").toLowerCase() ?? "")
       .filter((x) => x.length > 2 && !/build|Sonnet|create|using|The|For|with|working|and|has|have|Like|Let|\d|\s+/i.test(x))
-      .slice(0, maxTags);
+  ).slice(0, maxTags);
   tags = uniqueBy(tags, (a, b) => a === b);
   return tags;
 };

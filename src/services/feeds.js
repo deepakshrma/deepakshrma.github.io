@@ -16,27 +16,29 @@ export const getFeeds = async () => {
   if (!localStorage["blog-feeds"]) {
     localStorage["blog-feeds"] = JSON.stringify({ items: [], lastUpdated: preDay.getTime() - 1 });
   }
+
   const blogFeeds = JSON.parse(localStorage["blog-feeds"]);
 
   if (preDay.getTime() > blogFeeds.lastUpdated) {
     info("getting freshed");
-    let items = await fetch("https://v1.nocodeapi.com/xdeepakv/medium/YsuyXwnSNggSzPAc").then((x) => x.json());
+    let { items } = await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@deepak-v").then((x) => x.json());
     items = items
-      .filter((i) => i.category.length)
+      .filter((i) => i.categories.length)
       .map((feed) => {
         feed.imageUrl = feed.thumbnail;
         feed.href = feed.link;
         feed.description = getContent(feed.description);
-        feed.updateAt = new Date(feed.published).toLocaleDateString();
+        feed.updateAt = new Date(feed.pubDate).toLocaleDateString();
         return feed;
       });
     localStorage["blog-feeds"] = JSON.stringify({ items, lastUpdated: Date.now() });
     return items;
   } else {
-    error("get cached");
+    info("get cached");
     return blogFeeds.items;
   }
 };
+
 export const MAX_POEM_LINES = 8;
 
 export const getPoems = async (tag) => {

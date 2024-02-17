@@ -3,9 +3,9 @@ import { filterTags, trimText } from "@/services/util";
 import ShareControl from "./ShareControl";
 import Image from "./Image";
 
-export default function Article({ title, href, tags, imageUrl, description, body = description, media, updateAt }) {
-  const filteredTags = filterTags(title, tags);
-  media = imageUrl || `https://source.unsplash.com/400x300/?${filteredTags ? filteredTags : "random"}`;
+export default function Article({ title, href, categories, imageUrl, description, body = description, media, updateAt }) {
+  const filteredTags = filterTags(title, categories);
+  media = imageUrl || `https://source.unsplash.com/300x200/?${filteredTags ? filteredTags : "random"}`;
   return (
     <div className="card">
       <ShareControl title={title} text={`${title}\n\n${body.slice(0, 120)}\n\n`} tag="Article" url={href} />

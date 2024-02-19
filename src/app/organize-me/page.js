@@ -1,7 +1,7 @@
 "use client";
 
-import { useKeyPress } from "@/services/hooks";
-import { getCurrentState, saveCurrentState } from "@/services/organize";
+import { useKeyPress, useMobile } from "@/services/hooks";
+import { getCurrentState, getTopNews, saveCurrentState } from "@/services/organize";
 import { cls, onDoubleClick, onKeyPress, reOrderByIndex } from "@/services/util";
 import { bifurcateBy, sortByKey } from "@deepakvishwakarma/ts-util";
 import { useEffect, useReducer, useRef, useState } from "react";
@@ -20,6 +20,12 @@ function organizeReducer(state, action) {
         ...state,
         updatedAt,
         qoth: action.qoth,
+      };
+    case "news":
+      return {
+        ...state,
+        updatedAt,
+        news: action.news,
       };
     case "update_note":
       return {
@@ -90,6 +96,9 @@ export default function Home() {
       .then((res) => {
         dispatch({ type: "qoth", qoth: res[0] || {} });
       });
+    getTopNews().then(({ data: { articles: news } }) => {
+      dispatch({ type: "news", news });
+    });
   }, []);
 
   const [state, dispatch] = useReducer(organizeReducer, {
@@ -108,7 +117,7 @@ export default function Home() {
   }, [state.updatedAt]);
 
   useKeyPress(() => alert("control+B"), "KeyB", true);
-
+  const isMobile = useMobile();
   let coverStyles = {};
   if (state.qoth?.tags?.length) {
     coverStyles.backgroundImage = `url(https://source.unsplash.com/1200x800/?${state.qoth?.tags},animated)`;
@@ -121,6 +130,7 @@ export default function Home() {
             <blockquote>{state.qoth?.content}</blockquote>
             <i className="author">{`- ${state.qoth?.author ?? ""}`}</i>
           </div>
+          {isMobile ? null : <Newses news={state.news} />}
           <div className="pane">
             <Notes notes={state.notes} dispatch={dispatch} />
             <Todos todos={state.todos} dispatch={dispatch} />
@@ -130,6 +140,55 @@ export default function Home() {
     </div>
   );
 }
+const Newses = ({ news = [] }) => {
+  const ref = useRef();
+  const [carouselProps, setCarouselProps] = useState({ scrollTo: 0, left: true, right: false });
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.scrollLeft = carouselProps.scrollTo;
+    }
+  }, [carouselProps.scrollTo]);
+
+  const onLeft = () => {
+    const scrollToLeft = carouselProps.scrollTo + 320;
+    let scrollTo = carouselProps.scrollTo;
+    if (3300 - scrollToLeft > ref.current.offsetWidth) {
+      scrollTo = scrollToLeft;
+    }
+    let left = 3000 - scrollToLeft > ref.current.offsetWidth;
+    const right = scrollTo > 0;
+    setCarouselProps({ scrollTo, left, right });
+  };
+  const onRight = () => {
+    const scrollToLeft = carouselProps.scrollTo - 320;
+    let scrollTo = carouselProps.scrollTo;
+    if (scrollToLeft >= 0) {
+      scrollTo = scrollToLeft;
+    }
+    let left = 3300 - scrollToLeft > ref.current.offsetWidth;
+    const right = scrollTo > 0;
+    setCarouselProps({ scrollTo, left, right });
+  };
+
+  return (
+    <div className="carousel">
+      {carouselProps.left && <i className="left bi bi-arrow-left-circle-fill" onClick={onLeft}></i>}
+      {carouselProps.right && <i className="right bi bi-arrow-right-circle-fill" onClick={onRight}></i>}
+      <div className="newses" ref={ref}>
+        {news?.map(({ title, content, image, publishedAt, source, url, description }) => (
+          <div key={`news__${title}`} className="news">
+            <a target="_blank" href={url}>
+              <img src={image} alt="" />
+            </a>
+            <h4>{title}</h4>
+            <p title={description}>{description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Card = ({ todo, onEditChange, delTodo, onDragItem, onSwitch }) => {
   // const [state, setState] = useState({ isDown: false, offsetTop: 0, offsetLeft: 0, styles: { position: "absolute", top: 0, left: 0 } });
   // const onTouchStart = (e) => {

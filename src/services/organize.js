@@ -4,3 +4,5 @@ export const getCurrentState = async () => {
 export const saveCurrentState = async (data) => {
   return (localStorage.tasks = JSON.stringify(data));
 };
+
+export const getTopNews = () => fetch("https://backend-api.deepak-v-aws.workers.dev/news").then((x) => x.json());

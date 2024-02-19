@@ -1,3 +1,4 @@
+import { debounce } from "@deepakvishwakarma/ts-util";
 import { useEffect, useState } from "react";
 
 export function useWindowProps() {
@@ -19,6 +20,7 @@ export function useKeyPress(fn, key = "Escape", ctr = false) {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, []);
 }
+
 export function useRest() {
   const [data, setData] = useState({ isFetching: false, error: null, data: null });
   const request = async (url, data = null) => {
@@ -55,8 +57,13 @@ export function useLocalStorage(key, def) {
 
 export const useMobile = () => {
   const [isMobile, setState] = useState();
+  const onResize = debounce(() => {
+    setState(/iphone|ipod|android|ie|blackberry|fennec/.test(navigator.userAgent.toLowerCase()) || window.innerWidth < 640);
+  });
   useEffect(() => {
-    setState(/iphone|ipod|android|ie|blackberry|fennec/.test(navigator.userAgent.toLowerCase()));
+    onResize();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
   return isMobile;
 };

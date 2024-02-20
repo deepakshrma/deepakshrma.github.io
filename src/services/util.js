@@ -88,9 +88,9 @@ export const POEM_TAGS = [
   "wind",
 ];
 export const cls = (props = {}) => {
-  return Object.entries(props)
-    .filter((args) => args[0])
-    .map(([key]) => key)
+  return Object.keys(props)
+    .filter((k) => props[k])
+    .map((k) => k)
     .join(" ");
 };
 export const filterTags = (title, tags, maxTags = 3) => {

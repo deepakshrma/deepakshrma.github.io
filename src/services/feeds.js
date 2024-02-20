@@ -6,11 +6,14 @@ const getContent = (innerHTML) => {
   return d.textContent.split("\n").slice(0, 10).join("\n");
 };
 
-const info = (...messages) => console.log(`%c ${messages.toString()} `, "background: #155724; color: #fff");
-const error = (...messages) => console.log(`%c ${messages.toString()} `, "background: #721c24; color: #fff");
+const info = (...messages) =>
+  console.log(`%c ${messages.toString()} `, "background: #155724; color: #fff");
 
 export const getFeeds = async () => {
-  const [mfeeds, hfeeds] = await Promise.all([getMediumFeeds(), getHashFeeds()]);
+  const [mfeeds, hfeeds] = await Promise.all([
+    getMediumFeeds(),
+    getHashFeeds(),
+  ]);
   return mfeeds.concat(hfeeds);
 };
 
@@ -93,14 +96,19 @@ export const getMediumFeeds = async () => {
   const preDay = today;
   preDay.setHours(0, 0, 0, 0);
   if (!localStorage["blog-feeds"]) {
-    localStorage["blog-feeds"] = JSON.stringify({ items: [], lastUpdated: preDay.getTime() - 1 });
+    localStorage["blog-feeds"] = JSON.stringify({
+      items: [],
+      lastUpdated: preDay.getTime() - 1,
+    });
   }
 
   const blogFeeds = JSON.parse(localStorage["blog-feeds"]);
 
   if (preDay.getTime() > blogFeeds.lastUpdated) {
     info("getting freshed");
-    let { items } = await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@deepak-v").then((x) => x.json());
+    let { items } = await fetch(
+      "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@deepak-v",
+    ).then((x) => x.json());
     items = items
       .filter((i) => i.categories.length)
       .map((feed) => {
@@ -110,7 +118,10 @@ export const getMediumFeeds = async () => {
         feed.updateAt = new Date(feed.pubDate).toLocaleDateString();
         return feed;
       });
-    localStorage["blog-feeds"] = JSON.stringify({ items, lastUpdated: Date.now() });
+    localStorage["blog-feeds"] = JSON.stringify({
+      items,
+      lastUpdated: Date.now(),
+    });
     return items;
   } else {
     info("get cached");
@@ -121,6 +132,8 @@ export const getMediumFeeds = async () => {
 export const MAX_POEM_LINES = 8;
 
 export const getPoems = async (tag) => {
-  const poems = await fetch(`https://poetrydb.org/title,random/${tag};7`).then((x) => x.json());
+  const poems = await fetch(`https://poetrydb.org/title,random/${tag};7`).then(
+    (x) => x.json(),
+  );
   return uniqueBy(poems, (a, b) => a.title === b.title).slice(0, 5);
 };

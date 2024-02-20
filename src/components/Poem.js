@@ -5,14 +5,28 @@ import { filterTags, cls, trimText } from "@/services/util";
 import ShareControl from "./ShareControl";
 import Image from "./Image";
 
-export default function Poem({ title, lines, author, full, onPoemOpen, onTagChange }) {
+export default function Poem({
+  title,
+  lines,
+  author,
+  full,
+  onPoemOpen,
+  onTagChange,
+}) {
   const filteredTags = filterTags(title, null, 4);
   const media = `https://source.unsplash.com/300x200/?${filteredTags}`;
   const isBig = lines.length > MAX_POEM_LINES;
-  const body = full ? lines.join("\n") : lines.slice(0, MAX_POEM_LINES).join("\n");
+  const body = full
+    ? lines.join("\n")
+    : lines.slice(0, MAX_POEM_LINES).join("\n");
   return (
     <div className={cls({ card: true, poem: true, full })}>
-      <ShareControl enableCopy title={title} text={`### ${title} ###\n\n${body}\n\n\n\t\tAuthor: ${author}\n\n`} tag="Poem" />
+      <ShareControl
+        enableCopy
+        title={title}
+        text={`### ${title} ###\n\n${body}\n\n\n\t\tAuthor: ${author}\n\n`}
+        tag="Poem"
+      />
       <Image src={media} />
       <div className="content">
         <h3 title={title}>{trimText(title)}</h3>

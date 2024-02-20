@@ -5,10 +5,12 @@ import Body from "../components/Body";
 
 export const metadata = {
   // metadataBase: new URL('https://decipher.dev'),
-  title: "Deepak Vishwakarma, Lead Software Engineer at JPMorgan Chase & Co. | Blockchain Expert",
+  title:
+    "Deepak Vishwakarma, Lead Software Engineer at JPMorgan Chase & Co. | Blockchain Expert",
   openGraph: {
     title: "Decipher.dev",
-    description: "Deepak Vishwakarma, Lead Software Engineer at JPMorgan Chase & Co.",
+    description:
+      "Deepak Vishwakarma, Lead Software Engineer at JPMorgan Chase & Co.",
     url: "https://decipher.dev/",
     siteName: "Decipher.dev",
     images: [

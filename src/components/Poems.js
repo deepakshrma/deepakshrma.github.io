@@ -16,7 +16,8 @@ export default function Poems({ tag, onPoemSelect, onSetPoemTag }) {
           {...poem}
           key={`poem___${poem.title}___${index}`}
           onPoemOpen={() => onPoemSelect(poem)}
-          onTagChange={(tag) => onSetPoemTag(tag)} />
+          onTagChange={(tag) => onSetPoemTag(tag)}
+        />
       ))}
     </div>
   );

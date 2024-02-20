@@ -2,8 +2,17 @@
 
 import Modal from "@/components/Modal";
 import { useKeyPress, useMobile } from "@/services/hooks";
-import { getCurrentState, getTopNews, saveCurrentState } from "@/services/organize";
-import { cls, onDoubleClick, onKeyPress, reOrderByIndex } from "@/services/util";
+import {
+  getCurrentState,
+  getTopNews,
+  saveCurrentState,
+} from "@/services/organize";
+import {
+  cls,
+  onDoubleClick,
+  onKeyPress,
+  reOrderByIndex,
+} from "@/services/util";
 import { bifurcateBy, sortByKey } from "@deepakvishwakarma/ts-util";
 import { useEffect, useReducer, useRef, useState } from "react";
 
@@ -88,12 +97,15 @@ function organizeReducer(state, action) {
   }
 }
 
-const log = (tag) => (e) => console.log(`tag: ${tag}`, e.target?.attributes.datatodoid.value, e);
+// const log = (tag) => (e) =>
+//   console.log(`tag: ${tag}`, e.target?.attributes.datatodoid.value, e);
 
 export default function Home() {
   const [showNews, setShowNews] = useState(false);
   useEffect(() => {
-    fetch("https://api.quotable.io/quotes/random?tags=love|inspirational|motivational|passion|self-care")
+    fetch(
+      "https://api.quotable.io/quotes/random?tags=love|inspirational|motivational|passion|self-care",
+    )
       .then((x) => x.json())
       .then((res) => {
         dispatch({ type: "qoth", qoth: res[0] || {} });
@@ -157,7 +169,11 @@ export default function Home() {
 }
 const Newses = ({ news = [] }) => {
   const ref = useRef();
-  const [carouselProps, setCarouselProps] = useState({ scrollTo: 0, left: true, right: false });
+  const [carouselProps, setCarouselProps] = useState({
+    scrollTo: 0,
+    left: true,
+    right: false,
+  });
   const isMobile = useMobile();
   useEffect(() => {
     if (ref.current) {
@@ -188,10 +204,17 @@ const Newses = ({ news = [] }) => {
 
   return (
     <div className="carousel">
-      {carouselProps.left && !isMobile && <i className="left bi bi-arrow-left-circle-fill" onClick={onLeft}></i>}
-      {carouselProps.right && !isMobile && <i className="right bi bi-arrow-right-circle-fill" onClick={onRight}></i>}
+      {carouselProps.left && !isMobile && (
+        <i className="left bi bi-arrow-left-circle-fill" onClick={onLeft}></i>
+      )}
+      {carouselProps.right && !isMobile && (
+        <i
+          className="right bi bi-arrow-right-circle-fill"
+          onClick={onRight}
+        ></i>
+      )}
       <div className="newses" ref={ref}>
-        {news?.map(({ title, content, image, publishedAt, source, url, description }) => (
+        {news?.map(({ title, image, url, description }) => (
           <div key={`news__${title}`} className="news">
             <a target="_blank" href={url}>
               <img src={image} alt="" />
@@ -245,7 +268,10 @@ const Card = ({ todo, onEditChange, delTodo, onDragItem, onSwitch }) => {
 function Todos({ todos = [], dispatch }) {
   const draggedItemRef = useRef();
   const [id, setIds] = useState(1);
-  const [highs, lows] = bifurcateBy(sortByKey(todos, "id", -1), (todo) => todo.priority === 1);
+  const [highs, lows] = bifurcateBy(
+    sortByKey(todos, "id", -1),
+    (todo) => todo.priority === 1,
+  );
   const onEditChange = ({ todo, text }) => {
     if (todo.text !== text) {
       todo.text = text;
@@ -253,10 +279,14 @@ function Todos({ todos = [], dispatch }) {
     }
   };
   const onSwitch = (todo, priority) => {
-    if (todo && todo.priority !== priority) dispatch({ type: "update_todo", todo: { ...todo, priority } });
+    if (todo && todo.priority !== priority)
+      dispatch({ type: "update_todo", todo: { ...todo, priority } });
   };
   const addNew = () => {
-    dispatch({ type: "add_todo", todo: { id: Date.now(), text: `TODO--${id}`, priority: 1 } });
+    dispatch({
+      type: "add_todo",
+      todo: { id: Date.now(), text: `TODO--${id}`, priority: 1 },
+    });
     setIds(id + 1);
   };
   const delTodo = (todo) => {
@@ -327,7 +357,10 @@ function Notes({ notes = [], dispatch }) {
   };
 
   const handleUpdateNote = (note, isDoubleClick = false) => {
-    dispatch({ type: isDoubleClick ? "delete_note" : "update_note", note: { ...note, done: !note.done } });
+    dispatch({
+      type: isDoubleClick ? "delete_note" : "update_note",
+      note: { ...note, done: !note.done },
+    });
   };
 
   return (
@@ -335,19 +368,30 @@ function Notes({ notes = [], dispatch }) {
       <h3>Notes</h3>
       <br />
       <div className="note-ctr">
-        <input autoFocus ref={inputNoteRef} type="text" onKeyDown={onKeyPress(createNewNote)} />
+        <input
+          autoFocus
+          ref={inputNoteRef}
+          type="text"
+          onKeyDown={onKeyPress(createNewNote)}
+        />
         <i className="bi bi-send" onClick={createNewNote}></i>
       </div>
       <ul>
         {notes.map((x, index) => (
           <li
-            className={cls({ note: true, done: x.done, highlight: highlightNodeId === x.id })}
+            className={cls({
+              note: true,
+              done: x.done,
+              highlight: highlightNodeId === x.id,
+            })}
             onClick={onDoubleClick((_, d) => handleUpdateNote(x, d))}
             key={`note__${x.id}`}
             datanoteid={x.id}
             onDrop={handleSwap}
             onDragEnter={() => setHNoteId(x.id)}
-            onDrag={(ev) => (draggedItemRef.current = ev.target.attributes?.datanoteid.value)}
+            onDrag={(ev) =>
+              (draggedItemRef.current = ev.target.attributes?.datanoteid.value)
+            }
             onDragOver={(e) => e.preventDefault()}
             draggable
           >

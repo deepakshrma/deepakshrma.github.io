@@ -1,6 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-const ImageComponent = ({ src, placeholderImg = "https://placehold.co/300x200/333/fff?text=...", errorImg = placeholderImg, ...props }) => {
+const ImageComponent = ({
+  src,
+  placeholderImg = "https://placehold.co/300x200/333/fff?text=...",
+  errorImg = placeholderImg,
+  ...props
+}) => {
   const [imgSrc, setSrc] = useState(null);
   const onLoad = useCallback(() => {
     setSrc(src);
@@ -21,6 +26,12 @@ const ImageComponent = ({ src, placeholderImg = "https://placehold.co/300x200/33
     };
   }, [src, onLoad, onError]);
 
-  return <div className="cover" style={imgSrc ? { backgroundImage: `url(${imgSrc})` } : {}} {...props} />;
+  return (
+    <div
+      className="cover"
+      style={imgSrc ? { backgroundImage: `url(${imgSrc})` } : {}}
+      {...props}
+    />
+  );
 };
 export default ImageComponent;

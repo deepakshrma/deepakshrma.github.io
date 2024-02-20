@@ -6,7 +6,12 @@ import Image from "./Image";
 export default function PageCard({ title, img, description, link }) {
   return (
     <div className="card">
-      <ShareControl title={title} text={`${title}\n\n${description}`} tag="Link" url={link} />
+      <ShareControl
+        title={title}
+        text={`${title}\n\n${description}`}
+        tag="Link"
+        url={link}
+      />
       <a href={link} target="_blank">
         <Image src={img} />
       </a>

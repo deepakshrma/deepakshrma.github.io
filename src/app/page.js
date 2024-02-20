@@ -50,7 +50,11 @@ export default function Home() {
           Random Poems on <i suppressHydrationWarning>#{deferredPoemTag}</i>
         </h2>
         <Suspense fallback={<h2>Loading...</h2>}>
-          <Poems tag={deferredPoemTag} onPoemSelect={(poem) => setSelectedPoem(poem)} onSetPoemTag={(t) => setPoemTag(t)} />
+          <Poems
+            tag={deferredPoemTag}
+            onPoemSelect={(poem) => setSelectedPoem(poem)}
+            onSetPoemTag={(t) => setPoemTag(t)}
+          />
         </Suspense>
       </div>
       {selectedPoem && (

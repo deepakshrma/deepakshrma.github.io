@@ -16,10 +16,17 @@ export default function Article({
   source = "medium",
 }) {
   const filteredTags = filterTags(title, categories);
-  media = imageUrl || `https://source.unsplash.com/300x200/?${filteredTags ? filteredTags : "random"}`;
+  media =
+    imageUrl ||
+    `https://source.unsplash.com/300x200/?${filteredTags ? filteredTags : "random"}`;
   return (
     <div className="card">
-      <ShareControl title={title} text={`${title}\n\n${body.slice(0, 120)}\n\n`} tag="Article" url={href} />
+      <ShareControl
+        title={title}
+        text={`${title}\n\n${body.slice(0, 120)}\n\n`}
+        tag="Article"
+        url={href}
+      />
       <a href={href} target="_blank">
         <Image src={media} />
       </a>
@@ -37,7 +44,12 @@ export default function Article({
         </small>
         <div className="tags">
           {filteredTags.map((tag) => (
-            <a className="tag" target="_blank" key={`${title}__tag___${tag}__`} href={`https://${source}.com/search?q=${tag}`}>
+            <a
+              className="tag"
+              target="_blank"
+              key={`${title}__tag___${tag}__`}
+              href={`https://${source}.com/search?q=${tag}`}
+            >
               #{tag}
             </a>
           ))}

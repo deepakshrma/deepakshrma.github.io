@@ -40,7 +40,8 @@ export const PAGES_INFO = [
   {
     title: "Blockchain Introduction",
     img: "https://source.unsplash.com/400x300/?crypto,currency,digital,animation",
-    description: "Tutorial: Sample code for blockchain and sample app, Solidity Introduction",
+    description:
+      "Tutorial: Sample code for blockchain and sample app, Solidity Introduction",
     link: "https://decipher.dev/blockchain-introduction/",
   },
   // {
@@ -53,7 +54,8 @@ export const PAGES_INFO = [
   {
     title: "Googles Codelabs - Node JS Library",
     img: "https://source.unsplash.com/400x300/?lab,chemistry,beakers,flasks,animation",
-    description: "Go Lang claat tool replica written in node js, using marked parser",
+    description:
+      "Go Lang claat tool replica written in node js, using marked parser",
     link: "https://decipher.dev/googles-codelabs/",
   },
 ];
@@ -87,7 +89,7 @@ export const POEM_TAGS = [
 ];
 export const cls = (props = {}) => {
   return Object.entries(props)
-    .filter(([key, value]) => value)
+    .filter((args) => args[0])
     .map(([key]) => key)
     .join(" ");
 };
@@ -97,14 +99,21 @@ export const filterTags = (title, tags, maxTags = 3) => {
     title
       .split(/\W+/)
       .map((x) => x.match(/\w+/)?.[0].replace(/\W/, "").toLowerCase() ?? "")
-      .filter((x) => x.length > 2 && !/build|Sonnet|create|using|The|For|with|working|and|has|have|Like|Let|\d|\s+/i.test(x))
+      .filter(
+        (x) =>
+          x.length > 2 &&
+          !/build|Sonnet|create|using|The|For|with|working|and|has|have|Like|Let|\d|\s+/i.test(
+            x,
+          ),
+      )
   ).slice(0, maxTags);
   tags = uniqueBy(tags, (a, b) => a === b);
   return tags;
 };
 
 const MAX_CHARS = 50;
-export const trimText = (s, maxLen = MAX_CHARS) => `${s.replace(/.+(:|-) /, "").slice(0, maxLen)}${s.length > maxLen ? "..." : ""}`;
+export const trimText = (s, maxLen = MAX_CHARS) =>
+  `${s.replace(/.+(:|-) /, "").slice(0, maxLen)}${s.length > maxLen ? "..." : ""}`;
 
 export const onDoubleClick = (fn) => {
   const dfn = debounce(fn);

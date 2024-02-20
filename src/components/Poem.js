@@ -17,7 +17,7 @@ export default function Poem({ title, lines, author, full, onPoemOpen, onTagChan
       <div className="content">
         <h3 title={title}>{trimText(title)}</h3>
         <pre>{body}</pre>
-        <small className="time">
+        <small className="secondary-text">
           <b>Author: </b> {author}
         </small>
         <div className="tags">

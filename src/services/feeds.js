@@ -10,6 +10,85 @@ const info = (...messages) => console.log(`%c ${messages.toString()} `, "backgro
 const error = (...messages) => console.log(`%c ${messages.toString()} `, "background: #721c24; color: #fff");
 
 export const getFeeds = async () => {
+  const [mfeeds, hfeeds] = await Promise.all([getMediumFeeds(), getHashFeeds()]);
+  return mfeeds.concat(hfeeds);
+};
+
+export const getHashFeeds = async (topic = "blockchain") => {
+  const query = `{
+    tag(slug: "${topic}") {
+      id
+      name
+      slug
+      logo
+      tagline
+      info {
+        markdown
+        html
+        text
+      }
+      followersCount
+      postsCount
+      posts(first: 10, filter: {sortBy: popular}) {
+        edges {
+          node {
+            title
+            brief
+            url
+            author {
+              name
+            }
+            tags {
+              name
+            }
+            coverImage {
+              url
+            }
+            reactionCount
+            publishedAt
+          }
+        }
+      }
+    }
+  }`;
+
+  const {
+    data: { tag: { posts: { edges } } = { posts: { edges: [] } } },
+  } = await fetch("https://gql.hashnode.com/", {
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ query }),
+    method: "POST",
+    mode: "cors",
+    credentials: "include",
+  }).then((x) => x.json());
+  return edges.map((edge) => {
+    const {
+      title,
+      url: guid,
+      brief: description,
+      author: { name: author },
+      tags,
+      coverImage,
+      reactionCount,
+      publishedAt,
+    } = edge.node;
+    return {
+      source: "HASHNODE",
+      title,
+      author,
+      categories: tags?.map(({ name }) => name?.replace(/^#/, "")),
+      description,
+      guid,
+      href: guid,
+      updateAt: new Date(publishedAt).toLocaleDateString(),
+      imageUrl: coverImage?.url || "",
+      reactionCount,
+    };
+  });
+};
+export const getMediumFeeds = async () => {
   const today = new Date();
   const preDay = today;
   preDay.setHours(0, 0, 0, 0);

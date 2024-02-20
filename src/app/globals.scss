@@ -299,6 +299,7 @@ a {
     width: 100%;
     height: 200px;
     background-size: cover;
+    background-position: 50%;
     background-image: linear-gradient(#e66465, #9198e5);
   }
 
@@ -317,14 +318,14 @@ a {
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: .25rem;
     margin-bottom: 20px;
 
     p {
       margin-bottom: 10px;
     }
 
-    .time {
+    .secondary-text {
       color: $color_3;
       align-self: flex-end;
     }

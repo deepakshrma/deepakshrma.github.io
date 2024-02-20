@@ -498,6 +498,11 @@ a {
 .news-modal {
   .container {
     overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .newses {
@@ -576,7 +581,9 @@ div.center {
     overscroll-behavior: contain;
     scroll-padding: 0 16px;
     padding: 0 16px;
-
+    &::-webkit-scrollbar {
+      display: none;
+    }
     .news {
       width: 300px;
       height: 300px;

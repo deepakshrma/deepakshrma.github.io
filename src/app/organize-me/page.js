@@ -1,5 +1,6 @@
 "use client";
 
+import Modal from "@/components/Modal";
 import { useKeyPress, useMobile } from "@/services/hooks";
 import { getCurrentState, getTopNews, saveCurrentState } from "@/services/organize";
 import { cls, onDoubleClick, onKeyPress, reOrderByIndex } from "@/services/util";
@@ -90,6 +91,7 @@ function organizeReducer(state, action) {
 const log = (tag) => (e) => console.log(`tag: ${tag}`, e.target?.attributes.datatodoid.value, e);
 
 export default function Home() {
+  const [showNews, setShowNews] = useState(false);
   useEffect(() => {
     fetch("https://api.quotable.io/quotes/random?tags=love|inspirational|motivational|passion|self-care")
       .then((x) => x.json())
@@ -130,7 +132,20 @@ export default function Home() {
             <blockquote>{state.qoth?.content}</blockquote>
             <i className="author">{`- ${state.qoth?.author ?? ""}`}</i>
           </div>
-          {isMobile ? null : <Newses news={state.news} />}
+          {isMobile && showNews && (
+            <Modal className="news-modal" onClose={() => setShowNews(false)}>
+              <Newses news={state.news} />
+            </Modal>
+          )}
+          {isMobile ? (
+            <div className="center">
+              <button className="button" onClick={() => setShowNews(true)}>
+                News
+              </button>
+            </div>
+          ) : (
+            <Newses news={state.news} />
+          )}
           <div className="pane">
             <Notes notes={state.notes} dispatch={dispatch} />
             <Todos todos={state.todos} dispatch={dispatch} />
@@ -143,6 +158,7 @@ export default function Home() {
 const Newses = ({ news = [] }) => {
   const ref = useRef();
   const [carouselProps, setCarouselProps] = useState({ scrollTo: 0, left: true, right: false });
+  const isMobile = useMobile();
   useEffect(() => {
     if (ref.current) {
       ref.current.scrollLeft = carouselProps.scrollTo;
@@ -172,8 +188,8 @@ const Newses = ({ news = [] }) => {
 
   return (
     <div className="carousel">
-      {carouselProps.left && <i className="left bi bi-arrow-left-circle-fill" onClick={onLeft}></i>}
-      {carouselProps.right && <i className="right bi bi-arrow-right-circle-fill" onClick={onRight}></i>}
+      {carouselProps.left && !isMobile && <i className="left bi bi-arrow-left-circle-fill" onClick={onLeft}></i>}
+      {carouselProps.right && !isMobile && <i className="right bi bi-arrow-right-circle-fill" onClick={onRight}></i>}
       <div className="newses" ref={ref}>
         {news?.map(({ title, content, image, publishedAt, source, url, description }) => (
           <div key={`news__${title}`} className="news">

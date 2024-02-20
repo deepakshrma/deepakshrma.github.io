@@ -54,7 +54,7 @@ export default function Home() {
         </Suspense>
       </div>
       {selectedPoem && (
-        <Modal onClose={() => setSelectedPoem(null)}>
+        <Modal className="inverted" onClose={() => setSelectedPoem(null)}>
           <Poem {...selectedPoem} full />
         </Modal>
       )}

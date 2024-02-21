@@ -94,21 +94,24 @@ export const cls = (props = {}) => {
     .join(" ");
 };
 export const filterTags = (title, tags, maxTags = 3) => {
-  tags = (
-    tags ||
-    title
-      .split(/\W+/)
-      .map((x) => x.match(/\w+/)?.[0].replace(/\W/, "").toLowerCase() ?? "")
-      .filter(
-        (x) =>
-          x.length > 2 &&
-          !/build|Sonnet|create|using|The|For|with|working|and|has|have|Like|Let|\d|\s+/i.test(
-            x,
-          ),
-      )
-  ).slice(0, maxTags);
-  tags = uniqueBy(tags, (a, b) => a === b);
-  return tags;
+  let t = [];
+  if (tags?.length) {
+    t = tags.join(" ");
+  } else {
+    t = title;
+  }
+  t = t
+    .split(/\W+/)
+    .map((x) => x.match(/\w+/)?.[0].replace(/\W/, "").toLowerCase() ?? "")
+    .filter(
+      (x) =>
+        x.length > 2 &&
+        !/build|Sonnet|create|using|The|For|with|working|and|has|have|Like|Let|\d|\s+/i.test(
+          x,
+        ),
+    )
+    .slice(0, maxTags);
+  return uniqueBy(t, (a, b) => a === b);
 };
 
 const MAX_CHARS = 50;
@@ -155,3 +158,6 @@ export const reOrderByIndex = (srcId, targetId, data) => {
 
   return result;
 };
+if (typeof navigator !== "undefined" && "serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/serviceworker.js");
+}

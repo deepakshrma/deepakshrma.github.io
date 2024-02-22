@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="favicon.svg" sizes="any" />
         <script
           src="https://alwingulla.com/88/tag.min.js"
-          data-zone="46088"
+          data-zone="46090"
           async
           data-cfasync="false"
         ></script>

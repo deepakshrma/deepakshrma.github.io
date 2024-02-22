@@ -37,12 +37,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="icon" href="favicon.svg" sizes="any" />
-        <script
-          src="https://alwingulla.com/88/tag.min.js"
-          data-zone="46090"
-          async
-          data-cfasync="false"
-        ></script>
       </head>
       <Body child={children} />
       <GoogleAnalytics gaId="G-VX1V9NRMDC" />

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "sitemap": "node scripts/generate-sitemap.js",
-    "build": "next build && npm run sitemap",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
     "fmt": "prettier --write .",
@@ -15,11 +15,11 @@
     "@deepakvishwakarma/ts-util": "^1.1.0",
     "@next/bundle-analyzer": "^14.1.0",
     "@next/third-parties": "^14.1.0",
-    "axios": "^1.6.7",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
-    "sass": "^1.70.0"
+    "sass": "^1.70.0",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
@@ -31,5 +31,7 @@
     "postcss": "^8",
     "prettier": "^3.2.5"
   },
-  "eslintIgnore": ["sw.js"]
+  "eslintIgnore": [
+    "sw.js"
+  ]
 }

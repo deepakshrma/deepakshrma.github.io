@@ -51,6 +51,9 @@ function Body({ child }) {
           <a className="link" href="/about-me">
             About me
           </a>
+          <a className="link" href="/free-books">
+            Free Books
+          </a>
           <span className="fit"></span>
           <div className="side-links">
             <a

@@ -37,6 +37,11 @@ export default function Home() {
           ))}
         </div>
       </div>
+      <div className="sub center">
+        <a className="button" href="/free-books" target="_blank">
+          Free Books
+        </a>
+      </div>
       <div className="sub">
         <h2>Recent Articles</h2>
         <div className="cards">
@@ -44,6 +49,11 @@ export default function Home() {
             <Article key={`page_${page.title}`} {...page} />
           ))}
         </div>
+      </div>
+      <div className="sub center">
+        <a className="button" href="/free-books" target="_blank">
+          Free Books
+        </a>
       </div>
       <div className="sub">
         <h2>
@@ -62,6 +72,11 @@ export default function Home() {
           <Poem {...selectedPoem} full />
         </Modal>
       )}
+      <div className="sub center">
+        <a className="button" href="/free-books" target="_blank">
+          Free Books
+        </a>
+      </div>
     </div>
   );
 }

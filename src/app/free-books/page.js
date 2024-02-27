@@ -7,6 +7,8 @@ export default function FreeBooks() {
       link: "https://decipher.dev/ai-books-blockchain-basics/",
       cover:
         "https://media.mkpcdn.com/prod/1000x/80366446f96abe81684981d19f766f93_793542.jpg",
+      description:
+        "journey to unravel the intricacies of blockchain technology, focusing particularly on Ethereum and its transformative impact on decentralized applications (DApps), smart contracts, and the broader blockchain ecosystem.",
     },
   ];
 
@@ -32,13 +34,14 @@ export default function FreeBooks() {
         knowledge with others.
       </p>
       <div className="books">
-        {books.map(({ title, link, cover }) => {
+        {books.map(({ title, link, description = "", cover }) => {
           return (
             <div key={`book___${title}`} className="book">
-              <h2>{title}</h2>
-              <a href={link} target="_blank">
+              <a href={link} target="_blank" className="cover">
                 <img src={cover} alt={title} />
-              </a>
+              </a>{" "}
+              <h3>{title}</h3>
+              <p>{description}</p>
               <a className="button" href={link} target="_blank">
                 Read Book
               </a>

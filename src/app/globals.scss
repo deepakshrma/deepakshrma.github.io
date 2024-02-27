@@ -746,12 +746,24 @@ div.center {
   .books {
     display: flex;
     gap: 1rem;
+    margin-top: 10px;
     .book {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 8px;
-      flex-basis: 50%;
+      width: 300px;
+      height: 500px;
+      border: 1px solid #d3d3d3;
+      border-radius: 4px;
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)),
+        var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+      padding: 8px;
+      p {
+        margin-bottom: auto;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
       img {
         width: 300px;
       }

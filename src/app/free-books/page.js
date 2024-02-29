@@ -1,5 +1,7 @@
 "use client";
 
+import Anchor from "@/components/Anchor";
+
 export default function FreeBooks() {
   const books = [
     {
@@ -37,14 +39,24 @@ export default function FreeBooks() {
         {books.map(({ title, link, description = "", cover }) => {
           return (
             <div key={`book___${title}`} className="book">
-              <a href={link} target="_blank" className="cover">
+              <Anchor
+                href={link}
+                target="_blank"
+                className="cover"
+                linkId="read_book_1"
+              >
                 <img src={cover} alt={title} />
-              </a>{" "}
+              </Anchor>
               <h3>{title}</h3>
               <p>{description}</p>
-              <a className="button" href={link} target="_blank">
+              <Anchor
+                className="button"
+                href={link}
+                target="_blank"
+                linkId="read_book_2"
+              >
                 Read Book
-              </a>
+              </Anchor>
             </div>
           );
         })}

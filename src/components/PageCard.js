@@ -2,6 +2,7 @@
 import { trimText } from "@/services/util";
 import ShareControl from "./ShareControl";
 import Image from "./Image";
+import Anchor from "./Anchor";
 
 export default function PageCard({ title, img, description, link }) {
   return (
@@ -12,16 +13,21 @@ export default function PageCard({ title, img, description, link }) {
         tag="Link"
         url={link}
       />
-      <a href={link} target="_blank">
+      <Anchor href={link} target="_blank" linkId={`showcase_clicked_${title}`}>
         <Image src={img} />
-      </a>
+      </Anchor>
       <div className="content">
         <h3 title={title}>{trimText(title)}</h3>
         <p>{description}</p>
       </div>
-      <a href={link} target="_blank" className="button control">
+      <Anchor
+        href={link}
+        target="_blank"
+        className="button control"
+        linkId={`showcase_clicked_${title}`}
+      >
         Read more
-      </a>
+      </Anchor>
     </div>
   );
 }

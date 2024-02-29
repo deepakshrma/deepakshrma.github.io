@@ -1,5 +1,6 @@
 "use client";
 
+import Anchor from "@/components/Anchor";
 import Modal from "@/components/Modal";
 import { useKeyPress, useMobile } from "@/services/hooks";
 import {
@@ -202,6 +203,22 @@ const Newses = ({ news = [] }) => {
     setCarouselProps({ scrollTo, left, right });
   };
 
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (!carouselProps.left) {
+        return setCarouselProps({
+          scrollTo: 0,
+          left: true,
+          right: false,
+        });
+      }
+      if (carouselProps.left) {
+        onLeft();
+      }
+    }, 5000);
+    return () => clearInterval(id);
+  }, [carouselProps, onLeft]);
+
   return (
     <div className="carousel">
       {carouselProps.left && !isMobile && (
@@ -215,10 +232,14 @@ const Newses = ({ news = [] }) => {
       )}
       <div className="newses" ref={ref}>
         {news?.map(({ title, image, url, description }) => (
-          <div key={`news__${title}`} className="news">
-            <a target="_blank" href={url}>
+          <div key={`news__${title}`} className={cls({ news: true })}>
+            <Anchor
+              target="_blank"
+              href={url}
+              linkId={`news__clicked_${title}`}
+            >
               <img src={image} alt="" />
-            </a>
+            </Anchor>
             <h4>{title}</h4>
             <p title={description}>{description}</p>
           </div>
@@ -370,6 +391,7 @@ function Notes({ notes = [], dispatch }) {
       <div className="note-ctr">
         <input
           autoFocus
+          placeholder="Create new"
           ref={inputNoteRef}
           type="text"
           onKeyDown={onKeyPress(createNewNote)}

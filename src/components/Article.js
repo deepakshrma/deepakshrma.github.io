@@ -2,6 +2,7 @@
 import { filterTags, trimText } from "@/services/util";
 import ShareControl from "./ShareControl";
 import Image from "./Image";
+import Anchor from "./Anchor";
 
 export default function Article({
   title,
@@ -27,9 +28,9 @@ export default function Article({
         tag="Article"
         url={href}
       />
-      <a href={href} target="_blank">
+      <Anchor href={href} target="_blank" linkId={`article_clicked_${title}`}>
         <Image src={media} />
-      </a>
+      </Anchor>
       <div className="content">
         <h3 title={title}>{trimText(title)}</h3>
         <p>{body}</p>
@@ -55,9 +56,14 @@ export default function Article({
           ))}
         </div>
       </div>
-      <a href={href} target="_blank" className="button control">
+      <Anchor
+        href={href}
+        target="_blank"
+        className="button control"
+        linkId={`article_clicked_${title}`}
+      >
         Learn more
-      </a>
+      </Anchor>
     </div>
   );
 }

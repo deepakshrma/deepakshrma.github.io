@@ -32,10 +32,17 @@ export default function Article({
         <Image src={media} />
       </Anchor>
       <div className="content">
+        <ShareControl
+          enableCopy
+          title={trimText(title)}
+          text={`### ${title} ###\n\n${body}\n\n\t\tAuthor: ${author}\n\t\tSource: ${source}\n\n`}
+          tag="Blog"
+          url={href}
+        />
         <h3 title={title}>{trimText(title)}</h3>
         <p>{body}</p>
         <small className="secondary-text">
-          <b>Last Update: </b> {updateAt}
+          <b>Published At: </b> {updateAt}
         </small>
         <small className="secondary-text">
           <b>Author: </b> {author ?? "Deepak Vishwakarma"}

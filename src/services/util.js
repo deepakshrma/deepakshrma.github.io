@@ -1,7 +1,9 @@
 import { debounce, uniqueBy } from "@deepakvishwakarma/ts-util";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export const copyToClipboard = async (text) => {
   await navigator.clipboard.writeText(`${text}site: ${location.href}`);
+  sendGAEvent({ event: "share", value: text.split("\n")[0] });
   console.log("copied: ", text);
 };
 let isShareOpen = false;
@@ -16,6 +18,7 @@ export const share = async ({ title, text, tag = "", url }) => {
     isShareOpen = true;
     console.info(shareData);
     await navigator.share(shareData);
+    sendGAEvent({ event: "share", value: title.split("\n")[0] });
     console.log(`${tag}: ${title} shared successfully`);
   } catch (err) {
     console.error(err);

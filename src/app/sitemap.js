@@ -2,14 +2,14 @@ import { uniqueBy } from "@deepakvishwakarma/ts-util";
 var xml2js = require("xml2js");
 var parser = new xml2js.Parser();
 const sites = [
-  "https://decipher.dev/30-seconds-of-typescript/sitemap.xml",
-  "https://decipher.dev/30-seconds-of-typescript/zh/sitemap.xml",
-  "https://decipher.dev/deno-by-example/sitemap.xml",
-  "https://decipher.dev/blockchain-introduction/sitemap.xml",
-  "https://decipher.dev/ai-books-blockchain-basics/sitemap.xml",
+  // "https://decipher.dev/30-seconds-of-typescript/sitemap.xml",
+  // "https://decipher.dev/30-seconds-of-typescript/zh/sitemap.xml",
+  // "https://decipher.dev/deno-by-example/sitemap.xml",
+  // "https://decipher.dev/blockchain-introduction/sitemap.xml",
+  // "https://decipher.dev/ai-books-blockchain-basics/sitemap.xml",
 ];
 export default async function sitemap() {
-  let links = ["/", "/organize-me", "/about-me"].map((path) => ({
+  let links = ["/", "/organize-me", "/about-me", "/free-books"].map((path) => ({
     url: `https://decipher.dev${path}`,
     lastModified: new Date(),
     changeFrequency: "weekly",

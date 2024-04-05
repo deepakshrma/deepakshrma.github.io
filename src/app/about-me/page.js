@@ -14,14 +14,18 @@ const toUl = (str = "") => {
 export default function Home() {
   const page = useRef(null);
   const iframe = useRef(null);
-  const download = () => {
-    var pri = iframe.current.contentWindow;
-    pri.document.open();
-    pri.document.write(page.current.innerHTML);
-    pri.document.close();
-    pri.focus();
-    pri.print();
-  };
+  // const download = () => {
+  //   var pri = iframe.current.contentWindow;
+  //   pri.document.open();
+  //   pri.document.write(page.current.innerHTML);
+  //   pri.document.close();
+  //   pri.focus();
+  //   pri.print();
+  // };
+  const download = () =>
+    window.open(
+      "https://drive.google.com/uc?export=download&id=1qiU3lGIXZxweoJRiptZrdjEomYkFLyr2",
+    );
   return (
     <div className="container concise">
       <button className="download button icon" onClick={download}>
@@ -108,7 +112,7 @@ export default function Home() {
           strong drive for continuous learning and professional growth.
         </p>
         <br />
-        <h3>Skills</h3>
+        <h2>Skills</h2>
         <hr />
         <p>
           <b>Tech Stacks: </b> Javascript, React, Kotlin, Java, Node.js,
@@ -185,6 +189,7 @@ Aug 2013 - Jun 2014 (11 months)`}</pre>
           {toUl(`Developed a simulator for communication with external systems (ACOS, WEB API, etc.)
 Built multiple Zimlets (Add-Ons/Plugins) for Bmail(a project of Biglobe) to enhance the User Capabilities Develop a heat-map tool to trace the log of 100s of Zimbra mail servers and collect information to increase visibility`)}
         </div>
+        <br />
         <h2>Projects</h2>
         <hr />
         <a href="https://decipher.dev/30-seconds-of-typescript/docs/">
@@ -196,7 +201,7 @@ Built multiple Zimlets (Add-Ons/Plugins) for Bmail(a project of Biglobe) to enha
           addressing coding bugs. Goal is for snippets to rank in top 5 on
           Google. Code snippets improve productivity and save time.
         </p>
-        <hr />
+        <br />
         <h2>Education</h2>
         <hr />
         <h3>West Bengal University of Technology, Kolkata</h3>
@@ -210,16 +215,17 @@ Services
           {`Higher Secondary, Physics, Maths, Chemistry
 2007 - 2011`}
         </pre>
+        <br />
         <h2>Awards/Certificates</h2>
         <hr />
         <p>
-          AWS Certified Cloud Practitioner -
+          AWS Certified Cloud Practitioner - &nbsp;
           <a href="https://www.credly.com/badges/866ccfe3-6a5c-4c99-8736-16e38909823e/linked_in_profile">
             Amazon Web Services (AWS) Issued Aug 2023 - Expires Aug 2026
           </a>
         </p>
         <p>
-          Blockchain Basics - University at Buffalo -
+          Blockchain Basics - University at Buffalo -&nbsp;
           <a href="https://coursera.org/share/8859148d04bcbc60140ff33bdb19691c">
             Certificate
           </a>

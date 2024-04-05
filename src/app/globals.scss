@@ -396,7 +396,7 @@ a {
   background-color: $background-color_2;
   border: none;
   user-select: none;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -404,7 +404,7 @@ a {
   padding: 0.5rem;
   color: $color_4;
   text-decoration: none;
-
+  cursor: pointer;
   &:hover {
     background-color: $background-color_3;
   }

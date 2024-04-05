@@ -6,7 +6,7 @@ import Body from "../components/Body";
 export const metadata = {
   // metadataBase: new URL('https://decipher.dev'),
   title:
-    "Deepak Vishwakarma, Lead Software Engineer at JPMorgan Chase & Co. | Blockchain Expert",
+    "Deepak Vishwakarma, Lead Software Engineer at JPMorgan Chase & Co. | Blockchain Technology Expert and Tech Leader ",
   openGraph: {
     title: "Decipher.dev",
     description:
@@ -23,8 +23,9 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
-  description:
-    "With over 12 years of software development experience and a passion for blockchain technology, I am a Lead Software Engineer at JPMorgan Chase, where I create innovative and secure solutions for enterprise applications. I have a strong background in developing and deploying smart contracts on Ethereum and Quorum, designing and implementing private blockchain networks, and integrating blockchain solutions with existing enterprise systems and APIs.",
+  description: ` Lead Software Engineer with 12+ years of experience developing solutions for enterprise applications. Proficient in blockchain
+    tech, cloud migration, full-stack development, leadership, problem-solving, quality assurance, and adaptability. Passionate about
+    continuous learning and exploring new opportunities to push the boundaries of technology.`,
 };
 
 // export async function generateMetadata({ params, searchParams }, parent) {

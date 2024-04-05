@@ -1,6 +1,16 @@
 "use client";
 import { useRef } from "react";
 
+const toUl = (str = "") => {
+  console.log(str, str.split("\n"));
+  return (
+    <ul>
+      {str.split("\n").map((x) => (
+        <li key={`html____${x}`}>{x}</li>
+      ))}
+    </ul>
+  );
+};
 export default function Home() {
   const page = useRef(null);
   const iframe = useRef(null);
@@ -48,135 +58,171 @@ export default function Home() {
             </p>
           </div>
         </div>
-
+        <h2>Summary</h2>
+        <hr />
         <p>
-          With over 12 years of software development experience and a passion
-          for blockchain technology, I am a Lead Software Engineer at JPMorgan
-          Chase, where I create innovative and secure solutions for enterprise
-          applications. I have a strong background in developing and deploying
-          smart contracts on Ethereum and Quorum, designing and implementing
-          private blockchain networks, and integrating blockchain solutions with
-          existing enterprise systems and APIs.
+          Lead Software Engineer with 12+ years of experience developing
+          solutions for enterprise applications. Proficient in blockchain tech,
+          cloud migration, full-stack development, leadership, problem-solving,
+          quality assurance, and adaptability. Passionate about continuous
+          learning and exploring new opportunities to push the boundaries of
+          technology.
         </p>
         <br />
+        <h3>Key Strengths:</h3>
         <p>
-          In my current role, I also lead the migration of multiple
-          micro-services to AWS cloud production, using Terraform and other
-          cloud technologies. Additionally, I work with various frontend and
-          backend technologies, such as React, Kotlin, Node.js, and Golang, to
-          build performant and user-friendly applications. I enjoy collaborating
-          with cross-functional teams, communicating technical concepts
-          effectively, and solving complex problems creatively. I am always
-          eager to learn new skills and explore the potential of blockchain to
-          transform various domains and industries, such as finance, supply
-          chain, and healthcare.
+          <b>Expertise in Blockchain Technology: </b> Proficient in developing
+          and deploying smart contracts on Ethereum and Quorum, and experienced
+          in leading the migration of microservices to AWS cloud production
+          using Terraform and other cloud technologies.
         </p>
-
-        <h3>Experience</h3>
-        <h2>Lead Software Engineering, Vice President</h2>
+        <p>
+          <b>Cloud Migration and Architecture:</b>Experienced in leading the
+          migration of microservices to AWS cloud production, utilizing
+          Terraform and other cloud technologies to optimize performance and
+          scalability.
+        </p>
+        <p>
+          <b>Full-Stack Development Skills:</b> Skilled in frontend and backend
+          technologies such as React, Kotlin, Node.js, and Golang, with a focus
+          on building user-friendly and performant applications.
+        </p>
+        <p>
+          <b>Leadership and Collaboration:</b> Demonstrated ability to lead
+          teams, facilitate cross-functional collaboration, and communicate
+          effectively with stakeholders to drive project success.
+        </p>
+        <p>
+          <b>Problem-Solving and Innovation:</b> Known for creative
+          problem-solving skills and a passion for exploring innovative
+          solutions to complex technical challenges.
+        </p>
+        <p>
+          <b>Quality Assurance and Continuous Improvement:</b> Committed to
+          delivering high-quality products through robust quality assurance
+          processes and a culture of continuous improvement.
+        </p>
+        <p>
+          <b>Adaptability and Learning Agility:</b> Proven ability to adapt to
+          new technologies, methodologies, and business requirements, with a
+          strong drive for continuous learning and professional growth.
+        </p>
+        <br />
+        <h3>Skills</h3>
+        <hr />
+        <p>
+          <b>Tech Stacks: </b> Javascript, React, Kotlin, Java, Node.js,
+          Blockchain, Smart Contract, Ethereum, Springboot, AWS, Terraform,
+        </p>
+        <p>
+          <b>Design Skills: </b> Financial Technology, Critical Thinking,
+          Analytical Skills, TDD, DDD, Software Development, DApp, Distributed
+          Application
+        </p>
+        <p>
+          <b>Soft Skils: </b> Team Management, Communication, Critical Thinking,
+          Solution Architecture, Collaborate, Agile, Communication Skills,
+          Regulatory, Payment, Banking, Fintech
+        </p>
+        <br />
+        <h2>Work Experience</h2>
+        <hr />
+        <h3>Lead Software Engineering, Vice President</h3>
         <pre className="bold">
           {`JPMorgan Chase & Co.
-Feb 2022 - Present (2 years 1 month)`}
+Feb 2022 - Present (${new Date().getFullYear() - 2022} years ${new Date().getMonth() - 1} Months)`}
         </pre>
-        <pre>
-          {`Onyx Digital Rail - Orchestration DAPP
+        <div className="summary">
+          <b> Onyx Digital Rail - Orchestration DAPP</b>
+          {toUl(`Developed and deployed smart contracts on Ethereum and Quorum for enterprise applications Designed and implemented secure architecture for private blockchain networks using Quorum Integrated blockchain solutions with existing enterprise systems and APIs
+Performed unit and integration testing for smart contracts and DApps
+Singapore
+Contributed to ongoing development and maintenance of blockchain infrastructure
+Migrated multiple micro-services to Atlas Cloud (AWS) Production with zero failure
+Learned Terraform in-depth and migrated multiple applications from Pivotal cloud to AWS cloud with minimal resource in strict timeline`)}
+          <b> Programmable Payment</b>
+          {toUl(`Improved performance of E2E assertion framework
+Built frontend framework using Native Web Component/Lit Element Conducted requirement gathering from stakeholders and designed screens Led team of UI developers`)}
+        </div>
 
-Develop and deploy smart contracts on Ethereum and Quorum for enterprise applications.
-Design and implement secure architecture for private blockchain networks using Quorum.
-Integrate blockchain solutions with existing enterprise systems and APIs.
-Perform unit and integration testing for smart contracts and DApps.
-Contribute to the ongoing development and maintenance of blockchain infrastructure.
-Leading and migrating multiple micro-services to Atlas Cloud(AWS) Production with Zero failure
-Learning in-depth Terraform and solving multiple issues
-Improve the performance E2E assertion framework
-
-Programmable Payment
-
-Build frontend framework on top of Native Web Component/Lit Element
-Requirement gathering from stakeholders and design screen
-Leading team of UI developers`}
-        </pre>
-
-        <h2 className="bold">Lead Frontend Engineer, Vice President</h2>
-        <pre>
+        <h3 className="bold">Lead Frontend Engineer, Vice President</h3>
+        <pre className="bold">
           {`DBS Bank
 Feb 2021 - Feb 2022 (1 year 1 month)`}
         </pre>
-        <pre>
-          {`Leading team of Frontend developers and User experience
-Played a significant role in the Core System Technology Group (CST), participating in architectural
-teams and developing frameworks to address common problems/use cases.
-Developed Trade Banking Applications on permissioned Blockchain, emphasizing expertise in
-blockchain technology.
-Designed and built React.js, Android, and Angular component libraries for widespread use within DBS
-Constructed a Document Search Engine using Node.js, GraphQL, React, and ElasticSearch to create a
-centralized document repository.
-Created a custom Node.js CLI for a basic starter kit and templating engine support, demonstrating a
-focus on automation and efficiency.
-Established an Analytics Framework and a Zero Code Documentation tool, showcasing a diverse skill
-set`}
-        </pre>
-        <h2>Staff Software Engineer</h2>
+        <div className="summary">
+          {toUl(`Headed teams of Frontend developers and User Experience specialists
+Lead a pivotal role in the Core System Technology Group (CST), contributing to architectural innovation and framework development
+Developed Trade Banking Applications on permissioned Blockchain(POC) using Corda R3
+Engineered and crafted React.js, Android, and Angular component libraries for widespread adoption within DBS Consumer banking applications
+Developed Document Search Engine using Node.js, GraphQL, React, and ElasticSearch for centralized document management
+Build custom Node.js CLI for a streamlined starter kit and templating engine support, emphasizing automation and efficiency
+Established an advanced Analytics Framework and Zero Code Documentation tool, showcasing a versatile skill set`)}
+        </div>
+        <h3>Senior Software Engineer, Staff Software Engineer</h3>
         <pre className="bold">{`Equinix
 May 2016 - May 2017 (1 year 1 month)`}</pre>
-        <pre>{`Specialized in profiling and enhancing performance in both Node.js and AngularJS code, showcasing
-expertise in optimizing the efficiency of server-side and client-side applications.
-Successfully upgraded the Oracle driver from strong-oracle to node-oracledb, demonstrating the ability
-to manage and implement improvements in database connectivity.
-Implemented an in-memory cache utilizing node-cache to optimize the performance of least used APIs,
-highlighting a strategic approach to enhance data retrieval speed and overall system efficiency.`}</pre>
-        <h2>Sr. Software Engineer</h2>
+        <div className="summary">
+          {toUl(`Specialized in performance profiling and enhancement for Node.js and AngularJS applications, improving the UX and customer engagement.
+Upgraded Oracle driver from strong-oracle to node-oracledb, improving database connectivity with less downtime and zero failure.
+Implemented in-memory cache using node-cache to optimize performance by 30% of least used APIs`)}
+        </div>
+        <h3>Lead UX/UI Engineer, Senior Software Engineer</h3>
         <pre className="bold">{`TO THE NEW
 Jun 2014 - Apr 2016 (1 year 11 months)`}</pre>
-        <pre>{`Successfully executed a data migration initiative, transitioning from relational SQL databases to NSQL
-MongoDB
-Implemented ElasticSearch to optimize search functionality, achieving faster results by enabling
-searches across multiple collections through aggregation and facets searching.
-Established multilingual support using Angular translates, currently supporting two languages,
-enhancing the accessibility and inclusivity of the application.
-Introduced a chat/messenger feature, allowing users to communicate via a chatbox. The functionality
-is supported by both back-end and front-end technologies, incorporating Pusher and OpenTok for realtime communication.
-Implemented Node.js workers to provide dedicated worker threads, optimizing system efficiency for
-heavy batch tasks, reflecting a commitment to performance optimization.
-Integrated RabbitMQ for queue message support, implementing a priority-based queue system for
-different tasks`}</pre>
-        <h2>Module Lead</h2>
+        <div className="summary">
+          {toUl(`Executed data migration from relational SQL databases to NSQL MongoDB in 2 months
+Implemented ElasticSearch for optimized search functionality across multiple collections and increase the performance by 60%
+Established multilingual support with Angular translates for enhanced accessibility
+Introduced chat/messenger feature supported by Pusher and OpenTok for real-time communication Implemented Node.js workers for optimized system efficiency in batch tasks
+Integrated RabbitMQ for a priority-based queue system
+Implemented API caching at the Node.js level for improved performance`)}
+        </div>
+        <h3>Module Lead, Senior Software Engineer</h3>
         <pre className="bold">{`NEC Corporation India Pvt Ltd.
 Aug 2013 - Jun 2014 (11 months)`}</pre>
-        <pre>{`- Create a Simulator to simulate the communication with external system (ACOS, WEB AP etc.)
-- Creating Zimlets (Add-On) for Bmail, A new aligned project of Biglobe
-- Created a Heat-map tool to trace the log of the Zimbra mail server and collect information`}</pre>
-
-        <h3>Education</h3>
-        <h2>West Bengal University of Technology, Kolkata</h2>
+        <div className="summary">
+          {toUl(`Developed a simulator for communication with external systems (ACOS, WEB API, etc.)
+Built multiple Zimlets (Add-Ons/Plugins) for Bmail(a project of Biglobe) to enhance the User Capabilities Develop a heat-map tool to trace the log of 100s of Zimbra mail servers and collect information to increase visibility`)}
+        </div>
+        <h2>Projects</h2>
+        <hr />
+        <a href="https://decipher.dev/30-seconds-of-typescript/docs/">
+          30 seconds of typescript
+        </a>
+        <p>
+          Building website to provide developers with essential code snippets.
+          Committed to improving website functionality, SEO, and promptly
+          addressing coding bugs. Goal is for snippets to rank in top 5 on
+          Google. Code snippets improve productivity and save time.
+        </p>
+        <hr />
+        <h2>Education</h2>
+        <hr />
+        <h3>West Bengal University of Technology, Kolkata</h3>
         <pre className="bold">
           {`Bachelor of Technology (B.Tech.), Computer and Information Sciences and Support
 Services
 2007 - 2011`}
         </pre>
-        <pre>
-          {`Bachelor of Technology with CGPA 8.2/10 (Y. 2007-2011)
-Subjects: J2SE, JavaScript, Data structure, Mathematics, Automata`}
-        </pre>
-        <h2>West Bengal Board of Secondary Education (WBBSE)</h2>
+        <h3>West Bengal Board of Education (WBBSE)Secondary, Kolkata</h3>
         <pre className="bold">
-          {`Higher Secondary , Physics, Maths, Chemistry
-2005 - 2007`}
+          {`Higher Secondary, Physics, Maths, Chemistry
+2007 - 2011`}
         </pre>
-        <pre>
-          {`Senior Higher Secondary (+12)
-Subjects: Physics, Chemistry, Maths with CGPA 88%`}
-        </pre>
-
-        <h3>Licenses & Certifications</h3>
+        <h2>Awards/Certificates</h2>
+        <hr />
         <p>
-          AWS Certified Cloud Practitioner - Amazon Web Services (AWS) Issued
-          Aug 2023 - Expires Aug 2026
+          AWS Certified Cloud Practitioner -
+          <a href="https://www.credly.com/badges/866ccfe3-6a5c-4c99-8736-16e38909823e/linked_in_profile">
+            Amazon Web Services (AWS) Issued Aug 2023 - Expires Aug 2026
+          </a>
         </p>
-        <p>Secure Code Warrior - Secure Code Warrior</p>
         <p>
-          Blockchain Basics - University at Buffalo
-          https://coursera.org/share/8859148d04bcbc60140ff33bdb19691c
+          Blockchain Basics - University at Buffalo -
+          <a href="https://coursera.org/share/8859148d04bcbc60140ff33bdb19691c">
+            Certificate
+          </a>
         </p>
         <br />
         <button className="download button icon" onClick={download}>

@@ -425,6 +425,12 @@ a {
 }
 
 .resume {
+  h2 {
+    text-transform: uppercase;
+  }
+  .summary {
+    margin-left: 24px;
+  }
   .contacts {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -438,6 +444,7 @@ a {
   }
 
   a {
+    color: $color_2;
     .bi {
       font-size: 0.5rem;
       position: absolute;

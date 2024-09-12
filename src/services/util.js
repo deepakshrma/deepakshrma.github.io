@@ -28,35 +28,35 @@ export const share = async ({ title, text, tag = "", url }) => {
 export const PAGES_INFO = [
   {
     title: "30 seconds of typescript",
-    img: "https://source.unsplash.com/400x300/?react,animation,programming",
+    img: "https://picsum.photos/seed/programming/400/300",
     description:
       "Utility library,code snippets like lodash for typescript, typescript react(tsx) and deno [inspired by 30-seconds-of-code].",
     link: "https://decipher.dev/30-seconds-of-typescript/docs/",
   },
   {
     title: "Deno By Example",
-    img: "https://source.unsplash.com/400x300/?dinosaur,javascript,animal,animation",
+    img: "https://picsum.photos/seed/deno/400/300",
     description:
       "Tutorial: Learn Web Programming in Deno by Examples\nDeno is a simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust.",
     link: "https://decipher.dev/deno-by-example/",
   },
   {
     title: "Blockchain Introduction",
-    img: "https://source.unsplash.com/400x300/?crypto,currency,digital,animation",
+    img: "https://picsum.photos/seed/crypto/400/300",
     description:
       "Tutorial: Sample code for blockchain and sample app, Solidity Introduction",
     link: "https://decipher.dev/blockchain-introduction/",
   },
   // {
   //   title: "Code Snippets- By Deepak Vishwakarma",
-  //   img: "https://source.unsplash.com/400x300/?code,programming,coding",
+  //   img: "https://api.unsplash.com/search/photos?page=1&per_page=1&client_id=8hVmuFM1I9KyDCx_VmrP6v5o1YIfpaG0hHHKmuYH34g&query=code,programming,coding",
   //   description: "Code Snippets Game to learn programming languages like Kotlin, Python, JavaScript, Typescript and many more",
   //   link: "https://decipher.dev/snippets/",
   //   link: "#",
   // },
   {
     title: "Googles Codelabs - Node JS Library",
-    img: "https://source.unsplash.com/400x300/?lab,chemistry,beakers,flasks,animation",
+    img: "https://picsum.photos/seed/programming/400/300",
     description:
       "Go Lang claat tool replica written in node js, using marked parser",
     link: "https://decipher.dev/googles-codelabs/",

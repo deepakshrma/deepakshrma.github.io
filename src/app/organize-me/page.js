@@ -135,7 +135,7 @@ export default function Home() {
   const isMobile = useMobile();
   let coverStyles = {};
   if (state.qoth?.tags?.length) {
-    coverStyles.backgroundImage = `url(https://source.unsplash.com/1200x800/?${state.qoth?.tags},animated)`;
+    coverStyles.backgroundImage = `url(https://picsum.photos/seed/${state.qoth?.tags}/1200/800)`;
   }
   return (
     <div className="container organize">

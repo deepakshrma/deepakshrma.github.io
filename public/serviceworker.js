@@ -1,7 +1,8 @@
 function isCacheable(request) {
   const url = new URL(request.url);
-  return url.host.includes("source.unsplash.com")|| url.pathname.match(/\.(png|jpeg|jpg|webp)$/);
+  return url.host.includes("picsum.photos")|| url.pathname.match(/\.(png|jpeg|jpg|webp)$/);
 }
+
 
 async function cacheFirstWithRefresh(request) {
   const fetchResponsePromise = fetch(request).then(async (networkResponse) => {

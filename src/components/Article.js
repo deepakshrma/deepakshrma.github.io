@@ -19,7 +19,7 @@ export default function Article({
   const filteredTags = filterTags(title, categories);
   media =
     imageUrl ||
-    `https://source.unsplash.com/300x200/?${filteredTags ? filteredTags : "random"}`;
+    `https://picsum.photos/seed/${filteredTags ? filteredTags : "random"}/1200/800`;
   return (
     <div className="card">
       <ShareControl

@@ -54,6 +54,9 @@ function Body({ child }) {
           <a className="link" href="/free-books">
             Free Books
           </a>
+          <a className="link" href="/packets">
+            Packets
+          </a>
           <span className="fit"></span>
           <div className="side-links">
             <a

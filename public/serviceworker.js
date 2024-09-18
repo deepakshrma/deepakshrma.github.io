@@ -1,6 +1,6 @@
 function isCacheable(request) {
   const url = new URL(request.url);
-  return url.host.includes("picsum.photos")|| url.pathname.match(/\.(png|jpeg|jpg|webp)$/);
+  return url.host.includes("picsum.photos") || request.url.includes("jokes/categories") || url.pathname.match(/\.(png|jpeg|jpg|webp)$/);
 }
 
 

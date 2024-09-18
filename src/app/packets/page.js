@@ -8,6 +8,7 @@ const dim = ([w, h] = [400, 400]) => {
     const f = (w - 400) / w;
     return [400, h - Math.floor(h * f)];
   }
+
   return [w, h];
 };
 export default function Home() {

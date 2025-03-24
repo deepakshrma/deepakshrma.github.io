@@ -48,9 +48,9 @@ function Body({ child }) {
           <a className="link" target="_blank" href="https://blog.decipher.dev/">
             Blogs
           </a>
-          <a className="link" href="/about-me">
+          {/* <a className="link" href="/about-me">
             About me
-          </a>
+          </a> */}
           <a className="link" href="/free-books">
             Free Books
           </a>

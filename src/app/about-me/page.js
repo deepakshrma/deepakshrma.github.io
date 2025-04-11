@@ -410,7 +410,7 @@ function App() {
         </Section>
 
         {/* References */}
-        <Section title="References">
+        {/* <Section title="References">
           <ItemList
             items={resumeData.references}
             renderItem={(ref) => (
@@ -421,7 +421,7 @@ function App() {
               </>
             )}
           />
-        </Section>
+        </Section> */}
       </div>
     </div>
   );
